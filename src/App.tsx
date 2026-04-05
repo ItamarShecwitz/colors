@@ -189,189 +189,206 @@ function App() {
                   <h3 className="harmonies-title">Color Harmonies & Wardrobe</h3>
                   
                   <div className="harmony-layout">
-                    <div className="color-wheel-container">
-                      <svg viewBox="0 0 100 100" className="wheel-svg">
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#eee" strokeWidth="0.5" />
-                        
-                        <g className="wheel-segments">
-                          {Array.from({ length: 12 }).map((_, i) => (
-                            <path
-                              key={i}
-                              d={`M 50 50 L ${50 + 45 * Math.cos(i * 30 * Math.PI / 180)} ${50 + 45 * Math.sin(i * 30 * Math.PI / 180)} A 45 45 0 0 1 ${50 + 45 * Math.cos((i + 1) * 30 * Math.PI / 180)} ${50 + 45 * Math.sin((i + 1) * 30 * Math.PI / 180)} Z`}
-                              fill={`hsl(${i * 30}, 70%, 60%)`}
-                              opacity="0"
-                              className="wheel-segment"
-                              style={{ pointerEvents: 'auto' }}
+                    <div className="wheel-side-container">
+                      <div className="color-wheel-container">
+                        <svg viewBox="0 0 100 100" className="wheel-svg">
+                          <circle cx="50" cy="50" r="45" fill="none" stroke="#eee" strokeWidth="0.5" />
+                          
+                          <g className="wheel-segments">
+                            {Array.from({ length: 12 }).map((_, i) => (
+                              <path
+                                key={i}
+                                d={`M 50 50 L ${50 + 45 * Math.cos(i * 30 * Math.PI / 180)} ${50 + 45 * Math.sin(i * 30 * Math.PI / 180)} A 45 45 0 0 1 ${50 + 45 * Math.cos((i + 1) * 30 * Math.PI / 180)} ${50 + 45 * Math.sin((i + 1) * 30 * Math.PI / 180)} Z`}
+                                fill={`hsl(${i * 30}, 70%, 60%)`}
+                                opacity="0"
+                                className="wheel-segment"
+                                style={{ pointerEvents: 'auto' }}
+                              />
+                            ))}
+                          </g>
+
+                          {/* Helper to get safe coordinates */}
+                          {(() => {
+                            const o = chroma(colorData.hex);
+                            const h = o.get('hsl.h');
+                            const safeH = isNaN(h) ? 0 : h;
+                            const angle = safeH * Math.PI / 180;
+                            const r = 38; 
+                            
+                            return (
+                              <>
+                                <circle 
+                                  cx={50 + r * Math.cos(angle)} 
+                                  cy={50 + r * Math.sin(angle)} 
+                                  r="4" 
+                                  fill={colorData.hex} 
+                                  stroke="#fff" 
+                                  strokeWidth="2"
+                                  className="indicator-main"
+                                  style={{ cursor: 'pointer' }}
+                                  onClick={() => setInputColor(colorData.hex)}
+                                />
+
+                                {harmonyMode === 'complementary' && (
+                                  <circle 
+                                    cx={50 + r * Math.cos(angle + Math.PI)} 
+                                    cy={50 + r * Math.sin(angle + Math.PI)} 
+                                    r="3" 
+                                    fill={colorData.complementary} 
+                                    stroke="#fff"
+                                    strokeWidth="1"
+                                    className="indicator-comp"
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => setInputColor(colorData.complementary)}
+                                  />
+                                )}
+
+                                {harmonyMode === 'analogous' && [30, -30].map(offset => {
+                                  const offsetRad = offset * Math.PI / 180;
+                                  const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
+                                  return (
+                                    <circle 
+                                      key={offset}
+                                      cx={50 + r * Math.cos(angle + offsetRad)} 
+                                      cy={50 + r * Math.sin(angle + offsetRad)} 
+                                      r="3" 
+                                      fill={c} 
+                                      stroke="#fff"
+                                      strokeWidth="1"
+                                      className="indicator-dynamic"
+                                      style={{ cursor: 'pointer' }}
+                                      onClick={() => setInputColor(c)}
+                                    />
+                                  );
+                                })}
+
+                                {harmonyMode === 'triadic' && [120, -120].map(offset => {
+                                  const offsetRad = offset * Math.PI / 180;
+                                  const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
+                                  return (
+                                    <circle 
+                                      key={offset}
+                                      cx={50 + r * Math.cos(angle + offsetRad)} 
+                                      cy={50 + r * Math.sin(angle + offsetRad)} 
+                                      r="3" 
+                                      fill={c} 
+                                      stroke="#fff"
+                                      strokeWidth="1"
+                                      className="indicator-dynamic"
+                                      style={{ cursor: 'pointer' }}
+                                      onClick={() => setInputColor(c)}
+                                    />
+                                  );
+                                })}
+
+                                {harmonyMode === 'split-complementary' && [150, 210].map(offset => {
+                                  const offsetRad = offset * Math.PI / 180;
+                                  const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
+                                  return (
+                                    <circle 
+                                      key={offset}
+                                      cx={50 + r * Math.cos(angle + offsetRad)} 
+                                      cy={50 + r * Math.sin(angle + offsetRad)} 
+                                      r="3" 
+                                      fill={c} 
+                                      stroke="#fff"
+                                      strokeWidth="1"
+                                      className="indicator-dynamic"
+                                      style={{ cursor: 'pointer' }}
+                                      onClick={() => setInputColor(c)}
+                                    />
+                                  );
+                                })}
+
+                                {harmonyMode === 'square' && [90, 180, 270].map(offset => {
+                                  const offsetRad = offset * Math.PI / 180;
+                                  const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
+                                  return (
+                                    <circle 
+                                      key={offset}
+                                      cx={50 + r * Math.cos(angle + offsetRad)} 
+                                      cy={50 + r * Math.sin(angle + offsetRad)} 
+                                      r="3" 
+                                      fill={c} 
+                                      stroke="#fff"
+                                      strokeWidth="1"
+                                      className="indicator-dynamic"
+                                      style={{ cursor: 'pointer' }}
+                                      onClick={() => setInputColor(c)}
+                                    />
+                                  );
+                                })}
+
+                                {harmonyMode === 'double-split' && [30, -30, 150, 210].map(offset => {
+                                  const offsetRad = offset * Math.PI / 180;
+                                  const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
+                                  return (
+                                    <circle 
+                                      key={offset}
+                                      cx={50 + r * Math.cos(angle + offsetRad)} 
+                                      cy={50 + r * Math.sin(angle + offsetRad)} 
+                                      r="3" 
+                                      fill={c} 
+                                      stroke="#fff"
+                                      strokeWidth="1"
+                                      className="indicator-dynamic"
+                                      style={{ cursor: 'pointer' }}
+                                      onClick={() => setInputColor(c)}
+                                    />
+                                  );
+                                })}
+
+                                {harmonyMode === 'monochromatic' && [o.brighten(1).hex(), o.darken(1).hex()].map((c, i) => {
+                                  const dist = i === 0 ? r + 5 : r - 5;
+                                  return (
+                                    <circle 
+                                      key={i}
+                                      cx={50 + dist * Math.cos(angle)} 
+                                      cy={50 + dist * Math.sin(angle)} 
+                                      r="3" 
+                                      fill={c} 
+                                      stroke="#fff"
+                                      strokeWidth="1"
+                                      className="indicator-dynamic"
+                                      style={{ cursor: 'pointer' }}
+                                      onClick={() => setInputColor(c)}
+                                    />
+                                  );
+                                })}
+                              </>
+                            );
+                          })()}
+
+                          {harmonyMode === 'neutral' && (
+                            <circle 
+                              cx="50" 
+                              cy="50" 
+                              r="3" 
+                              fill="#F5F5DC" 
+                              stroke="#fff"
+                              strokeWidth="1"
+                              className="indicator-dynamic"
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => setInputColor('#F5F5DC')}
+                            />
+                          )}
+                        </svg>
+                      </div>
+
+                      <div className="harmony-group tonal-scale-group">
+                        <h4>Tonal Scale</h4>
+                        <div className="shades-list">
+                          {colorData.shades.map((s, i) => (
+                            <div 
+                              key={i} 
+                              className="shade-item" 
+                              style={{ backgroundColor: s }} 
+                              onClick={() => setInputColor(s)}
+                              title={s}
                             />
                           ))}
-                        </g>
-
-                        {/* Helper to get safe coordinates */}
-                        {(() => {
-                          const o = chroma(colorData.hex);
-                          const h = o.get('hsl.h');
-                          const safeH = isNaN(h) ? 0 : h;
-                          const angle = safeH * Math.PI / 180;
-                          const r = 38; 
-                          
-                          return (
-                            <>
-                              <circle 
-                                cx={50 + r * Math.cos(angle)} 
-                                cy={50 + r * Math.sin(angle)} 
-                                r="4" 
-                                fill={colorData.hex} 
-                                stroke="#fff" 
-                                strokeWidth="2"
-                                className="indicator-main"
-                                style={{ cursor: 'pointer' }}
-                                onClick={() => setInputColor(colorData.hex)}
-                              />
-
-                              {harmonyMode === 'complementary' && (
-                                <circle 
-                                  cx={50 + r * Math.cos(angle + Math.PI)} 
-                                  cy={50 + r * Math.sin(angle + Math.PI)} 
-                                  r="3" 
-                                  fill={colorData.complementary} 
-                                  stroke="#fff"
-                                  strokeWidth="1"
-                                  className="indicator-comp"
-                                  style={{ cursor: 'pointer' }}
-                                  onClick={() => setInputColor(colorData.complementary)}
-                                />
-                              )}
-
-                              {harmonyMode === 'analogous' && [30, -30].map(offset => {
-                                const offsetRad = offset * Math.PI / 180;
-                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
-                                return (
-                                  <circle 
-                                    key={offset}
-                                    cx={50 + r * Math.cos(angle + offsetRad)} 
-                                    cy={50 + r * Math.sin(angle + offsetRad)} 
-                                    r="3" 
-                                    fill={c} 
-                                    stroke="#fff"
-                                    strokeWidth="1"
-                                    className="indicator-dynamic"
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => setInputColor(c)}
-                                  />
-                                );
-                              })}
-
-                              {harmonyMode === 'triadic' && [120, -120].map(offset => {
-                                const offsetRad = offset * Math.PI / 180;
-                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
-                                return (
-                                  <circle 
-                                    key={offset}
-                                    cx={50 + r * Math.cos(angle + offsetRad)} 
-                                    cy={50 + r * Math.sin(angle + offsetRad)} 
-                                    r="3" 
-                                    fill={c} 
-                                    stroke="#fff"
-                                    strokeWidth="1"
-                                    className="indicator-dynamic"
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => setInputColor(c)}
-                                  />
-                                );
-                              })}
-
-                              {harmonyMode === 'split-complementary' && [150, 210].map(offset => {
-                                const offsetRad = offset * Math.PI / 180;
-                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
-                                return (
-                                  <circle 
-                                    key={offset}
-                                    cx={50 + r * Math.cos(angle + offsetRad)} 
-                                    cy={50 + r * Math.sin(angle + offsetRad)} 
-                                    r="3" 
-                                    fill={c} 
-                                    stroke="#fff"
-                                    strokeWidth="1"
-                                    className="indicator-dynamic"
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => setInputColor(c)}
-                                  />
-                                );
-                              })}
-
-                              {harmonyMode === 'square' && [90, 180, 270].map(offset => {
-                                const offsetRad = offset * Math.PI / 180;
-                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
-                                return (
-                                  <circle 
-                                    key={offset}
-                                    cx={50 + r * Math.cos(angle + offsetRad)} 
-                                    cy={50 + r * Math.sin(angle + offsetRad)} 
-                                    r="3" 
-                                    fill={c} 
-                                    stroke="#fff"
-                                    strokeWidth="1"
-                                    className="indicator-dynamic"
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => setInputColor(c)}
-                                  />
-                                );
-                              })}
-
-                              {harmonyMode === 'double-split' && [30, -30, 150, 210].map(offset => {
-                                const offsetRad = offset * Math.PI / 180;
-                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
-                                return (
-                                  <circle 
-                                    key={offset}
-                                    cx={50 + r * Math.cos(angle + offsetRad)} 
-                                    cy={50 + r * Math.sin(angle + offsetRad)} 
-                                    r="3" 
-                                    fill={c} 
-                                    stroke="#fff"
-                                    strokeWidth="1"
-                                    className="indicator-dynamic"
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => setInputColor(c)}
-                                  />
-                                );
-                              })}
-
-                              {harmonyMode === 'monochromatic' && [o.brighten(1).hex(), o.darken(1).hex()].map((c, i) => {
-                                const dist = i === 0 ? r + 5 : r - 5;
-                                return (
-                                  <circle 
-                                    key={i}
-                                    cx={50 + dist * Math.cos(angle)} 
-                                    cy={50 + dist * Math.sin(angle)} 
-                                    r="3" 
-                                    fill={c} 
-                                    stroke="#fff"
-                                    strokeWidth="1"
-                                    className="indicator-dynamic"
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={() => setInputColor(c)}
-                                  />
-                                );
-                              })}
-                            </>
-                          );
-                        })()}
-
-                        {harmonyMode === 'neutral' && (
-                          <circle 
-                            cx="50" 
-                            cy="50" 
-                            r="3" 
-                            fill="#F5F5DC" 
-                            stroke="#fff"
-                            strokeWidth="1"
-                            className="indicator-dynamic"
-                            style={{ cursor: 'pointer' }}
-                            onClick={() => setInputColor('#F5F5DC')}
-                          />
-                        )}
-                      </svg>
+                        </div>
+                      </div>
                     </div>
 
                     <div className="harmony-display-grid">
@@ -484,21 +501,6 @@ function App() {
                             </div>
                             <span className="outfit-label">Double-Split</span>
                           </div>
-                        </div>
-                      </div>
-
-                      <div className="harmony-group">
-                        <h4>Tonal Scale</h4>
-                        <div className="shades-list">
-                          {colorData.shades.map((s, i) => (
-                            <div 
-                              key={i} 
-                              className="shade-item" 
-                              style={{ backgroundColor: s }} 
-                              onClick={() => setInputColor(s)}
-                              title={s}
-                            />
-                          ))}
                         </div>
                       </div>
 

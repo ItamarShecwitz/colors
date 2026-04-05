@@ -491,11 +491,23 @@ html, body {
   margin-top: 1rem;
 }
 
+.wheel-side-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.tonal-scale-group {
+  margin-top: 1rem;
+}
+
 .level-btn {
   background: transparent;
   border: 1px solid var(--glass-border);
-  padding: 0.6rem 0;
-  font-size: 0.65rem;
+  padding: 0.8rem 0;
+  font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: var(--font-sans);
@@ -545,7 +557,7 @@ html, body {
 .game-modes {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem; /* Reduced from 1rem */
   margin-bottom: 2rem;
 }
 
