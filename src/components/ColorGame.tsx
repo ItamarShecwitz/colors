@@ -226,51 +226,57 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
       </div>
 
       <div className="game-main" ref={gameSectionRef}>
-        <div className="target-square-frame">
-          <div 
-            className="target-square" 
-            style={{ backgroundColor: targetColor }}
-            onClick={() => onSelectColor(targetColor)}
-          >
-            {feedback && (
-              <div className="reveal-name animate-in">
-                {correctOption?.name}
-              </div>
-            )}
+        {isGameOver ? (
+          <div className="results-container">
+            <h2 className="results-header">Session Complete</h2>
+            <div className="results-score">{score.correct} / {mode === 'timer' ? TIMER_TOTAL_QUESTIONS : score.total}</div>
+            <p className="results-msg">
+              {score.correct >= (mode === 'timer' ? 10 : Math.ceil(score.total * 0.8)) 
+                ? 'Master of the Spectrum' 
+                : 'Keep practicing your vision'}
+            </p>
+            <button className="reset-btn" onClick={resetGame}>Play Again</button>
           </div>
-        </div>
-        
-        <div className="options-grid">
-          {options.map((opt, i) => {
-            let statusClass = '';
-            if (feedback) {
-              if (opt.name === correctOption?.name) statusClass = 'correct';
-              else if (opt.name === lastClickedOption) statusClass = 'wrong';
-              else statusClass = 'faded';
-            }
-            
-            return (
-              <button 
-                key={i} 
-                className={`option-btn ${statusClass}`}
-                onClick={() => handleOptionClick(opt)}
-                disabled={!!feedback || isGameOver}
+        ) : (
+          <>
+            <div className="target-square-frame">
+              <div 
+                className="target-square" 
+                style={{ backgroundColor: targetColor }}
+                onClick={() => onSelectColor(targetColor)}
               >
-                {opt.name}
-              </button>
-            );
-          })}
-        </div>
+                {feedback && (
+                  <div className="reveal-name animate-in">
+                    {correctOption?.name}
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            <div className="options-grid">
+              {options.map((opt, i) => {
+                let statusClass = '';
+                if (feedback) {
+                  if (opt.name === correctOption?.name) statusClass = 'correct';
+                  else if (opt.name === lastClickedOption) statusClass = 'wrong';
+                  else statusClass = 'faded';
+                }
+                
+                return (
+                  <button 
+                    key={i} 
+                    className={`option-btn ${statusClass}`}
+                    onClick={() => handleOptionClick(opt)}
+                    disabled={!!feedback || isGameOver}
+                  >
+                    {opt.name}
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
-
-      {isGameOver && (
-        <div className="game-over-overlay animate-in">
-          <h2>Session Complete</h2>
-          <div className="final-score">{score.correct} / {mode === 'timer' ? TIMER_TOTAL_QUESTIONS : score.total}</div>
-          <p>{score.correct >= (mode === 'timer' ? 10 : Math.ceil(score.total * 0.8)) ? 'Master of the Spectrum' : 'Continue your studies'}</p>
-          <button className="reset-btn" onClick={resetGame}>Try Again</button>
-        </div>
-      )}
 
       {feedback && !isGameOver && (
         <div className={`feedback-overlay ${feedback}`}>
