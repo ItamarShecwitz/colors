@@ -922,12 +922,32 @@ input[type="color"]::-webkit-color-swatch {
   }
 
   .color-chip {
-    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: 0.8rem;
+    gap: 1.2rem;
+    border-radius: 1rem;
   }
 
   .chip-swatch {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 50px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    border-radius: 0.5rem;
+  }
+
+  .chip-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .chip-name {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
   }
 
   /* Game View */
