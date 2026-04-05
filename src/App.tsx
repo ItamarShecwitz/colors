@@ -2,10 +2,11 @@ import { useState, useEffect, useMemo } from 'react'
 import namer from 'color-namer'
 import chroma from 'chroma-js'
 import { COLOR_LEVELS } from './constants'
+import { ColorGame } from './components/ColorGame'
 import './App.css'
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'dictionary' | 'learn'>('dictionary')
+  const [activeTab, setActiveTab] = useState<'dictionary' | 'learn' | 'game'>('dictionary')
   const [inputColor, setInputColor] = useState('#646cff')
   const [history, setHistory] = useState<string[]>([])
 
@@ -59,14 +60,14 @@ function App() {
   }, [colorData?.hex, activeTab])
 
   return (
-    <div className="app-container" style={{ backgroundColor: colorData?.hex || '#242424' }}>
-      <div className="content-card" style={{ color: colorData?.contrast || '#ffffff' }}>
+    <div className="app-container">
+      <div className="content-card">
         <nav className="tabs">
           <button 
             className={activeTab === 'dictionary' ? 'active' : ''} 
             onClick={() => setActiveTab('dictionary')}
           >
-            Dictionary
+            Lexicon
           </button>
           <button 
             className={activeTab === 'learn' ? 'active' : ''} 
@@ -74,113 +75,122 @@ function App() {
           >
             Learn
           </button>
+          <button 
+            className={activeTab === 'game' ? 'active' : ''} 
+            onClick={() => setActiveTab('game')}
+          >
+            Game
+          </button>
         </nav>
 
         <header>
           <h1>Color Lexicon</h1>
-          <p>{activeTab === 'dictionary' ? 'A curated spectrum' : 'The visual vocabulary'}</p>
+          <p>
+            {activeTab === 'dictionary' ? 'A curated visual vocabulary' : 
+             activeTab === 'learn' ? 'Master the spectrum' : 
+             'Test your visual intuition'}
+          </p>
         </header>
 
         <main>
           {activeTab === 'dictionary' ? (
             <div className="dictionary-view animate-in">
-              <section className="input-section">
-                <div className="color-picker-wrapper">
-                  <input 
-                    type="color" 
-                    value={colorData?.hex || '#000000'} 
-                    onChange={handleInputChange} 
-                    aria-label="Color picker"
-                  />
+              <section className="main-display">
+                <div 
+                  className="fashion-square" 
+                  style={{ backgroundColor: colorData?.hex || '#242424' }}
+                >
+                  <div className="square-label" style={{ color: colorData?.contrast || '#ffffff' }}>
+                    {colorData?.name}
+                  </div>
                 </div>
-                <div className="hex-input-wrapper">
-                  <input 
-                    type="text" 
-                    value={inputColor} 
-                    onChange={handleInputChange} 
-                    placeholder="#000000"
-                    aria-label="Color input"
-                  />
+
+                <div className="controls">
+                  <div className="input-group">
+                    <input 
+                      type="color" 
+                      value={colorData?.hex || '#000000'} 
+                      onChange={handleInputChange} 
+                      aria-label="Color picker"
+                    />
+                    <input 
+                      type="text" 
+                      value={inputColor} 
+                      onChange={handleInputChange} 
+                      placeholder="#000000"
+                      aria-label="Color input"
+                    />
+                  </div>
+
+                  {colorData && (
+                    <div className="metadata">
+                      <div className="meta-item">
+                        <label>Hex</label>
+                        <code>{colorData.hex.toUpperCase()}</code>
+                      </div>
+                      <div className="meta-item">
+                        <label>RGB</label>
+                        <code>{colorData.rgb}</code>
+                      </div>
+                      <div className="meta-item">
+                        <label>HSL</label>
+                        <code>{colorData.hsl}</code>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </section>
 
-              {colorData ? (
-                <div className="color-info-layout">
-                  <div className="color-info">
-                    <section className="primary-name">
-                      <h2>{colorData.name}</h2>
-                      <p className="subtitle">Primarily <strong>{colorData.basicName}</strong></p>
-                    </section>
-
-                    <section className="details">
-                      <div className="detail-item">
-                        <span>HEX</span>
-                        <code>{colorData.hex.toUpperCase()}</code>
-                      </div>
-                      <div className="detail-item">
-                        <span>RGB</span>
-                        <code>{colorData.rgb}</code>
-                      </div>
-                      <div className="detail-item">
-                        <span>HSL</span>
-                        <code>{colorData.hsl}</code>
-                      </div>
-                    </section>
+              {colorData && (
+                <section className="relationships animate-in">
+                  <div className="shades-section">
+                    <h3>Scale</h3>
+                    <div className="shades-list">
+                      {colorData.shades.map((s, i) => (
+                        <div 
+                          key={i} 
+                          className="shade-item" 
+                          style={{ backgroundColor: s }} 
+                          onClick={() => setInputColor(s)}
+                        />
+                      ))}
+                    </div>
                   </div>
 
-                  <div className="visuals-section">
-                    <section className="shades-container">
-                      <h3>Tonal Scale</h3>
-                      <div className="shades">
-                        {colorData.shades.map((s, i) => (
-                          <div 
-                            key={i} 
-                            className="shade-box" 
-                            style={{ backgroundColor: s }} 
-                            onClick={() => setInputColor(s)}
-                            title={s}
-                          />
-                        ))}
-                      </div>
-                    </section>
-
-                    <section className="complementary">
-                      <h3>Complement</h3>
-                      <div 
-                        className="complementary-box" 
-                        style={{ backgroundColor: colorData.complementary }}
-                        onClick={() => setInputColor(colorData.complementary)}
-                      >
-                        <span>{colorData.complementary.toUpperCase()}</span>
-                      </div>
-                    </section>
+                  <div className="complement-section">
+                    <h3>Opposite</h3>
+                    <div 
+                      className="complement-box" 
+                      style={{ backgroundColor: colorData.complementary }}
+                      onClick={() => setInputColor(colorData.complementary)}
+                    >
+                      <span style={{ color: chroma.contrast(colorData.complementary, 'white') > 4.5 ? '#fff' : '#000' }}>
+                        {colorData.complementary.toUpperCase()}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="error-state">
-                  <p>Enter a valid color to begin.</p>
-                </div>
+                </section>
               )}
             </div>
-          ) : (
+          ) : activeTab === 'learn' ? (
             <div className="learn-view animate-in">
               {COLOR_LEVELS.map(level => (
-                <section key={level.id} className="level-group">
-                  <div className="level-header">
+                <section key={level.id} className="level-block">
+                  <div className="level-info">
                     <h2>{level.name}</h2>
                     <p>Level {level.id} &mdash; {level.description}</p>
                   </div>
-                  <div className="learning-grid">
+                  <div className="level-grid">
                     {level.colors.map(color => (
                       <button 
                         key={color.hex} 
-                        className="learning-card"
+                        className="color-chip"
                         onClick={() => selectColor(color.hex)}
                       >
-                        <div className="swatch" style={{ backgroundColor: color.hex }} />
-                        <div className="info">
-                          <span className="name">{color.name}</span>
-                          <span className="hex">{color.hex}</span>
+                        <div className="chip-swatch" style={{ backgroundColor: color.hex }} />
+                        <div className="chip-meta">
+                          <span className="chip-name">{color.name}</span>
+                          <span className="chip-hex">{color.hex}</span>
                         </div>
                       </button>
                     ))}
@@ -188,21 +198,23 @@ function App() {
                 </section>
               ))}
             </div>
+          ) : (
+            <ColorGame onSelectColor={selectColor} />
           )}
         </main>
 
         <footer>
           {activeTab === 'dictionary' && history.length > 0 && (
             <div className="history">
-              <h3>Recent Explorations</h3>
-              <div className="history-list">
+              <h3>Recent</h3>
+              <div className="history-items">
                 {history.map((h, i) => (
                   <button 
                     key={i} 
-                    className="history-item" 
+                    className="history-dot" 
                     style={{ backgroundColor: h }} 
                     onClick={() => setInputColor(h)}
-                    aria-label={`Select color ${h}`}
+                    title={h}
                   />
                 ))}
               </div>

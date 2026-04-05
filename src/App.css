@@ -1,50 +1,50 @@
 :root {
-  font-family: 'Montserrat', sans-serif;
-  line-height: 1.6;
-  font-weight: 300;
-  color: #ffffff;
-  background-color: #000000;
-  -webkit-font-smoothing: antialiased;
+  --bg-color: #080808;
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --accent-color: #ffffff;
+  --text-main: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Montserrat', sans-serif;
 }
 
 body {
   margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 .app-container {
   min-height: 100vh;
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-  padding: 4rem 1rem;
-  box-sizing: border-box;
+  padding: 4rem 2rem;
 }
 
 .content-card {
   width: 100%;
-  max-width: 900px;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  padding: 4rem;
-  border-radius: 4rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.4);
+  max-width: 1000px;
+  background: var(--card-bg);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border: 1px solid var(--glass-border);
+  border-radius: 3rem;
+  padding: 5rem;
   position: relative;
-  transition: color 0.6s ease;
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
 }
 
-/* Luxury Tabs */
+/* Tabs Navigation */
 .tabs {
   position: absolute;
-  top: 4rem;
-  right: 4rem;
+  top: 5rem;
+  right: 5rem;
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .tabs button {
@@ -52,21 +52,24 @@ body {
   border: none;
   padding: 0;
   color: inherit;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.4em;
   cursor: pointer;
   transition: all 0.4s ease;
-  opacity: 0.4;
+  opacity: 0.3;
   position: relative;
+}
+
+.tabs button.active {
+  opacity: 1;
 }
 
 .tabs button::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -6px;
   left: 0;
   width: 0;
   height: 1px;
@@ -74,55 +77,74 @@ body {
   transition: width 0.4s ease;
 }
 
-.tabs button.active {
-  opacity: 1;
-}
-
 .tabs button.active::after {
   width: 100%;
 }
 
 header {
-  margin-bottom: 5rem;
-  text-align: left;
-}
-
-header h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 4.5rem;
-  margin: 0;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.01em;
-}
-
-header p {
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.5em;
-  font-size: 0.7rem;
-  opacity: 0.5;
-  margin-top: 1.5rem;
-}
-
-/* Dictionary View */
-.input-section {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
   margin-bottom: 6rem;
 }
 
-.color-picker-wrapper {
+header h1 {
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  font-weight: 300;
+  margin: 0;
+  line-height: 0.8;
+}
+
+header p {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6em;
+  color: var(--text-dim);
+  margin-top: 2rem;
+}
+
+/* Dictionary View */
+.main-display {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 5rem;
+  align-items: flex-end;
+  margin-bottom: 6rem;
+}
+
+.fashion-square {
+  width: 400px;
+  height: 400px;
   position: relative;
-  width: 80px;
-  height: 80px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.8s ease;
+}
+
+.square-label {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.9;
+  line-height: 1;
+}
+
+.controls {
+  padding-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
 }
 
 input[type="color"] {
   -webkit-appearance: none;
-  width: 100%;
-  height: 100%;
+  width: 60px;
+  height: 60px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -130,76 +152,35 @@ input[type="color"] {
   padding: 0;
 }
 
-input[type="color"]::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-
 input[type="color"]::-webkit-color-swatch {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.hex-input-wrapper {
-  flex: 1;
-  position: relative;
 }
 
 input[type="text"] {
-  width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: inherit;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-serif);
   font-size: 3rem;
-  font-weight: 300;
+  width: 100%;
   outline: none;
+  font-weight: 300;
   transition: border-color 0.4s ease;
 }
 
 input[type="text"]:focus {
-  border-bottom-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.4);
 }
 
-.color-info {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 4rem;
-}
-
-.primary-name h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 6rem;
-  font-weight: 400;
-  margin: 0;
-  line-height: 0.9;
-}
-
-.primary-name .subtitle {
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  opacity: 0.6;
-  margin-top: 2rem;
-  text-transform: lowercase;
-  font-style: italic;
-}
-
-.primary-name .subtitle strong {
-  font-weight: 600;
-  font-style: normal;
-  text-transform: uppercase;
-}
-
-.details {
+.metadata {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-  justify-content: center;
+  gap: 2rem;
 }
 
-.detail-item {
+.meta-item {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -207,111 +188,97 @@ input[type="text"]:focus {
   padding-bottom: 0.5rem;
 }
 
-.detail-item span {
-  font-size: 0.65rem;
+.meta-item label {
+  font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  opacity: 0.4;
+  color: var(--text-dim);
 }
 
-.detail-item code {
-  font-size: 1.1rem;
+.meta-item code {
+  font-size: 1rem;
   font-weight: 300;
-  letter-spacing: 0.05em;
 }
 
-.visuals-section {
-  grid-column: 1 / -1;
-  margin-top: 4rem;
+.relationships {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 5rem;
 }
 
-.visuals-section h3 {
-  font-size: 0.65rem;
+.shades-section h3, .complement-section h3 {
+  font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.4em;
-  opacity: 0.4;
+  color: var(--text-dim);
   margin-bottom: 2rem;
-  font-weight: 400;
 }
 
-.shades {
+.shades-list {
   display: flex;
-  gap: 1px;
+  height: 100px;
 }
 
-.shade-box {
+.shade-item {
   flex: 1;
-  height: 120px;
   cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: saturate(0.8);
+  transition: all 0.4s ease;
 }
 
-.shade-box:hover {
-  flex: 1.5;
-  filter: saturate(1.2);
+.shade-item:hover {
+  flex: 2;
 }
 
-.complementary-box {
-  height: 120px;
-  border-radius: 0;
+.complement-box {
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
+  transition: transform 0.4s ease;
 }
 
-.complementary-box span {
-  font-size: 0.75rem;
+.complement-box:hover {
+  transform: translateY(-5px);
+}
+
+.complement-box span {
+  font-size: 0.7rem;
   letter-spacing: 0.3em;
   font-weight: 400;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
-}
-
-.complementary-box:hover span {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Learning View */
-.level-group {
-  margin-bottom: 8rem;
+.level-block {
+  margin-bottom: 10rem;
 }
 
-.level-header {
+.level-info {
   margin-bottom: 4rem;
 }
 
-.level-header h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
+.level-info h2 {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
   font-weight: 300;
   margin: 0;
 }
 
-.level-header p {
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
+.level-info p {
   font-size: 0.65rem;
-  opacity: 0.4;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--text-dim);
   margin-top: 1rem;
 }
 
-.learning-grid {
+.level-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 3rem;
 }
 
-.learning-card {
+.color-chip {
   background: transparent;
   border: none;
   padding: 0;
@@ -319,112 +286,185 @@ input[type="text"]:focus {
   flex-direction: column;
   gap: 1.5rem;
   cursor: pointer;
-  transition: all 0.4s ease;
   text-align: left;
   color: inherit;
+  transition: transform 0.4s ease;
 }
 
-.learning-card:hover {
+.color-chip:hover {
   transform: translateY(-10px);
 }
 
-.learning-card .swatch {
+.chip-swatch {
   width: 100%;
   aspect-ratio: 1;
-  border-radius: 0;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.4s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.learning-card:hover .swatch {
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-}
-
-.learning-card .name {
-  font-family: 'Cormorant Garamond', serif;
+.chip-name {
+  font-family: var(--font-serif);
   font-size: 1.8rem;
   font-weight: 300;
+  display: block;
 }
 
-.learning-card .hex {
-  font-size: 0.65rem;
+.chip-hex {
+  font-size: 0.6rem;
   letter-spacing: 0.2em;
-  opacity: 0.3;
+  color: var(--text-dim);
   margin-top: -0.5rem;
 }
 
-/* History */
-.history {
-  margin-top: 6rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 3rem;
+/* Game View */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  position: relative;
 }
 
-.history h3 {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  opacity: 0.3;
-  margin-bottom: 2rem;
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.history-list {
+.difficulty-selector {
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap;
 }
 
-.history-item {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+.difficulty-selector button {
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  padding: 0.5rem 1rem;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
-.history-item:hover {
-  transform: scale(1.5);
-  border-color: rgba(255, 255, 255, 0.5);
+.difficulty-selector button.active {
+  border-color: #fff;
+  color: #fff;
 }
 
+.score-display {
+  font-size: 1.5rem;
+  font-family: var(--font-serif);
+}
+
+.game-main {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 5rem;
+}
+
+.target-square {
+  width: 400px;
+  height: 400px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-content: center;
+}
+
+.option-btn {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 2rem;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.option-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.option-btn.correct {
+  background: rgba(0, 255, 100, 0.1);
+  border-color: #00ff64;
+}
+
+.option-btn.correct-hint {
+  border-color: #00ff64;
+  opacity: 0.8;
+}
+
+.feedback-overlay {
+  position: absolute;
+  bottom: -4rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  pointer-events: none;
+}
+
+.feedback-overlay.correct { color: #00ff64; }
+.feedback-overlay.wrong { color: #ff4b4b; }
+
+/* Global Utilities */
 .animate-in {
-  animation: elegantFadeIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: elegantFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@keyframes elegantFadeIn {
+@keyframes elegantFade {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 800px) {
-  .content-card {
-    padding: 2.5rem;
-    border-radius: 2rem;
-  }
-  .tabs {
-    position: relative;
-    top: 0;
-    right: 0;
-    justify-content: center;
-    margin-bottom: 3rem;
-  }
-  header h1 {
-    font-size: 3rem;
-  }
-  .color-info {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .primary-name h2 {
-    font-size: 4rem;
-  }
-  .visuals-section {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  .learning-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
+.history {
+  margin-top: 8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 4rem;
+}
+
+.history h3 {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--text-dim);
+  margin-bottom: 2.5rem;
+}
+
+.history-items {
+  display: flex;
+  gap: 2rem;
+}
+
+.history-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.history-dot:hover {
+  transform: scale(1.8);
+}
+
+@media (max-width: 900px) {
+  .content-card { padding: 3rem; border-radius: 2rem; }
+  .tabs { position: relative; top: 0; right: 0; margin-bottom: 4rem; justify-content: center; }
+  header h1 { font-size: 3.5rem; }
+  .main-display, .game-main { grid-template-columns: 1fr; gap: 3rem; }
+  .fashion-square, .target-square { width: 100%; aspect-ratio: 1; height: auto; }
+  .primary-name h2 { font-size: 4rem; }
+  .relationships { grid-template-columns: 1fr; }
+  .level-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
 }

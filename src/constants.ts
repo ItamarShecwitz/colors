@@ -6299,3 +6299,11 @@ export const COLOR_LEVELS = [
     ]
   }
 ];
+
+export const ALL_COLORS = COLOR_LEVELS.flatMap(level => 
+  level.colors.map(color => ({ ...color, level: level.id }))
+);
+
+export const getColorsByLevel = (maxLevel: number) => 
+  ALL_COLORS.filter(color => color.level <= maxLevel);
+
