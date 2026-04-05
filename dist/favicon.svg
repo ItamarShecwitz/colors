@@ -5,8 +5,9 @@
       <stop offset="100%" stop-color="#FF8C00" />
     </linearGradient>
   </defs>
+  {/* Modern Architectural Prism Favicon */}
   <path d="M20 75 L50 20" stroke="#000" stroke-width="6" stroke-linecap="round" opacity="0.1" />
   <path d="M50 20 L80 75" stroke="#000" stroke-width="6" stroke-linecap="round" opacity="0.1" />
-  <path d="M10 50 L50 20" stroke="#666" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 6" opacity="0.6" />
-  <path d="M50 20 L90 60" stroke="url(#logoGrad)" stroke-width="10" stroke-linecap="round" />
+  <path d="M10 50 L50 20" stroke="#666" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 6" opacity="0.3" />
+  <path d="M50 20 L90 60" stroke="url(#logoGrad)" stroke-width="12" stroke-linecap="round" />
 </svg>

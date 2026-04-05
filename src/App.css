@@ -455,9 +455,9 @@ input[type="color"]::-webkit-color-swatch {
   opacity: 0.15;
 }
 
-.indicator-main, .indicator-comp {
+.indicator-main, .indicator-comp, .indicator-dynamic {
   z-index: 10;
-  transition: all 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .color-wheel-container:hover .indicator-main {
@@ -465,9 +465,13 @@ input[type="color"]::-webkit-color-swatch {
   filter: drop-shadow(0 0 5px rgba(255,255,255,0.8));
 }
 
-.color-wheel-container:hover .indicator-comp {
-  r: 5;
-  opacity: 1;
+.indicator-dynamic {
+  animation: markerAppear 0.5s ease forwards;
+}
+
+@keyframes markerAppear {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .harmony-display-grid {
@@ -506,11 +510,17 @@ input[type="color"]::-webkit-color-swatch {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
   transition: all 0.4s ease;
   cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .outfit-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.outfit-card.active {
+  border-color: var(--text-main);
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .outfit-swatches {

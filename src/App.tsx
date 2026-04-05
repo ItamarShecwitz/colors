@@ -8,6 +8,7 @@ function App() {
   const [activeTab, setActiveTab] = useState<'dictionary' | 'learn' | 'game'>('dictionary')
   const [inputColor, setInputColor] = useState('#646cff')
   const [history, setHistory] = useState<string[]>([])
+  const [harmonyMode, setHarmonyMode] = useState<'complementary' | 'analogous' | 'triadic' | 'neutral'>('complementary')
 
   const colorData = useMemo(() => {
     try {
@@ -165,7 +166,6 @@ function App() {
                       <svg viewBox="0 0 100 100" className="wheel-svg">
                         <circle cx="50" cy="50" r="45" fill="none" stroke="#eee" strokeWidth="0.5" />
                         
-                        {/* Interactive Full Color Wheel Segments (Visible on Hover via CSS) */}
                         <g className="wheel-segments">
                           {Array.from({ length: 12 }).map((_, i) => (
                             <path
@@ -178,7 +178,7 @@ function App() {
                           ))}
                         </g>
 
-                        {/* Current Hue Indicator */}
+                        {/* Base Color Indicator */}
                         <circle 
                           cx={50 + 40 * Math.cos(chroma(colorData.hex).get('hsl.h') * Math.PI / 180)} 
                           cy={50 + 40 * Math.sin(chroma(colorData.hex).get('hsl.h') * Math.PI / 180)} 
@@ -188,15 +188,45 @@ function App() {
                           strokeWidth="2"
                           className="indicator-main"
                         />
-                        {/* Complementary Hue Indicator */}
-                        <circle 
-                          cx={50 + 40 * Math.cos((chroma(colorData.hex).get('hsl.h') + 180) * Math.PI / 180)} 
-                          cy={50 + 40 * Math.sin((chroma(colorData.hex).get('hsl.h') + 180) * Math.PI / 180)} 
-                          r="3" 
-                          fill={colorData.complementary} 
-                          opacity="0.6"
-                          className="indicator-comp"
-                        />
+
+                        {/* Dynamic Harmony Indicators */}
+                        {harmonyMode === 'complementary' && (
+                          <circle 
+                            cx={50 + 40 * Math.cos((chroma(colorData.hex).get('hsl.h') + 180) * Math.PI / 180)} 
+                            cy={50 + 40 * Math.sin((chroma(colorData.hex).get('hsl.h') + 180) * Math.PI / 180)} 
+                            r="3" 
+                            fill={colorData.complementary} 
+                            stroke="#fff"
+                            strokeWidth="1"
+                            className="indicator-comp"
+                          />
+                        )}
+
+                        {harmonyMode === 'analogous' && [30, -30].map(offset => (
+                          <circle 
+                            key={offset}
+                            cx={50 + 40 * Math.cos((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
+                            cy={50 + 40 * Math.sin((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
+                            r="3" 
+                            fill={chroma(colorData.hex).set('hsl.h', `+${offset}`).hex()} 
+                            stroke="#fff"
+                            strokeWidth="1"
+                            className="indicator-dynamic"
+                          />
+                        ))}
+
+                        {harmonyMode === 'triadic' && [120, -120].map(offset => (
+                          <circle 
+                            key={offset}
+                            cx={50 + 40 * Math.cos((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
+                            cy={50 + 40 * Math.sin((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
+                            r="3" 
+                            fill={chroma(colorData.hex).set('hsl.h', `+${offset}`).hex()} 
+                            stroke="#fff"
+                            strokeWidth="1"
+                            className="indicator-dynamic"
+                          />
+                        ))}
                       </svg>
                     </div>
 
@@ -204,7 +234,10 @@ function App() {
                       <div className="harmony-group">
                         <h4>Essential Pairings</h4>
                         <div className="outfit-previews">
-                          <div className="outfit-card">
+                          <div 
+                            className={`outfit-card ${harmonyMode === 'complementary' ? 'active' : ''}`}
+                            onClick={() => setHarmonyMode('complementary')}
+                          >
                             <div className="outfit-swatches">
                               <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
                               <div className="swatch-accent" style={{ backgroundColor: colorData.complementary }} />
@@ -212,7 +245,10 @@ function App() {
                             <span className="outfit-label">Complementary</span>
                           </div>
                           
-                          <div className="outfit-card">
+                          <div 
+                            className={`outfit-card ${harmonyMode === 'analogous' ? 'active' : ''}`}
+                            onClick={() => setHarmonyMode('analogous')}
+                          >
                             <div className="outfit-swatches">
                               <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
                               <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+30').hex() }} />
@@ -225,15 +261,27 @@ function App() {
                       <div className="harmony-group">
                         <h4>Wardrobe Classics</h4>
                         <div className="outfit-previews">
-                          {['#F5F5DC', '#36454F', '#FFFFFF'].map((neutral, i) => (
-                            <div key={i} className="outfit-card">
-                              <div className="outfit-swatches">
-                                <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
-                                <div className="swatch-accent" style={{ backgroundColor: neutral }} />
-                              </div>
-                              <span className="outfit-label">{['Beige', 'Charcoal', 'White'][i]} Anchor</span>
+                          <div 
+                            className={`outfit-card ${harmonyMode === 'triadic' ? 'active' : ''}`}
+                            onClick={() => setHarmonyMode('triadic')}
+                          >
+                            <div className="outfit-swatches">
+                              <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+120').hex() }} />
                             </div>
-                          ))}
+                            <span className="outfit-label">Triadic</span>
+                          </div>
+
+                          <div 
+                            className={`outfit-card ${harmonyMode === 'neutral' ? 'active' : ''}`}
+                            onClick={() => setHarmonyMode('neutral')}
+                          >
+                            <div className="outfit-swatches">
+                              <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
+                              <div className="swatch-accent" style={{ backgroundColor: '#F5F5DC' }} />
+                            </div>
+                            <span className="outfit-label">Neutral Anchor</span>
+                          </div>
                         </div>
                       </div>
 
