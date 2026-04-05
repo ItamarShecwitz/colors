@@ -10,7 +10,7 @@ function App() {
   const [history, setHistory] = useState<string[]>([])
   const [harmonyMode, setHarmonyMode] = useState<'complementary' | 'analogous' | 'triadic' | 'neutral'>('complementary')
 
-  const [selectedTier, setSelectedTier] = useState<number>(1)
+  const [selectedLevel, setSelectedLevel] = useState<number>(1)
 
   const colorData = useMemo(() => {
     try {
@@ -410,16 +410,16 @@ function App() {
             </div>
           ) : activeTab === 'learn' ? (
             <div className="learn-view animate-in">
-              <section className="tier-filter-section">
+              <section className="level-filter-section">
                 <div className="filter-header">
-                  <h3 className="filter-title">Explore by Tier</h3>
+                  <h3 className="filter-title">Explore by Level</h3>
                 </div>
-                <div className="tier-selector-grid">
+                <div className="level-selector-grid">
                   {COLOR_LEVELS.map(level => (
                     <button 
                       key={level.id} 
-                      className={`tier-btn ${selectedTier === level.id ? 'active' : ''}`}
-                      onClick={() => setSelectedTier(level.id)}
+                      className={`level-btn ${selectedLevel === level.id ? 'active' : ''}`}
+                      onClick={() => setSelectedLevel(level.id)}
                     >
                       {level.id}
                     </button>
@@ -427,11 +427,11 @@ function App() {
                 </div>
               </section>
 
-              {COLOR_LEVELS.filter(l => l.id === selectedTier).map(level => (
+              {COLOR_LEVELS.filter(l => l.id === selectedLevel).map(level => (
                 <section key={level.id} className="level-block animate-in">
                   <div className="level-info">
                     <h2>{level.name}</h2>
-                    <p>Tier {level.id} &mdash; {level.description}</p>
+                    <p>Level {level.id} &mdash; {level.description}</p>
                   </div>
                   <div className="level-grid">
                     {level.colors.map(color => {

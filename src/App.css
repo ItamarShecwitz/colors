@@ -118,8 +118,8 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
-  margin-bottom: 5rem;
+  gap: 2rem; /* Reduced from 3rem */
+  margin-bottom: 3.5rem;
 }
 
 /* Unified Color Wheel Display */
@@ -128,12 +128,13 @@ html, body {
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 1rem 0;
 }
 
 .color-wheel-wrapper {
   position: relative;
-  width: min(420px, 85vw);
-  height: min(420px, 85vw);
+  width: min(380px, 80vw); /* Slightly smaller for better balance */
+  height: min(380px, 80vw);
 }
 
 .color-wheel {
@@ -143,9 +144,9 @@ html, body {
   border-radius: 50%;
   cursor: crosshair;
   box-shadow: 
-    0 20px 60px rgba(0,0,0,0.12),
-    inset 0 0 40px rgba(255,255,255,0.3);
-  border: 10px solid #fff;
+    0 15px 45px rgba(0,0,0,0.1),
+    inset 0 0 30px rgba(255,255,255,0.2);
+  border: 8px solid #fff; /* Slightly thinner border */
   overflow: visible;
 }
 
@@ -153,14 +154,14 @@ html, body {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, transparent 20%, rgba(255,255,255,0.1) 100%);
+  background: radial-gradient(circle, transparent 30%, rgba(255,255,255,0.1) 100%);
   pointer-events: none;
 }
 
 .wheel-center {
   position: absolute;
-  width: 60%;
-  height: 60%;
+  width: 65%;
+  height: 65%;
   border-radius: 50%;
   top: 50%;
   left: 50%;
@@ -168,30 +169,30 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
   transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 10;
-  padding: 2rem;
-  border: 4px solid #fff;
+  padding: 1.5rem;
+  border: 3px solid #fff;
 }
 
 .center-label {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
+  font-size: 2rem; /* Balanced size */
   text-align: center;
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 1.2;
   text-transform: lowercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
 .wheel-marker {
   position: absolute;
-  width: 32px;
-  height: 32px;
-  border: 4px solid #fff;
+  width: 28px;
+  height: 28px;
+  border: 3px solid #fff;
   border-radius: 50%;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.3);
   pointer-events: none;
   z-index: 20;
   transform: translate(-50%, -50%);
@@ -203,23 +204,24 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .input-group {
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .hex-input {
   background: transparent;
   border: none;
-  border-bottom: 2px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   font-family: var(--font-sans);
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  padding: 0.4rem 1rem;
   text-align: center;
-  width: 150px;
+  width: 130px;
   transition: all 0.3s ease;
   color: var(--text-dim);
   text-transform: uppercase;
@@ -253,7 +255,7 @@ html, body {
   font-size: 0.6rem;
 }
 
-.tier-filter-section {
+.level-filter-section {
   margin-bottom: 3rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.03);
@@ -365,7 +367,7 @@ html, body {
   gap: 4rem;
 }
 
-.tier-selector-grid {
+.level-selector-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
   gap: 0.75rem;
@@ -373,7 +375,7 @@ html, body {
   margin-top: 1rem;
 }
 
-.tier-btn {
+.level-btn {
   background: transparent;
   border: 1px solid var(--glass-border);
   padding: 0.6rem 0;
@@ -384,7 +386,7 @@ html, body {
   color: var(--text-main);
 }
 
-.tier-btn.active {
+.level-btn.active {
   background: #000;
   color: #fff;
   border-color: #000;
@@ -1010,12 +1012,12 @@ input[type="color"]::-webkit-color-swatch {
   }
 
   /* Learn View */
-  .tier-selector-grid {
+  .level-selector-grid {
     grid-template-columns: repeat(5, 1fr);
     gap: 0.4rem;
   }
 
-  .tier-btn {
+  .level-btn {
     padding: 0.6rem 0;
     font-size: 0.7rem;
   }
@@ -1086,12 +1088,12 @@ input[type="color"]::-webkit-color-swatch {
     margin-bottom: 0.2rem;
   }
 
-  .tier-selector-grid {
+  .level-selector-grid {
     grid-template-columns: repeat(10, 1fr);
     gap: 1px;
   }
 
-  .tier-btn {
+  .level-btn {
     padding: 0.3rem 0;
     font-size: 0.5rem;
   }
@@ -1149,7 +1151,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 @media (max-width: 480px) {
-  .tier-selector-grid {
+  .level-selector-grid {
     grid-template-columns: repeat(4, 1fr);
   }
   

@@ -133,12 +133,12 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
       <div className="game-header">
         <div className="difficulty-slider-container">
-          <span className="difficulty-label">Difficulty Tier {difficulty}</span>
-          <div className="tier-selector-grid">
+          <span className="difficulty-label">Difficulty Level {difficulty}</span>
+          <div className="level-selector-grid">
             {Array.from({ length: 20 }, (_, i) => i + 1).map(lvl => (
               <button 
                 key={lvl} 
-                className={`tier-btn ${difficulty === lvl ? 'active' : ''}`}
+                className={`level-btn ${difficulty === lvl ? 'active' : ''}`}
                 onClick={() => { setDifficulty(lvl); resetGame(); }}
               >
                 {lvl}

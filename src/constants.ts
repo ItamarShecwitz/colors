@@ -3,8 +3,8 @@ import chroma from "chroma-js";
 export const COLOR_LEVELS = [
   {
     "id": 1,
-    "name": "Tier 1",
-    "description": "Curated selection for Tier 1",
+    "name": "Level 1",
+    "description": "Curated selection for Level 1",
     "colors": [
       {
         "hex": "#800080",
@@ -58,8 +58,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 2,
-    "name": "Tier 2",
-    "description": "Curated selection for Tier 2",
+    "name": "Level 2",
+    "description": "Curated selection for Level 2",
     "colors": [
       {
         "hex": "#808000",
@@ -113,8 +113,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 3,
-    "name": "Tier 3",
-    "description": "Curated selection for Tier 3",
+    "name": "Level 3",
+    "description": "Curated selection for Level 3",
     "colors": [
       {
         "hex": "#FF7F50",
@@ -168,8 +168,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 4,
-    "name": "Tier 4",
-    "description": "Curated selection for Tier 4",
+    "name": "Level 4",
+    "description": "Curated selection for Level 4",
     "colors": [
       {
         "hex": "#E60026",
@@ -223,8 +223,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 5,
-    "name": "Tier 5",
-    "description": "Curated selection for Tier 5",
+    "name": "Level 5",
+    "description": "Curated selection for Level 5",
     "colors": [
       {
         "hex": "#00A86B",
@@ -278,8 +278,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 6,
-    "name": "Tier 6",
-    "description": "Curated selection for Tier 6",
+    "name": "Level 6",
+    "description": "Curated selection for Level 6",
     "colors": [
       {
         "hex": "#645452",
@@ -333,8 +333,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 7,
-    "name": "Tier 7",
-    "description": "Curated selection for Tier 7",
+    "name": "Level 7",
+    "description": "Curated selection for Level 7",
     "colors": [
       {
         "hex": "#FBEC5D",
@@ -388,8 +388,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 8,
-    "name": "Tier 8",
-    "description": "Curated selection for Tier 8",
+    "name": "Level 8",
+    "description": "Curated selection for Level 8",
     "colors": [
       {
         "hex": "#733635",
@@ -443,8 +443,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 9,
-    "name": "Tier 9",
-    "description": "Curated selection for Tier 9",
+    "name": "Level 9",
+    "description": "Curated selection for Level 9",
     "colors": [
       {
         "hex": "#B87333",
@@ -498,8 +498,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 10,
-    "name": "Tier 10",
-    "description": "Curated selection for Tier 10",
+    "name": "Level 10",
+    "description": "Curated selection for Level 10",
     "colors": [
       {
         "hex": "#E9FFDB",
@@ -553,8 +553,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 11,
-    "name": "Tier 11",
-    "description": "Curated selection for Tier 11",
+    "name": "Level 11",
+    "description": "Curated selection for Level 11",
     "colors": [
       {
         "hex": "#CB410B",
@@ -608,8 +608,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 12,
-    "name": "Tier 12",
-    "description": "Curated selection for Tier 12",
+    "name": "Level 12",
+    "description": "Curated selection for Level 12",
     "colors": [
       {
         "hex": "#B2FFFF",
@@ -663,8 +663,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 13,
-    "name": "Tier 13",
-    "description": "Curated selection for Tier 13",
+    "name": "Level 13",
+    "description": "Curated selection for Level 13",
     "colors": [
       {
         "hex": "#65000B",
@@ -718,8 +718,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 14,
-    "name": "Tier 14",
-    "description": "Curated selection for Tier 14",
+    "name": "Level 14",
+    "description": "Curated selection for Level 14",
     "colors": [
       {
         "hex": "#8D029B",
@@ -773,8 +773,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 15,
-    "name": "Tier 15",
-    "description": "Curated selection for Tier 15",
+    "name": "Level 15",
+    "description": "Curated selection for Level 15",
     "colors": [
       {
         "hex": "#4D5D53",
@@ -828,8 +828,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 16,
-    "name": "Tier 16",
-    "description": "Curated selection for Tier 16",
+    "name": "Level 16",
+    "description": "Curated selection for Level 16",
     "colors": [
       {
         "hex": "#93C572",
@@ -883,8 +883,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 17,
-    "name": "Tier 17",
-    "description": "Curated selection for Tier 17",
+    "name": "Level 17",
+    "description": "Curated selection for Level 17",
     "colors": [
       {
         "hex": "#00FFBF",
@@ -938,8 +938,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 18,
-    "name": "Tier 18",
-    "description": "Curated selection for Tier 18",
+    "name": "Level 18",
+    "description": "Curated selection for Level 18",
     "colors": [
       {
         "hex": "#990000",
@@ -993,8 +993,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 19,
-    "name": "Tier 19",
-    "description": "Curated selection for Tier 19",
+    "name": "Level 19",
+    "description": "Curated selection for Level 19",
     "colors": [
       {
         "hex": "#660000",
@@ -1048,8 +1048,8 @@ export const COLOR_LEVELS = [
   },
   {
     "id": 20,
-    "name": "Tier 20",
-    "description": "Curated selection for Tier 20",
+    "name": "Level 20",
+    "description": "Curated selection for Level 20",
     "colors": [
       {
         "hex": "#2072AF",
