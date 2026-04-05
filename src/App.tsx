@@ -16,6 +16,12 @@ function App() {
   // HSB State for Picker
   const [hsb, setHsb] = useState({ h: 235, s: 61, b: 100 })
 
+  const pickerColorName = useMemo(() => {
+    if (!chroma.valid(inputColor)) return ''
+    const closest = getClosestColor(inputColor, ALL_COLORS)
+    return closest ? closest.name : ''
+  }, [inputColor])
+
   useEffect(() => {
     if (chroma.valid(inputColor)) {
       const c = chroma(inputColor).hsv()
@@ -459,8 +465,13 @@ function App() {
             
             <div className="picker-body">
               <div className="preview-swatch" style={{ backgroundColor: inputColor }}>
-                <span style={{ color: chroma.contrast(inputColor, 'white') > 4.5 ? '#fff' : '#000' }}>
-                  {inputColor.toUpperCase()}
+                <span style={{ 
+                  color: chroma.contrast(inputColor, 'white') > 4.5 ? '#fff' : '#000',
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.2rem',
+                  textTransform: 'lowercase'
+                }}>
+                  {pickerColorName}
                 </span>
               </div>
 
