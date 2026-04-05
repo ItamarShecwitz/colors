@@ -12,7 +12,11 @@ To bridge the gap between human perception and digital color naming through a 20
 ### 1. Color Science Engine
 - **Naming Algorithm:** Uses **Weighted OKLCH Distance**. Weights are optimized for human naming: `Lightness: 2.0`, `Chroma: 1.0`, `Hue: 4.0`.
 - **Hue Logic:** Implements **Circular Hue Calculation** to handle the 360/0 degree wrap-around (Red/Violet boundary).
-- **Harmony Logic:** Generates Analogous (+/- 30°), Triadic (+/- 120°), and Neutral pairings for professional wardrobe and design matching.
+- **Harmony Logic:** Generates 8 professional harmony modes:
+  - **Essential:** Complementary (180°), Analogous (+/- 30°), Monochromatic (Tonal).
+  - **Classics:** Triadic (+/- 120°), Split-Complementary (180° +/- 30°), Neutral Anchor.
+  - **Advanced:** Square (90° steps), Double-Split (+/- 30° and 180° +/- 30°).
+- **Visualization:** Integrated color wheel with dynamic radial indicators and outfit-scale swatches.
 
 ### 2. The Curriculum (Levels)
 - **Hierarchy Strategy:** Based on the **Berlin-Kay Evolutionary Hierarchy** (The universal order in which languages acquire color names).

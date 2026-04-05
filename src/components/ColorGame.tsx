@@ -163,20 +163,20 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
         </div>
       </div>
 
-      <div className="game-main" ref={gameSectionRef}>
-        <div className="game-stats-row">
-          <div className="stat-box">
-            <label>Level {difficulty}</label>
-            <span>{score.correct} / {score.total}</span>
-          </div>
-          {mode === 'timer' && (
-            <div className={`stat-box timer ${timeLeft < 5 ? 'urgent' : ''}`}>
-              <label>Time</label>
-              <span>{timeLeft}s</span>
-            </div>
-          )}
+      <div className="game-stats-row">
+        <div className="stat-box">
+          <label>Level {difficulty}</label>
+          <span>{score.correct} / {score.total}</span>
         </div>
+        {mode === 'timer' && (
+          <div className={`stat-box timer ${timeLeft < 5 ? 'urgent' : ''}`}>
+            <label>Time</label>
+            <span>{timeLeft}s</span>
+          </div>
+        )}
+      </div>
 
+      <div className="game-main" ref={gameSectionRef}>
         <div className="target-square-frame">
           <div 
             className="target-square" 

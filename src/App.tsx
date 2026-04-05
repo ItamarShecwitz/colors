@@ -8,7 +8,7 @@ function App() {
   const [activeTab, setActiveTab] = useState<'dictionary' | 'learn' | 'game'>('dictionary')
   const [inputColor, setInputColor] = useState('#646cff')
   const [history, setHistory] = useState<string[]>([])
-  const [harmonyMode, setHarmonyMode] = useState<'complementary' | 'analogous' | 'triadic' | 'neutral'>('complementary')
+  const [harmonyMode, setHarmonyMode] = useState<'complementary' | 'analogous' | 'triadic' | 'neutral' | 'monochromatic' | 'split-complementary' | 'square' | 'double-split'>('complementary')
   const [isPickerOpen, setIsPickerOpen] = useState(false)
 
   const [selectedLevel, setSelectedLevel] = useState<number>(1)
@@ -279,6 +279,81 @@ function App() {
                                   />
                                 );
                               })}
+
+                              {harmonyMode === 'split-complementary' && [150, 210].map(offset => {
+                                const offsetRad = offset * Math.PI / 180;
+                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
+                                return (
+                                  <circle 
+                                    key={offset}
+                                    cx={50 + r * Math.cos(angle + offsetRad)} 
+                                    cy={50 + r * Math.sin(angle + offsetRad)} 
+                                    r="3" 
+                                    fill={c} 
+                                    stroke="#fff"
+                                    strokeWidth="1"
+                                    className="indicator-dynamic"
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => setInputColor(c)}
+                                  />
+                                );
+                              })}
+
+                              {harmonyMode === 'square' && [90, 180, 270].map(offset => {
+                                const offsetRad = offset * Math.PI / 180;
+                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
+                                return (
+                                  <circle 
+                                    key={offset}
+                                    cx={50 + r * Math.cos(angle + offsetRad)} 
+                                    cy={50 + r * Math.sin(angle + offsetRad)} 
+                                    r="3" 
+                                    fill={c} 
+                                    stroke="#fff"
+                                    strokeWidth="1"
+                                    className="indicator-dynamic"
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => setInputColor(c)}
+                                  />
+                                );
+                              })}
+
+                              {harmonyMode === 'double-split' && [30, -30, 150, 210].map(offset => {
+                                const offsetRad = offset * Math.PI / 180;
+                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
+                                return (
+                                  <circle 
+                                    key={offset}
+                                    cx={50 + r * Math.cos(angle + offsetRad)} 
+                                    cy={50 + r * Math.sin(angle + offsetRad)} 
+                                    r="3" 
+                                    fill={c} 
+                                    stroke="#fff"
+                                    strokeWidth="1"
+                                    className="indicator-dynamic"
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => setInputColor(c)}
+                                  />
+                                );
+                              })}
+
+                              {harmonyMode === 'monochromatic' && [o.brighten(1).hex(), o.darken(1).hex()].map((c, i) => {
+                                const dist = i === 0 ? r + 5 : r - 5;
+                                return (
+                                  <circle 
+                                    key={i}
+                                    cx={50 + dist * Math.cos(angle)} 
+                                    cy={50 + dist * Math.sin(angle)} 
+                                    r="3" 
+                                    fill={c} 
+                                    stroke="#fff"
+                                    strokeWidth="1"
+                                    className="indicator-dynamic"
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => setInputColor(c)}
+                                  />
+                                );
+                              })}
                             </>
                           );
                         })()}
@@ -325,6 +400,18 @@ function App() {
                             </div>
                             <span className="outfit-label">Analogous</span>
                           </div>
+
+                          <div 
+                            className={`outfit-card ${harmonyMode === 'monochromatic' ? 'active' : ''}`}
+                            onClick={() => setHarmonyMode('monochromatic')}
+                          >
+                            <div className="outfit-swatches">
+                              <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).brighten(1).hex() }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).darken(1).hex() }} />
+                            </div>
+                            <span className="outfit-label">Monochromatic</span>
+                          </div>
                         </div>
                       </div>
 
@@ -352,6 +439,50 @@ function App() {
                               <div className="swatch-accent" style={{ backgroundColor: '#F5F5DC' }} />
                             </div>
                             <span className="outfit-label">Neutral Anchor</span>
+                          </div>
+
+                          <div 
+                            className={`outfit-card ${harmonyMode === 'split-complementary' ? 'active' : ''}`}
+                            onClick={() => setHarmonyMode('split-complementary')}
+                          >
+                            <div className="outfit-swatches">
+                              <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+150').hex() }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '-150').hex() }} />
+                            </div>
+                            <span className="outfit-label">Split-Comp</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="harmony-group">
+                        <h4>Advanced Geometry</h4>
+                        <div className="outfit-previews">
+                          <div 
+                            className={`outfit-card ${harmonyMode === 'square' ? 'active' : ''}`}
+                            onClick={() => setHarmonyMode('square')}
+                          >
+                            <div className="outfit-swatches">
+                              <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+90').hex() }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+180').hex() }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+270').hex() }} />
+                            </div>
+                            <span className="outfit-label">Square</span>
+                          </div>
+
+                          <div 
+                            className={`outfit-card ${harmonyMode === 'double-split' ? 'active' : ''}`}
+                            onClick={() => setHarmonyMode('double-split')}
+                          >
+                            <div className="outfit-swatches">
+                              <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+30').hex() }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '-30').hex() }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+150').hex() }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '-150').hex() }} />
+                            </div>
+                            <span className="outfit-label">Double-Split</span>
                           </div>
                         </div>
                       </div>
