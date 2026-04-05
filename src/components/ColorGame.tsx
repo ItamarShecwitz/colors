@@ -88,12 +88,14 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
       </div>
 
       <div className="game-main">
-        <div 
-          className="target-square" 
-          style={{ backgroundColor: targetColor }}
-          onClick={() => onSelectColor(targetColor)}
-          title="Examine in Dictionary"
-        />
+        <div className="target-square-frame">
+          <div 
+            className="target-square" 
+            style={{ backgroundColor: targetColor }}
+            onClick={() => onSelectColor(targetColor)}
+            title="Examine in Dictionary"
+          />
+        </div>
         
         <div className="options-grid">
           {options.map((opt, i) => (

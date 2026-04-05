@@ -4,7 +4,7 @@ export const COLOR_LEVELS = [
   {
     "id": 1,
     "name": "Tier 1",
-    "description": "The most iconic shades.",
+    "description": "Curated shades for level 1",
     "colors": [
       {
         "hex": "#FF0000",
@@ -51,13 +51,16 @@ export const COLOR_LEVELS = [
         "name": "Amber"
       },
       {
-        "hex": "#964B00",
-        "name": "Brown"
-      },
-      {
         "hex": "#FF7F50",
         "name": "Coral"
-      },
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Tier 2",
+    "description": "Curated shades for level 2",
+    "colors": [
       {
         "hex": "#F5F5DC",
         "name": "Beige"
@@ -105,7 +108,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#8000FF",
         "name": "Violet"
-      },
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tier 3",
+    "description": "Curated shades for level 3",
+    "colors": [
       {
         "hex": "#C0C0C0",
         "name": "Silver"
@@ -113,14 +123,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#DC143C",
         "name": "Crimson"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Tier 2",
-    "description": "Refining your color vocabulary.",
-    "colors": [
+      },
       {
         "hex": "#40E0D0",
         "name": "Turquoise"
@@ -160,7 +163,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#722F37",
         "name": "Wine"
-      },
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Tier 4",
+    "description": "Curated shades for level 4",
+    "colors": [
       {
         "hex": "#79443B",
         "name": "Bole"
@@ -180,14 +190,6 @@ export const COLOR_LEVELS = [
       {
         "hex": "#E5AA70",
         "name": "Fawn"
-      },
-      {
-        "hex": "#E0AB76",
-        "name": "Buff"
-      },
-      {
-        "hex": "#CDB280",
-        "name": "Ecru"
       },
       {
         "hex": "#EEDC82",
@@ -216,7 +218,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#0FFFFF",
         "name": "Aqua"
-      },
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Tier 5",
+    "description": "Curated shades for level 5",
+    "colors": [
       {
         "hex": "#39A78D",
         "name": "Zomp"
@@ -228,14 +237,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#0070BB",
         "name": "Azul"
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "name": "Tier 3",
-    "description": "Refining your color vocabulary.",
-    "colors": [
+      },
       {
         "hex": "#5A4FCF",
         "name": "Iris"
@@ -271,7 +273,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#FF004F",
         "name": "Folly"
-      },
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Tier 6",
+    "description": "Curated shades for level 6",
+    "colors": [
       {
         "hex": "#DC343B",
         "name": "Poppy"
@@ -319,7 +328,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#E4D96F",
         "name": "Straw"
-      },
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Tier 7",
+    "description": "Curated shades for level 7",
+    "colors": [
       {
         "hex": "#00BFFF",
         "name": "Capri"
@@ -343,21 +359,10 @@ export const COLOR_LEVELS = [
       {
         "hex": "#DF00FF",
         "name": "Phlox"
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "name": "Tier 4",
-    "description": "Refining your color vocabulary.",
-    "colors": [
+      },
       {
         "hex": "#DE5D83",
         "name": "Blush"
-      },
-      {
-        "hex": "#FFCBA4",
-        "name": "Peach"
       },
       {
         "hex": "#FAF0E6",
@@ -378,7 +383,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#DE3163",
         "name": "Cerise"
-      },
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Tier 8",
+    "description": "Curated shades for level 8",
+    "colors": [
       {
         "hex": "#7F1734",
         "name": "Claret"
@@ -426,7 +438,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#B87333",
         "name": "Copper"
-      },
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Tier 9",
+    "description": "Curated shades for level 9",
+    "colors": [
       {
         "hex": "#81613E",
         "name": "Coyote"
@@ -458,14 +477,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#3AB09E",
         "name": "Keppel"
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "name": "Tier 5",
-    "description": "Refining your color vocabulary.",
-    "colors": [
+      },
       {
         "hex": "#0014A8",
         "name": "Zaffre"
@@ -481,7 +493,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#E9FFDB",
         "name": "Nyanza"
-      },
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Tier 10",
+    "description": "Curated shades for level 10",
+    "colors": [
       {
         "hex": "#568203",
         "name": "Avocado"
@@ -527,13 +546,16 @@ export const COLOR_LEVELS = [
         "name": "Kobicha"
       },
       {
-        "hex": "#A45A52",
-        "name": "Redwood"
-      },
-      {
         "hex": "#CB410B",
         "name": "Sinopia"
-      },
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Tier 11",
+    "description": "Curated shades for level 11",
+    "colors": [
       {
         "hex": "#E4D00A",
         "name": "Citrine"
@@ -559,10 +581,6 @@ export const COLOR_LEVELS = [
         "name": "Mustard"
       },
       {
-        "hex": "#F4C431",
-        "name": "Saffron"
-      },
-      {
         "hex": "#FFCC33",
         "name": "Sunglow"
       },
@@ -573,14 +591,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#ACE1AF",
         "name": "Celadon"
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Tier 6",
-    "description": "Refining your color vocabulary.",
-    "colors": [
+      },
       {
         "hex": "#50C878",
         "name": "Emerald"
@@ -592,7 +603,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#B2FFFF",
         "name": "Celeste"
-      },
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Tier 12",
+    "description": "Curated shades for level 12",
+    "colors": [
       {
         "hex": "#FF00FF",
         "name": "Fuchsia"
@@ -640,7 +658,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#65000B",
         "name": "Rosewood"
-      },
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Tier 13",
+    "description": "Curated shades for level 13",
+    "colors": [
       {
         "hex": "#F1B42F",
         "name": "Xanthous"
@@ -692,9 +717,9 @@ export const COLOR_LEVELS = [
     ]
   },
   {
-    "id": 7,
-    "name": "Tier 7",
-    "description": "Refining your color vocabulary.",
+    "id": 14,
+    "name": "Tier 14",
+    "description": "Curated shades for level 14",
     "colors": [
       {
         "hex": "#C54B8C",
@@ -743,7 +768,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#4D5D53",
         "name": "Feldgrau"
-      },
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Tier 15",
+    "description": "Curated shades for level 15",
+    "colors": [
       {
         "hex": "#36454F",
         "name": "Charcoal"
@@ -791,7 +823,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#0BDA51",
         "name": "Malachite"
-      },
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Tier 16",
+    "description": "Curated shades for level 16",
+    "colors": [
       {
         "hex": "#93C572",
         "name": "Pistachio"
@@ -803,14 +842,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#007A74",
         "name": "Skobeloff"
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "name": "Tier 8",
-    "description": "Refining your color vocabulary.",
-    "colors": [
+      },
       {
         "hex": "#43B3AE",
         "name": "Verdigris"
@@ -846,17 +878,16 @@ export const COLOR_LEVELS = [
       {
         "hex": "#DFFF00",
         "name": "Chartreuse"
-      },
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Tier 17",
+    "description": "Curated shades for level 17",
+    "colors": [
       {
         "hex": "#00FFBF",
-        "name": "Aquamarine"
-      },
-      {
-        "hex": "#80FF00",
-        "name": "Chartreuse"
-      },
-      {
-        "hex": "#7FFFD4",
         "name": "Aquamarine"
       },
       {
@@ -902,7 +933,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#801818",
         "name": "Falu Red"
-      },
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Tier 18",
+    "description": "Curated shades for level 18",
+    "colors": [
       {
         "hex": "#990000",
         "name": "Penn Red"
@@ -918,14 +956,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#C08081",
         "name": "Old Rose"
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "name": "Tier 9",
-    "description": "Refining your color vocabulary.",
-    "colors": [
+      },
       {
         "hex": "#C21E56",
         "name": "Rose Red"
@@ -957,7 +988,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#B2BEB5",
         "name": "Ash Gray"
-      },
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Tier 19",
+    "description": "Curated shades for level 19",
+    "colors": [
       {
         "hex": "#660000",
         "name": "Blood Red"
@@ -1005,7 +1043,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#89CFF0",
         "name": "Baby Blue"
-      },
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Tier 20",
+    "description": "Curated shades for level 20",
+    "colors": [
       {
         "hex": "#2072AF",
         "name": "Bice Blue"
@@ -1033,14 +1078,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#4666FF",
         "name": "Neon Blue"
-      }
-    ]
-  },
-  {
-    "id": 10,
-    "name": "Tier 10",
-    "description": "Refining your color vocabulary.",
-    "colors": [
+      },
       {
         "hex": "#011F5B",
         "name": "Penn Blue"
@@ -1060,1244 +1098,6 @@ export const COLOR_LEVELS = [
       {
         "hex": "#2774AE",
         "name": "Ucla Blue"
-      },
-      {
-        "hex": "#00356B",
-        "name": "Yale Blue"
-      },
-      {
-        "hex": "#FF66CC",
-        "name": "Rose Pink"
-      },
-      {
-        "hex": "#FF1493",
-        "name": "Deep Pink"
-      },
-      {
-        "hex": "#FFDAE9",
-        "name": "Mimi Pink"
-      },
-      {
-        "hex": "#8C92AC",
-        "name": "Cool Gray"
-      },
-      {
-        "hex": "#4B3621",
-        "name": "Café Noir"
-      },
-      {
-        "hex": "#674846",
-        "name": "Rose Ebony"
-      },
-      {
-        "hex": "#708090",
-        "name": "Slate Gray"
-      },
-      {
-        "hex": "#841617",
-        "name": "Ou Crimson"
-      },
-      {
-        "hex": "#880085",
-        "name": "Mardi Gras"
-      },
-      {
-        "hex": "#F88379",
-        "name": "Coral Pink"
-      },
-      {
-        "hex": "#B22222",
-        "name": "Fire Brick"
-      },
-      {
-        "hex": "#CD5C5C",
-        "name": "Indian Red"
-      },
-      {
-        "hex": "#FFE4E1",
-        "name": "Misty Rose"
-      },
-      {
-        "hex": "#ED1B24",
-        "name": "Red (cmyk)"
-      },
-      {
-        "hex": "#905D5D",
-        "name": "Rose Taupe"
-      },
-      {
-        "hex": "#BC8F8F",
-        "name": "Rosy Brown"
-      },
-      {
-        "hex": "#A91101",
-        "name": "Turkey Red"
-      },
-      {
-        "hex": "#3D0C02",
-        "name": "Black Bean"
-      },
-      {
-        "hex": "#6C541E",
-        "name": "Field Drab"
-      },
-      {
-        "hex": "#59260B",
-        "name": "Seal Brown"
-      },
-      {
-        "hex": "#E3FF00",
-        "name": "Lemon Lime"
-      }
-    ]
-  },
-  {
-    "id": 11,
-    "name": "Tier 11",
-    "description": "Refining your color vocabulary.",
-    "colors": [
-      {
-        "hex": "#013220",
-        "name": "Dark Green"
-      },
-      {
-        "hex": "#4F7942",
-        "name": "Fern Green"
-      },
-      {
-        "hex": "#7CFC00",
-        "name": "Lawn Green"
-      },
-      {
-        "hex": "#32CD32",
-        "name": "Lime Green"
-      },
-      {
-        "hex": "#8A9A5B",
-        "name": "Moss Green"
-      },
-      {
-        "hex": "#39FF14",
-        "name": "Neon Green"
-      },
-      {
-        "hex": "#01796F",
-        "name": "Pine Green"
-      },
-      {
-        "hex": "#A7FC00",
-        "name": "Spring Bud"
-      },
-      {
-        "hex": "#F0F8FF",
-        "name": "Alice Blue"
-      },
-      {
-        "hex": "#0D98BA",
-        "name": "Blue Green"
-      },
-      {
-        "hex": "#E0FFFF",
-        "name": "Light Cyan"
-      },
-      {
-        "hex": "#DFFFFD",
-        "name": "Mint Green"
-      },
-      {
-        "hex": "#0095B6",
-        "name": "Bondi Blue"
-      },
-      {
-        "hex": "#1F305E",
-        "name": "Delft Blue"
-      },
-      {
-        "hex": "#1164B4",
-        "name": "Green Blue"
-      },
-      {
-        "hex": "#00416A",
-        "name": "Indigo Dye"
-      },
-      {
-        "hex": "#8AB9F1",
-        "name": "Jordy Blue"
-      },
-      {
-        "hex": "#ADD8E6",
-        "name": "Light Blue"
-      },
-      {
-        "hex": "#0087BD",
-        "name": "Blue (ncs)"
-      },
-      {
-        "hex": "#87D3F8",
-        "name": "Pale Azure"
-      },
-      {
-        "hex": "#76ABDF",
-        "name": "Ruddy Blue"
-      },
-      {
-        "hex": "#4B61D1",
-        "name": "Savoy Blue"
-      },
-      {
-        "hex": "#4682B4",
-        "name": "Steel Blue"
-      },
-      {
-        "hex": "#3E8EDE",
-        "name": "Tufts Blue"
-      },
-      {
-        "hex": "#7C9ED9",
-        "name": "Vista Blue"
-      },
-      {
-        "hex": "#2E5090",
-        "name": "Yinmn Blue"
-      },
-      {
-        "hex": "#F2C1D1",
-        "name": "Fairy Tale"
-      }
-    ]
-  },
-  {
-    "id": 12,
-    "name": "Tier 12",
-    "description": "Refining your color vocabulary.",
-    "colors": [
-      {
-        "hex": "#DDA0DD",
-        "name": "Plum (web)"
-      },
-      {
-        "hex": "#C71585",
-        "name": "Red Violet"
-      },
-      {
-        "hex": "#6A5ACD",
-        "name": "Slate Blue"
-      },
-      {
-        "hex": "#CC33CC",
-        "name": "Steel Pink"
-      },
-      {
-        "hex": "#A8516E",
-        "name": "China Rose"
-      },
-      {
-        "hex": "#F5FFFA",
-        "name": "Mint Cream"
-      },
-      {
-        "hex": "#91A3B0",
-        "name": "Cadet Gray"
-      },
-      {
-        "hex": "#8B8589",
-        "name": "Taupe Gray"
-      },
-      {
-        "hex": "#010B13",
-        "name": "Rich Black"
-      },
-      {
-        "hex": "#138808",
-        "name": "India Green"
-      },
-      {
-        "hex": "#301934",
-        "name": "Dark Purple"
-      },
-      {
-        "hex": "#555555",
-        "name": "Davy's Gray"
-      },
-      {
-        "hex": "#B31B1B",
-        "name": "Cornell Red"
-      },
-      {
-        "hex": "#F08080",
-        "name": "Light Coral"
-      },
-      {
-        "hex": "#CC3333",
-        "name": "Persian Red"
-      },
-      {
-        "hex": "#FF91A4",
-        "name": "Salmon Pink"
-      },
-      {
-        "hex": "#FFA000",
-        "name": "Orange Peel"
-      },
-      {
-        "hex": "#FFEFD5",
-        "name": "Papaya Whip"
-      },
-      {
-        "hex": "#B56917",
-        "name": "Tiger’s Eye"
-      },
-      {
-        "hex": "#3B3C36",
-        "name": "Black Olive"
-      },
-      {
-        "hex": "#AF6E4D",
-        "name": "Brown Sugar"
-      },
-      {
-        "hex": "#8A3324",
-        "name": "Burnt Umber"
-      },
-      {
-        "hex": "#D2691E",
-        "name": "Cocoa Brown"
-      },
-      {
-        "hex": "#F4A460",
-        "name": "Sandy Brown"
-      },
-      {
-        "hex": "#8DB600",
-        "name": "Apple Green"
-      },
-      {
-        "hex": "#4CBB17",
-        "name": "Kelly Green"
-      },
-      {
-        "hex": "#90EE90",
-        "name": "Light Green"
-      }
-    ]
-  },
-  {
-    "id": 13,
-    "name": "Tier 13",
-    "description": "Refining your color vocabulary.",
-    "colors": [
-      {
-        "hex": "#55DD33",
-        "name": "Sgbus Green"
-      },
-      {
-        "hex": "#F0FFFF",
-        "name": "Azure (web)"
-      },
-      {
-        "hex": "#246BCE",
-        "name": "Celtic Blue"
-      },
-      {
-        "hex": "#0047AB",
-        "name": "Cobalt Blue"
-      },
-      {
-        "hex": "#1E90FF",
-        "name": "Dodger Blue"
-      },
-      {
-        "hex": "#0072BB",
-        "name": "French Blue"
-      },
-      {
-        "hex": "#2B4593",
-        "name": "Marian Blue"
-      },
-      {
-        "hex": "#0000CD",
-        "name": "Medium Blue"
-      },
-      {
-        "hex": "#002147",
-        "name": "Oxford Blue"
-      },
-      {
-        "hex": "#45B1E8",
-        "name": "Picton Blue"
-      },
-      {
-        "hex": "#9EB9D4",
-        "name": "Powder Blue"
-      },
-      {
-        "hex": "#1E2952",
-        "name": "Space Cadet"
-      },
-      {
-        "hex": "#324AB2",
-        "name": "Violet Blue"
-      },
-      {
-        "hex": "#8A2BE2",
-        "name": "Blue Violet"
-      },
-      {
-        "hex": "#9400D3",
-        "name": "Dark Violet"
-      },
-      {
-        "hex": "#FAE6FA",
-        "name": "Pale Purple"
-      },
-      {
-        "hex": "#FF1DCE",
-        "name": "Hot Magenta"
-      },
-      {
-        "hex": "#CA1F7B",
-        "name": "Magenta Dye"
-      },
-      {
-        "hex": "#AA98A9",
-        "name": "Rose Quartz"
-      },
-      {
-        "hex": "#CF71AF",
-        "name": "Sky Magenta"
-      },
-      {
-        "hex": "#F64A8A",
-        "name": "French Rose"
-      },
-      {
-        "hex": "#FF00CC",
-        "name": "Hot Magenta"
-      },
-      {
-        "hex": "#F2BDCD",
-        "name": "Orchid Pink"
-      },
-      {
-        "hex": "#F9429E",
-        "name": "Rose Bonbon"
-      },
-      {
-        "hex": "#FEFEFA",
-        "name": "Baby Powder"
-      },
-      {
-        "hex": "#EFDFBB",
-        "name": "Dutch White"
-      },
-      {
-        "hex": "#F8F8FF",
-        "name": "Ghost White"
-      }
-    ]
-  },
-  {
-    "id": 14,
-    "name": "Tier 14",
-    "description": "Refining your color vocabulary.",
-    "colors": [
-      {
-        "hex": "#F5F5F5",
-        "name": "White Smoke"
-      },
-      {
-        "hex": "#BEBFC5",
-        "name": "French Gray"
-      },
-      {
-        "hex": "#1B1B1B",
-        "name": "Eerie Black"
-      },
-      {
-        "hex": "#414A4C",
-        "name": "Outer Space"
-      },
-      {
-        "hex": "#100C08",
-        "name": "Smoky Black"
-      },
-      {
-        "hex": "#242124",
-        "name": "Raisin Black"
-      },
-      {
-        "hex": "#317873",
-        "name": "Myrtle Green"
-      },
-      {
-        "hex": "#536878",
-        "name": "Payne's Gray"
-      },
-      {
-        "hex": "#645394",
-        "name": "Ultra Violet"
-      },
-      {
-        "hex": "#996515",
-        "name": "Golden Brown"
-      },
-      {
-        "hex": "#ED2939",
-        "name": "Imperial Red"
-      },
-      {
-        "hex": "#C46210",
-        "name": "Alloy Orange"
-      },
-      {
-        "hex": "#BF5700",
-        "name": "Burnt Orange"
-      },
-      {
-        "hex": "#FED8B1",
-        "name": "Light Orange"
-      },
-      {
-        "hex": "#FFA500",
-        "name": "Orange (web)"
-      },
-      {
-        "hex": "#E97451",
-        "name": "Burnt Sienna"
-      },
-      {
-        "hex": "#E1A95F",
-        "name": "Earth Yellow"
-      },
-      {
-        "hex": "#DA9100",
-        "name": "Harvest Gold"
-      },
-      {
-        "hex": "#5C5248",
-        "name": "Walnut Brown"
-      },
-      {
-        "hex": "#FFF8E7",
-        "name": "Cosmic Latte"
-      },
-      {
-        "hex": "#E6A817",
-        "name": "Harvest Gold"
-      },
-      {
-        "hex": "#FFFFE0",
-        "name": "Light Yellow"
-      },
-      {
-        "hex": "#FFDEAD",
-        "name": "Navajo White"
-      },
-      {
-        "hex": "#FADFAD",
-        "name": "Peach Yellow"
-      },
-      {
-        "hex": "#66FF00",
-        "name": "Bright Green"
-      },
-      {
-        "hex": "#228B22",
-        "name": "Forest Green"
-      },
-      {
-        "hex": "#ADFF2F",
-        "name": "Green Yellow"
-      }
-    ]
-  },
-  {
-    "id": 15,
-    "name": "Tier 15",
-    "description": "Refining your color vocabulary.",
-    "colors": [
-      {
-        "hex": "#355E3B",
-        "name": "Hunter Green"
-      },
-      {
-        "hex": "#29AB87",
-        "name": "Jungle Green"
-      },
-      {
-        "hex": "#008000",
-        "name": "Office Green"
-      },
-      {
-        "hex": "#6C7C59",
-        "name": "Reseda Green"
-      },
-      {
-        "hex": "#00FF7F",
-        "name": "Spring Green"
-      },
-      {
-        "hex": "#9ACD32",
-        "name": "Yellow Green"
-      },
-      {
-        "hex": "#1CA9C9",
-        "name": "Pacific Cyan"
-      },
-      {
-        "hex": "#00B7EB",
-        "name": "Process Cyan"
-      },
-      {
-        "hex": "#81D8D0",
-        "name": "Tiffany Blue"
-      },
-      {
-        "hex": "#16166B",
-        "name": "Federal Blue"
-      },
-      {
-        "hex": "#26619C",
-        "name": "Lapis Lazuli"
-      },
-      {
-        "hex": "#1C39BB",
-        "name": "Persian Blue"
-      },
-      {
-        "hex": "#000F89",
-        "name": "Phthalo Blue"
-      },
-      {
-        "hex": "#AFDBF5",
-        "name": "Uranian Blue"
-      },
-      {
-        "hex": "#D473D4",
-        "name": "French Mauve"
-      },
-      {
-        "hex": "#7851A9",
-        "name": "Royal Purple"
-      },
-      {
-        "hex": "#8B008B",
-        "name": "Dark Magenta"
-      },
-      {
-        "hex": "#9F4576",
-        "name": "Magenta Haze"
-      },
-      {
-        "hex": "#D71868",
-        "name": "Dogwood Rose"
-      },
-      {
-        "hex": "#C74375",
-        "name": "Fuchsia Rose"
-      },
-      {
-        "hex": "#E4007C",
-        "name": "Mexican Pink"
-      },
-      {
-        "hex": "#EDCDC2",
-        "name": "Pale Dogwood"
-      },
-      {
-        "hex": "#FE28A2",
-        "name": "Persian Rose"
-      },
-      {
-        "hex": "#F77FBE",
-        "name": "Persian Pink"
-      },
-      {
-        "hex": "#DE6FA1",
-        "name": "Thulian Pink"
-      },
-      {
-        "hex": "#FFFAF0",
-        "name": "Floral White"
-      },
-      {
-        "hex": "#191970",
-        "name": "Midnight Blue"
-      }
-    ]
-  },
-  {
-    "id": 16,
-    "name": "Tier 16",
-    "description": "Refining your color vocabulary.",
-    "colors": [
-      {
-        "hex": "#592720",
-        "name": "Caput Mortuum"
-      },
-      {
-        "hex": "#EE204E",
-        "name": "Red (crayola)"
-      },
-      {
-        "hex": "#F2003C",
-        "name": "Red (munsell)"
-      },
-      {
-        "hex": "#ED2839",
-        "name": "Red (pantone)"
-      },
-      {
-        "hex": "#ED9121",
-        "name": "Carrot Orange"
-      },
-      {
-        "hex": "#FE5A1D",
-        "name": "Giants Orange"
-      },
-      {
-        "hex": "#FF7900",
-        "name": "Safety Orange"
-      },
-      {
-        "hex": "#FFFACD",
-        "name": "Lemon Chiffon"
-      },
-      {
-        "hex": "#FFC40C",
-        "name": "Mikado Yellow"
-      },
-      {
-        "hex": "#FADA5E",
-        "name": "Naples Yellow"
-      },
-      {
-        "hex": "#00A693",
-        "name": "Persian Green"
-      },
-      {
-        "hex": "#00A550",
-        "name": "Pigment Green"
-      },
-      {
-        "hex": "#7DF9FF",
-        "name": "Electric Blue"
-      },
-      {
-        "hex": "#003262",
-        "name": "Berkeley Blue"
-      },
-      {
-        "hex": "#0070FF",
-        "name": "Brandeis Blue"
-      },
-      {
-        "hex": "#7BAFD4",
-        "name": "Carolina Blue"
-      },
-      {
-        "hex": "#3B00DB",
-        "name": "Chrysler Blue"
-      },
-      {
-        "hex": "#B9D9EB",
-        "name": "Columbia Blue"
-      },
-      {
-        "hex": "#1034A6",
-        "name": "Egyptian Blue"
-      },
-      {
-        "hex": "#003153",
-        "name": "Prussian Blue"
-      },
-      {
-        "hex": "#0076B6",
-        "name": "Honolulu Blue"
-      },
-      {
-        "hex": "#8806CE",
-        "name": "French Violet"
-      },
-      {
-        "hex": "#DBB2D1",
-        "name": "Pink Lavender"
-      },
-      {
-        "hex": "#66023C",
-        "name": "Tyrian Purple"
-      },
-      {
-        "hex": "#FC0FC0",
-        "name": "Shocking Pink"
-      },
-      {
-        "hex": "#F19CBB",
-        "name": "Amaranth Pink"
-      },
-      {
-        "hex": "#FBAED2",
-        "name": "Lavender Pink"
-      }
-    ]
-  },
-  {
-    "id": 17,
-    "name": "Tier 17",
-    "description": "Refining your color vocabulary.",
-    "colors": [
-      {
-        "hex": "#FAEBD7",
-        "name": "Antique White"
-      },
-      {
-        "hex": "#663399",
-        "name": "Rebecca Purple"
-      },
-      {
-        "hex": "#856088",
-        "name": "Chinese Violet"
-      },
-      {
-        "hex": "#E8AC41",
-        "name": "Hunyadi Yellow"
-      },
-      {
-        "hex": "#FF8000",
-        "name": "Orange (wheel)"
-      },
-      {
-        "hex": "#D99058",
-        "name": "Persian Orange"
-      },
-      {
-        "hex": "#E86100",
-        "name": "Spanish Orange"
-      },
-      {
-        "hex": "#E9D66B",
-        "name": "Arylide Yellow"
-      },
-      {
-        "hex": "#B8860B",
-        "name": "Dark Goldenrod"
-      },
-      {
-        "hex": "#49796B",
-        "name": "Hooker's Green"
-      },
-      {
-        "hex": "#004953",
-        "name": "Midnight Green"
-      },
-      {
-        "hex": "#00401A",
-        "name": "Pakistan Green"
-      },
-      {
-        "hex": "#009E60",
-        "name": "Shamrock Green"
-      },
-      {
-        "hex": "#3457D5",
-        "name": "Byzantine Blue"
-      },
-      {
-        "hex": "#85B09A",
-        "name": "Cambridge Blue"
-      },
-      {
-        "hex": "#4997D0",
-        "name": "Celestial Blue"
-      },
-      {
-        "hex": "#1F75FE",
-        "name": "Blue (crayola)"
-      },
-      {
-        "hex": "#6050DC",
-        "name": "Majorelle Blue"
-      },
-      {
-        "hex": "#0093AF",
-        "name": "Blue (munsell)"
-      },
-      {
-        "hex": "#B284BE",
-        "name": "African Violet"
-      },
-      {
-        "hex": "#563C5C",
-        "name": "English Violet"
-      },
-      {
-        "hex": "#FFF0F5",
-        "name": "Lavender Blush"
-      },
-      {
-        "hex": "#E6E6FA",
-        "name": "Lavender (web)"
-      },
-      {
-        "hex": "#32127A",
-        "name": "Persian Indigo"
-      },
-      {
-        "hex": "#32174D",
-        "name": "Russian Violet"
-      },
-      {
-        "hex": "#FF0090",
-        "name": "Magenta (cmyk)"
-      },
-      {
-        "hex": "#FE4EDA",
-        "name": "Purple Pizzazz"
-      }
-    ]
-  },
-  {
-    "id": 18,
-    "name": "Tier 18",
-    "description": "Refining your color vocabulary.",
-    "colors": [
-      {
-        "hex": "#FFA6C9",
-        "name": "Carnation Pink"
-      },
-      {
-        "hex": "#F1DDCF",
-        "name": "Champagne Pink"
-      },
-      {
-        "hex": "#ED7A9B",
-        "name": "Rose Pompadour"
-      },
-      {
-        "hex": "#B3446C",
-        "name": "Raspberry Rose"
-      },
-      {
-        "hex": "#848482",
-        "name": "Battleship Gray"
-      },
-      {
-        "hex": "#AB274F",
-        "name": "Amaranth Purple"
-      },
-      {
-        "hex": "#D4AF37",
-        "name": "Gold (metallic)"
-      },
-      {
-        "hex": "#1B4D3E",
-        "name": "Brunswick Green"
-      },
-      {
-        "hex": "#00563B",
-        "name": "Castleton Green"
-      },
-      {
-        "hex": "#00693E",
-        "name": "Dartmouth Green"
-      },
-      {
-        "hex": "#76FF7A",
-        "name": "Screamin' Green"
-      },
-      {
-        "hex": "#6495ED",
-        "name": "Cornflower Blue"
-      },
-      {
-        "hex": "#6F00FF",
-        "name": "Electric Indigo"
-      },
-      {
-        "hex": "#273BE2",
-        "name": "Palatinate Blue"
-      },
-      {
-        "hex": "#224C98",
-        "name": "Polynesian Blue"
-      },
-      {
-        "hex": "#002387",
-        "name": "Resolution Blue"
-      },
-      {
-        "hex": "#BF00FF",
-        "name": "Electric Purple"
-      },
-      {
-        "hex": "#8F00FF",
-        "name": "Electric Violet"
-      },
-      {
-        "hex": "#5B3256",
-        "name": "Japanese Violet"
-      },
-      {
-        "hex": "#9683EC",
-        "name": "Tropical Indigo"
-      },
-      {
-        "hex": "#FDBCB4",
-        "name": "Cantaloupe Melon"
-      },
-      {
-        "hex": "#58111A",
-        "name": "Chocolate Cosmos"
-      },
-      {
-        "hex": "#FF4F00",
-        "name": "Aerospace Orange"
-      },
-      {
-        "hex": "#FF9966",
-        "name": "Atomic Tangerine"
-      },
-      {
-        "hex": "#FF7538",
-        "name": "Orange (crayola)"
-      },
-      {
-        "hex": "#FF5800",
-        "name": "Orange (pantone)"
-      },
-      {
-        "hex": "#FF8F00",
-        "name": "Princeton Orange"
-      }
-    ]
-  },
-  {
-    "id": 19,
-    "name": "Tier 19",
-    "description": "Refining your color vocabulary.",
-    "colors": [
-      {
-        "hex": "#FFBA00",
-        "name": "Selective Yellow"
-      },
-      {
-        "hex": "#15F4EE",
-        "name": "Fluorescent Cyan"
-      },
-      {
-        "hex": "#6CB4EE",
-        "name": "Argentinian Blue"
-      },
-      {
-        "hex": "#468FEA",
-        "name": "Chefchaouen Blue"
-      },
-      {
-        "hex": "#997A8D",
-        "name": "Mountbatten Pink"
-      },
-      {
-        "hex": "#F400A1",
-        "name": "Hollywood Cerise"
-      },
-      {
-        "hex": "#F2F3F4",
-        "name": "Anti-flash White"
-      },
-      {
-        "hex": "#F7E7CE",
-        "name": "Champagne (color)"
-      },
-      {
-        "hex": "#006D6F",
-        "name": "Caribbean Current"
-      },
-      {
-        "hex": "#B57EDC",
-        "name": "Lavender (floral)"
-      },
-      {
-        "hex": "#FF91AF",
-        "name": "Baker-miller Pink"
-      },
-      {
-        "hex": "#F653A6",
-        "name": "Magenta (crayola)"
-      },
-      {
-        "hex": "#D0417E",
-        "name": "Magenta (pantone)"
-      },
-      {
-        "hex": "#BA160C",
-        "name": "Engineering Orange"
-      },
-      {
-        "hex": "#BF4F51",
-        "name": "Bittersweet Shimmer"
-      },
-      {
-        "hex": "#8E3A59",
-        "name": "Quinacridone Magenta"
-      },
-      {
-        "hex": "#FE0000",
-        "name": "Off Red (rgb)"
-      },
-      {
-        "hex": "#F4C2C2",
-        "name": "Tea Rose (red)"
-      },
-      {
-        "hex": "#1E4D2B",
-        "name": "Cal Poly Green"
-      },
-      {
-        "hex": "#00CCCC",
-        "name": "Robin Egg Blue"
-      },
-      {
-        "hex": "#00CCFF",
-        "name": "Vivid Sky Blue"
-      },
-      {
-        "hex": "#5D8AA8",
-        "name": "Air Force Blue"
-      },
-      {
-        "hex": "#318CE7",
-        "name": "Bleu De France"
-      },
-      {
-        "hex": "#87CEFA",
-        "name": "Light Sky Blue"
-      },
-      {
-        "hex": "#A4DDED",
-        "name": "Non Photo Blue"
-      },
-      {
-        "hex": "#86608E",
-        "name": "Pomp And Power"
-      },
-      {
-        "hex": "#FC89AC",
-        "name": "Tickle Me Pink"
-      }
-    ]
-  },
-  {
-    "id": 20,
-    "name": "Tier 20",
-    "description": "The most obscure designations.",
-    "colors": [
-      {
-        "hex": "#FF0800",
-        "name": "Candy Apple Red"
-      },
-      {
-        "hex": "#CE2029",
-        "name": "Fire Engine Red"
-      },
-      {
-        "hex": "#4A412A",
-        "name": "Drab Dark Brown"
-      },
-      {
-        "hex": "#4A5D23",
-        "name": "Dark Moss Green"
-      },
-      {
-        "hex": "#20B2AA",
-        "name": "Light Sea Green"
-      },
-      {
-        "hex": "#2F4F4F",
-        "name": "Dark Slate Gray"
-      },
-      {
-        "hex": "#CBA135",
-        "name": "Satin Sheen Gold"
-      },
-      {
-        "hex": "#5D89BA",
-        "name": "Silver Lake Blue"
-      },
-      {
-        "hex": "#177245",
-        "name": "Dark Spring Green"
-      },
-      {
-        "hex": "#FF8C00",
-        "name": "Dark Orange (web)"
-      },
-      {
-        "hex": "#FFD800",
-        "name": "School Bus Yellow"
-      },
-      {
-        "hex": "#03C03C",
-        "name": "Dark Pastel Green"
-      },
-      {
-        "hex": "#7B68EE",
-        "name": "Medium Slate Blue"
-      },
-      {
-        "hex": "#F04A00",
-        "name": "Golden Gate Bridge"
-      },
-      {
-        "hex": "#FF33CC",
-        "name": "Razzle Dazzle Rose"
-      },
-      {
-        "hex": "#EE82EE",
-        "name": "Violet (web Color)"
-      },
-      {
-        "hex": "#D44500",
-        "name": "Syracuse Red Orange"
-      },
-      {
-        "hex": "#EDC9AF",
-        "name": "Desert Sand (color)"
-      },
-      {
-        "hex": "#4B92DB",
-        "name": "United Nations Blue"
-      },
-      {
-        "hex": "#FFB7C5",
-        "name": "Cherry Blossom Pink"
-      },
-      {
-        "hex": "#004225",
-        "name": "British Racing Green"
-      },
-      {
-        "hex": "#72A0C1",
-        "name": "Air Superiority Blue"
-      },
-      {
-        "hex": "#FB607F",
-        "name": "Bright Pink (crayola)"
-      },
-      {
-        "hex": "#FF6FFF",
-        "name": "Shocking Pink (crayola)"
-      },
-      {
-        "hex": "#002FA7",
-        "name": "International Klein Blue"
-      },
-      {
-        "hex": "#002366",
-        "name": "Royal Blue (traditional)"
-      },
-      {
-        "hex": "#4169E1",
-        "name": "Royal Blue (web Color)"
       }
     ]
   }

@@ -102,12 +102,14 @@ function App() {
           {activeTab === 'dictionary' ? (
             <div className="dictionary-view animate-in">
               <section className="main-display">
-                <div 
-                  className="fashion-square" 
-                  style={{ backgroundColor: colorData?.hex || '#242424' }}
-                >
-                  <div className="square-label" style={{ color: colorData?.contrast || '#ffffff' }}>
-                    {colorData?.name}
+                <div className="fashion-square">
+                  <div 
+                    className="square-inner" 
+                    style={{ backgroundColor: colorData?.hex || '#242424' }}
+                  >
+                    <div className="square-label" style={{ color: colorData?.contrast || '#ffffff' }}>
+                      {colorData?.name}
+                    </div>
                   </div>
                 </div>
 
@@ -167,12 +169,16 @@ function App() {
                     <h3>Opposite</h3>
                     <div 
                       className="complement-box" 
-                      style={{ backgroundColor: colorData.complementary }}
                       onClick={() => setInputColor(colorData.complementary)}
                     >
-                      <span style={{ color: chroma.contrast(colorData.complementary, 'white') > 4.5 ? '#fff' : '#000' }}>
-                        {colorData.complementary.toUpperCase()}
-                      </span>
+                      <div 
+                        className="complement-inner"
+                        style={{ backgroundColor: colorData.complementary }}
+                      >
+                        <span style={{ color: chroma.contrast(colorData.complementary, 'white') > 4.5 ? '#fff' : '#000' }}>
+                          {colorData.complementary.toUpperCase()}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </section>
@@ -193,7 +199,9 @@ function App() {
                         className="color-chip"
                         onClick={() => selectColor(color.hex)}
                       >
-                        <div className="chip-swatch" style={{ backgroundColor: color.hex }} />
+                        <div className="chip-swatch">
+                          <div className="chip-inner" style={{ backgroundColor: color.hex }} />
+                        </div>
                         <div className="chip-meta">
                           <span className="chip-name">{color.name}</span>
                           <span className="chip-hex">{color.hex}</span>
