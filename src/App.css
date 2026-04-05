@@ -339,60 +339,165 @@ input[type="text"] {
   100% { opacity: 0; transform: translateY(-10px); }
 }
 
-/* Wardrobe Harmonies */
-.harmonies {
-  margin-top: 6rem;
+/* Dictionary Controls */
+input[type="color"] {
+  -webkit-appearance: none;
+  width: 110px;
+  height: 110px;
+  border: none;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  background: #fff;
+  padding: 0.8rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+input[type="color"]:hover {
+  transform: scale(1.05);
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+}
+
+.history {
+  margin-top: 8rem;
   border-top: 1px solid rgba(0, 0, 0, 0.03);
   padding-top: 4rem;
 }
 
-.harmonies h3 {
+.history h3 {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.4em;
   color: var(--text-dim);
   margin-bottom: 3rem;
+}
+
+.history-items {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.history-dot {
+  width: 52px;
+  height: 52px;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+.history-dot:hover {
+  transform: translateY(-5px) scale(1.1);
+}
+
+/* Unified Harmony Section */
+.harmonies {
+  margin-top: 10rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  padding-top: 6rem;
+}
+
+.harmonies-title {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--text-dim);
+  margin-bottom: 4rem;
   text-align: center;
 }
 
-.harmonies-grid {
+.harmony-layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
+  grid-template-columns: 320px 1fr;
+  gap: 6rem;
+  align-items: start;
 }
 
-.harmony-type {
+.color-wheel-container {
+  width: 320px;
+  height: 320px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 2rem;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wheel-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.harmony-display-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  align-items: center;
+  gap: 6rem;
 }
 
-.harmony-type label {
+.harmony-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.harmony-group h4 {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.outfit-previews {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.outfit-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: #fff;
+  padding: 1.2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.outfit-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+.outfit-swatches {
+  display: flex;
+  width: 150px;
+  height: 200px;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+.swatch-main { flex: 2; height: 100%; transition: background-color 0.4s ease; }
+.swatch-accent { flex: 1.2; height: 100%; transition: background-color 0.4s ease; }
+
+.outfit-label {
   font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   color: var(--text-dim);
   text-align: center;
-}
-
-.harmony-swatches {
-  display: flex;
-  gap: 1rem;
-}
-
-.harmony-swatch {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-.harmony-swatch:hover {
-  transform: scale(1.2);
 }
 
 /* Responsive Fixes */

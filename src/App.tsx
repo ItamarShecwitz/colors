@@ -176,71 +176,104 @@ function App() {
               </section>
 
               {colorData && (
-                <>
-                  <section className="relationships animate-in">
-                    <div className="shades-section">
-                      <h3>Tonal Scale</h3>
-                      <div className="shades-list">
-                        {colorData.shades.map((s, i) => (
-                          <div 
-                            key={i} 
-                            className="shade-item" 
-                            style={{ backgroundColor: s }} 
-                            onClick={() => setInputColor(s)}
-                            title={s}
-                          />
-                        ))}
-                      </div>
+                <section className="harmonies animate-in">
+                  <h3 className="harmonies-title">Color Harmonies & Wardrobe</h3>
+                  
+                  <div className="harmony-layout">
+                    <div className="color-wheel-container">
+                      <svg viewBox="0 0 100 100" className="wheel-svg">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#eee" strokeWidth="0.5" />
+                        {/* Current Hue Indicator */}
+                        <circle 
+                          cx={50 + 40 * Math.cos(chroma(colorData.hex).get('hsl.h') * Math.PI / 180)} 
+                          cy={50 + 40 * Math.sin(chroma(colorData.hex).get('hsl.h') * Math.PI / 180)} 
+                          r="4" 
+                          fill={colorData.hex} 
+                          stroke="#fff" 
+                          strokeWidth="2"
+                        />
+                        {/* Complementary Hue Indicator */}
+                        <circle 
+                          cx={50 + 40 * Math.cos((chroma(colorData.hex).get('hsl.h') + 180) * Math.PI / 180)} 
+                          cy={50 + 40 * Math.sin((chroma(colorData.hex).get('hsl.h') + 180) * Math.PI / 180)} 
+                          r="3" 
+                          fill={colorData.complementary} 
+                          opacity="0.6"
+                        />
+                      </svg>
                     </div>
 
-                    <div className="complement-section">
-                      <h3>Complementary</h3>
-                      <div 
-                        className="complement-box" 
-                        onClick={() => setInputColor(colorData.complementary)}
-                      >
-                        <div 
-                          className="complement-inner"
-                          style={{ backgroundColor: colorData.complementary }}
-                        >
-                          <span style={{ color: chroma.contrast(colorData.complementary, 'white') > 4.5 ? '#fff' : '#000' }}>
-                            {colorData.complementary.toUpperCase()}
-                          </span>
+                    <div className="harmony-display-grid">
+                      <div className="harmony-group">
+                        <h4>Essential Pairings</h4>
+                        <div className="outfit-previews">
+                          <div className="outfit-card" onClick={() => setInputColor(colorData.complementary)}>
+                            <div className="outfit-swatches">
+                              <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
+                              <div className="swatch-accent" style={{ backgroundColor: colorData.complementary }} />
+                            </div>
+                            <span className="outfit-label">Complementary</span>
+                          </div>
+                          
+                          <div className="outfit-card" onClick={() => setInputColor(chroma(colorData.hex).set('hsl.h', '+30').hex())}>
+                            <div className="outfit-swatches">
+                              <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+30').hex() }} />
+                            </div>
+                            <span className="outfit-label">Analogous</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </section>
 
-                  <section className="harmonies animate-in">
-                    <h3>Wardrobe Harmonies</h3>
-                    <div className="harmonies-grid">
-                      <div className="harmony-type">
-                        <label>Analogous (Natural)</label>
-                        <div className="harmony-swatches">
-                          {[chroma(colorData.hex).set('hsl.h', '-30').hex(), chroma(colorData.hex).set('hsl.h', '+30').hex()].map(c => (
-                            <div key={c} className="harmony-swatch" style={{ backgroundColor: c }} onClick={() => setInputColor(c)} />
+                      <div className="harmony-group">
+                        <h4>Wardrobe Classics</h4>
+                        <div className="outfit-previews">
+                          {['#F5F5DC', '#36454F', '#FFFFFF'].map((neutral, i) => (
+                            <div key={i} className="outfit-card" onClick={() => setInputColor(neutral)}>
+                              <div className="outfit-swatches">
+                                <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
+                                <div className="swatch-accent" style={{ backgroundColor: neutral }} />
+                              </div>
+                              <span className="outfit-label">{['Beige', 'Charcoal', 'White'][i]} Anchor</span>
+                            </div>
                           ))}
                         </div>
                       </div>
-                      <div className="harmony-type">
-                        <label>Triadic (Bold)</label>
-                        <div className="harmony-swatches">
-                          {[chroma(colorData.hex).set('hsl.h', '-120').hex(), chroma(colorData.hex).set('hsl.h', '+120').hex()].map(c => (
-                            <div key={c} className="harmony-swatch" style={{ backgroundColor: c }} onClick={() => setInputColor(c)} />
+
+                      <div className="harmony-group">
+                        <h4>Tonal Scale</h4>
+                        <div className="shades-list">
+                          {colorData.shades.map((s, i) => (
+                            <div 
+                              key={i} 
+                              className="shade-item" 
+                              style={{ backgroundColor: s }} 
+                              onClick={() => setInputColor(s)}
+                              title={s}
+                            />
                           ))}
                         </div>
                       </div>
-                      <div className="harmony-type">
-                        <label>Neutral Pairings</label>
-                        <div className="harmony-swatches">
-                          {['#F5F5DC', '#36454F', '#808080'].map(c => (
-                            <div key={c} className="harmony-swatch" style={{ backgroundColor: c }} onClick={() => setInputColor(c)} />
-                          ))}
+
+                      {history.length > 0 && (
+                        <div className="history harmony-group">
+                          <h4>Recent Palettes</h4>
+                          <div className="history-items">
+                            {history.map((h, i) => (
+                              <button 
+                                key={i} 
+                                className="history-dot" 
+                                style={{ backgroundColor: h }} 
+                                onClick={() => setInputColor(h)}
+                                title={h}
+                              />
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
-                  </section>
-                </>
+                  </div>
+                </section>
               )}
             </div>
           ) : activeTab === 'learn' ? (
@@ -277,22 +310,7 @@ function App() {
         </main>
 
         <footer>
-          {activeTab === 'dictionary' && history.length > 0 && (
-            <div className="history">
-              <h3>Recent</h3>
-              <div className="history-items">
-                {history.map((h, i) => (
-                  <button 
-                    key={i} 
-                    className="history-dot" 
-                    style={{ backgroundColor: h }} 
-                    onClick={() => setInputColor(h)}
-                    title={h}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
+          {/* Footer removed as history moved to main view */}
         </footer>
       </div>
     </div>
