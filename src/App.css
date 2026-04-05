@@ -688,7 +688,7 @@ input[type="color"]::-webkit-color-swatch {
 
 .indicator-main, .indicator-comp, .indicator-dynamic {
   z-index: 10;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1), fill 0.3s ease;
 }
 
 .color-wheel-container:hover .indicator-main {
@@ -698,6 +698,8 @@ input[type="color"]::-webkit-color-swatch {
 
 .indicator-dynamic {
   animation: markerAppear 0.5s ease forwards;
+  stroke: #fff;
+  stroke-width: 1.5px;
 }
 
 @keyframes markerAppear {

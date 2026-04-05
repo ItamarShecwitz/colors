@@ -183,14 +183,14 @@ function App() {
 
                         {/* Helper to get safe coordinates */}
                         {(() => {
-                          const h = chroma(colorData.hex).get('hsl.h');
+                          const o = chroma(colorData.hex);
+                          const h = o.get('hsl.h');
                           const safeH = isNaN(h) ? 0 : h;
                           const angle = safeH * Math.PI / 180;
-                          const r = 38; // slightly inside to look better
+                          const r = 38; 
                           
                           return (
                             <>
-                              {/* Base Color Indicator */}
                               <circle 
                                 cx={50 + r * Math.cos(angle)} 
                                 cy={50 + r * Math.sin(angle)} 
@@ -203,7 +203,6 @@ function App() {
                                 onClick={() => setInputColor(colorData.hex)}
                               />
 
-                              {/* Dynamic Harmony Indicators */}
                               {harmonyMode === 'complementary' && (
                                 <circle 
                                   cx={50 + r * Math.cos(angle + Math.PI)} 
@@ -220,7 +219,7 @@ function App() {
 
                               {harmonyMode === 'analogous' && [30, -30].map(offset => {
                                 const offsetRad = offset * Math.PI / 180;
-                                const c = chroma(colorData.hex).set('hsl.h', `+${offset}`).hex();
+                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
                                 return (
                                   <circle 
                                     key={offset}
@@ -239,7 +238,7 @@ function App() {
 
                               {harmonyMode === 'triadic' && [120, -120].map(offset => {
                                 const offsetRad = offset * Math.PI / 180;
-                                const c = chroma(colorData.hex).set('hsl.h', `+${offset}`).hex();
+                                const c = o.set('hsl.h', (safeH + offset + 360) % 360).hex();
                                 return (
                                   <circle 
                                     key={offset}
