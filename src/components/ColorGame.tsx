@@ -9,6 +9,19 @@ interface ColorGameProps {
 
 type GameMode = 'practice' | 'timer';
 
+const GOOD_JOB_PHRASES = [
+  'Visionary',
+  'Masterful',
+  'Exquisite Taste',
+  'Perceptual Genius',
+  'Flawless',
+  'Spot On',
+  'Impeccable',
+  'Spectacular',
+  'Iconic',
+  'Brilliant'
+];
+
 export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGameProps) {
   const [mode, setMode] = useState<GameMode>('practice');
   const [difficulty, setDifficulty] = useState(initialDifficulty);
@@ -20,6 +33,10 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const [isRandomizerEnabled, setIsRandomizerEnabled] = useState(false);
   
+  const currentGoodJob = useMemo(() => {
+    return GOOD_JOB_PHRASES[Math.floor(Math.random() * GOOD_JOB_PHRASES.length)];
+  }, [correctOption?.hex]); // Change phrase when target color changes
+
   // Timer Mode State
   const [timeLeft, setTimeLeft] = useState(20);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -225,7 +242,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
       {feedback && !isGameOver && (
         <div className={`feedback-overlay ${feedback}`}>
-          {feedback === 'correct' ? 'Visionary' : `Indeed it was ${correctOption?.name}`}
+          {feedback === 'correct' ? currentGoodJob : `Indeed it was ${correctOption?.name}`}
         </div>
       )}
     </div>

@@ -781,16 +781,19 @@ html, body {
 
 .feedback-overlay {
   position: absolute;
-  bottom: -2rem;
+  top: 25%;
   left: 0;
   right: 0;
   text-align: center;
   font-family: var(--font-serif);
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-style: italic;
   font-weight: 300;
   opacity: 0;
   animation: feedbackFade 1.2s ease forwards;
+  pointer-events: none;
+  z-index: 50;
+  text-shadow: 0 0 20px rgba(255,255,255,0.8);
 }
 
 @keyframes feedbackFade {
