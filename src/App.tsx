@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
-import namer from 'color-namer'
 import chroma from 'chroma-js'
-import { COLOR_LEVELS } from './constants'
+import { COLOR_LEVELS, ALL_COLORS } from './constants'
 import { ColorGame } from './components/ColorGame'
 import './App.css'
 
@@ -15,18 +14,25 @@ function App() {
       if (!chroma.valid(inputColor)) return null
       
       const o = chroma(inputColor)
-      const namerFn = typeof namer === 'function' ? namer : (namer as any).default
-      const namesResult = (typeof namerFn === 'function' ? namerFn(o.hex()) : {}) as any
+      const hex = o.hex()
       
-      const ntcNames = namesResult.ntc || []
-      const basicNames = namesResult.basic || []
+      // Find the closest name from our Coolors dataset
+      let closestMatch = ALL_COLORS[0]
+      let minDistance = chroma.distance(hex, ALL_COLORS[0].hex)
+      
+      ALL_COLORS.forEach(c => {
+        const dist = chroma.distance(hex, c.hex)
+        if (dist < minDistance) {
+          minDistance = dist
+          closestMatch = c
+        }
+      })
       
       return {
-        hex: o.hex(),
+        hex: hex,
         rgb: o.css(),
         hsl: o.css('hsl'),
-        name: ntcNames[0]?.name || 'Unknown',
-        basicName: basicNames[0]?.name || 'Unknown',
+        name: closestMatch.name,
         contrast: chroma.contrast(o, 'white') > 4.5 ? '#ffffff' : '#000000',
         shades: chroma.scale([o.darken(2), o, o.brighten(2)]).colors(7),
         complementary: o.set('hsl.h', (o.get('hsl.h') + 180) % 360).hex()
