@@ -17,6 +17,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
   const generateQuestion = useCallback(() => {
     const availableColors = getColorsByLevel(difficulty);
+    if (!availableColors || availableColors.length < 4) return;
     
     // Pick 4 candidate colors from the current tier to act as our "range"
     const candidates: typeof availableColors = [];
@@ -26,22 +27,23 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
       candidates.push(pool.splice(idx, 1)[0]);
     }
 
+    if (candidates.length < 4) return;
+
     // Pick one of these candidates as the "seed" for our target color
     const seed = candidates[Math.floor(Math.random() * candidates.length)];
     
     // Generate a color "near" the seed by jittering HSL values
-    // This creates a "natural" variation that still belongs to that color's family
     const target = chroma(seed.hex)
-      .set('hsl.h', (chroma(seed.hex).get('hsl.h') + (Math.random() * 20 - 10) + 360) % 360)
-      .set('hsl.s', Math.max(0, Math.min(1, chroma(seed.hex).get('hsl.s') + (Math.random() * 0.2 - 0.1))))
+      .set('hsl.h', (chroma(seed.hex).get('hsl.h') + (Math.random() * 30 - 15) + 360) % 360)
+      .set('hsl.s', Math.max(0, Math.min(1, chroma(seed.hex).get('hsl.s') + (Math.random() * 0.3 - 0.15))))
       .set('hsl.l', Math.max(0, Math.min(1, chroma(seed.hex).get('hsl.l') + (Math.random() * 0.2 - 0.1))))
       .hex();
 
     setTargetColor(target);
 
     // Now, determine which of our 4 candidates is actually closest to this new jittered color
-    // This ensures the "recognize the closest shade" rule is strictly followed via OKLab
     const closest = getClosestColor(target, candidates);
+    if (!closest) return;
 
     setCorrectOption(closest);
     setOptions(candidates);
@@ -49,7 +51,8 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   }, [difficulty]);
 
   useEffect(() => {
-    generateQuestion();
+    const timer = setTimeout(generateQuestion, 100);
+    return () => clearTimeout(timer);
   }, [generateQuestion]);
 
   const handleOptionClick = (option: { name: string; hex: string }) => {

@@ -84,18 +84,25 @@ function App() {
         <header className="brand-header">
           <div className="logo-container">
             <svg viewBox="0 0 100 100" className="brand-logo">
-              <path d="M50 15 L85 75 L15 75 Z" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.1"/>
-              <path d="M50 15 L85 75 L15 75 Z" fill="none" stroke="url(#prismGrad)" strokeWidth="2" strokeLinejoin="round"/>
-              <path d="M10 45 L50 15" stroke="rgba(255,255,255,0.8)" strokeWidth="1" strokeDasharray="2 2"/>
-              <path d="M50 15 L90 40" stroke="#E52B50" strokeWidth="1.5" opacity="0.6"/>
-              <path d="M50 15 L90 55" stroke="#00FF00" strokeWidth="1.5" opacity="0.6"/>
-              <path d="M50 15 L90 70" stroke="#0000FF" strokeWidth="1.5" opacity="0.6"/>
               <defs>
-                <linearGradient id="prismGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="prismLight" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#fff" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#fff" stopOpacity="0.2" />
+                </linearGradient>
+                <linearGradient id="spectrum" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#E52B50" />
-                  <stop offset="100%" stopColor="#FF8C00" />
+                  <stop offset="50%" stopColor="#00FF00" />
+                  <stop offset="100%" stopColor="#0000FF" />
                 </linearGradient>
               </defs>
+              {/* The Glass Prism */}
+              <path d="M50 20 L80 80 L20 80 Z" fill="rgba(255,255,255,0.05)" stroke="url(#prismLight)" strokeWidth="1.5" strokeLinejoin="round"/>
+              {/* Incoming White Light */}
+              <path d="M0 50 L35 50" stroke="#fff" strokeWidth="1" opacity="0.4" strokeDasharray="2 1"/>
+              {/* Refracted Spectrum */}
+              <path d="M65 50 L100 35" stroke="#E52B50" strokeWidth="2" opacity="0.8"/>
+              <path d="M65 50 L100 50" stroke="#00FF00" strokeWidth="2" opacity="0.8"/>
+              <path d="M65 50 L100 65" stroke="#0000FF" strokeWidth="2" opacity="0.8"/>
             </svg>
             <h1 className="brand-name">ITAMARS</h1>
           </div>
