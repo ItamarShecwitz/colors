@@ -307,6 +307,38 @@ input[type="text"] {
   color: #fff;
 }
 
+.option-btn.correct {
+  background: #000;
+  color: #fff;
+}
+
+.option-btn.correct-hint {
+  border-color: #000;
+  color: #000;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.feedback-overlay {
+  position: absolute;
+  bottom: -2rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0;
+  animation: feedbackFade 1.2s ease forwards;
+}
+
+@keyframes feedbackFade {
+  0% { opacity: 0; transform: translateY(10px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
 /* Wardrobe Harmonies */
 .harmonies {
   margin-top: 6rem;
