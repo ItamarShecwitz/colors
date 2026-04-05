@@ -738,34 +738,218 @@ input[type="color"]::-webkit-color-swatch {
   text-align: center;
 }
 
-/* Responsive Fixes */
-@media (max-width: 900px) {
-  .app-container { padding: 2rem 1rem; }
-  .content-card { padding: 3rem 1.5rem; border-radius: 2rem; }
-  .tabs { position: relative; top: 0; right: 0; margin-bottom: 4rem; justify-content: center; gap: 1.5rem; }
-  .brand-header { margin-bottom: 4rem; text-align: center; }
-  .logo-container { justify-content: center; }
-  
-  .main-display, .game-main { grid-template-columns: 1fr; gap: 3rem; margin-bottom: 4rem; }
-  .fashion-square, .target-square-frame { max-width: 280px; margin: 0 auto; }
-  .square-label { font-size: 2.2rem; }
-  
-  .input-group { flex-direction: column; gap: 1.5rem; }
-  input[type="text"] { font-size: 2.5rem; text-align: center; }
-  
-  .relationships { grid-template-columns: 1fr; gap: 3rem; }
-  .harmonies-grid { grid-template-columns: 1fr; gap: 3rem; }
-  
-  .level-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .chip-name { font-size: 1rem; }
-  
-  .option-btn { padding: 1.4rem; font-size: 1.3rem; }
+/* Comprehensive Mobile Responsiveness */
+@media (max-width: 768px) {
+  :root {
+    --card-padding: 1.5rem;
+  }
+
+  .app-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .content-card {
+    padding: 1.5rem 1rem;
+    border-radius: 1.5rem;
+    box-shadow: none;
+    border: none;
+  }
+
+  /* Navigation & Header */
+  .tabs {
+    position: static;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 0.2rem;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 2rem;
+  }
+
+  .tabs button {
+    padding: 0.6rem 1rem;
+    font-size: 0.65rem;
+    flex: 1;
+    text-align: center;
+  }
+
+  .brand-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .brand-name {
+    font-size: 1.4rem !important;
+    letter-spacing: 0.3em !important;
+  }
+
+  .brand-tagline {
+    font-size: 0.6rem;
+    max-width: 80%;
+    margin: 0.5rem auto 0;
+  }
+
+  /* Lexicon / Dictionary View */
+  .main-display {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .fashion-square {
+    height: 280px;
+    max-width: 100%;
+  }
+
+  .square-label {
+    font-size: 2rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .input-group input[type="text"] {
+    font-size: 1.4rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .metadata {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .meta-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* Harmonies Section */
+  .harmony-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .color-wheel-container {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .harmony-display-grid {
+    gap: 2.5rem;
+  }
+
+  .outfit-previews {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .outfit-card {
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+  }
+
+  .outfit-swatches {
+    width: 100%;
+    height: 140px;
+  }
+
+  /* Learn View */
+  .tier-selector-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.4rem;
+  }
+
+  .tier-btn {
+    padding: 0.6rem 0;
+    font-size: 0.7rem;
+  }
+
+  .level-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .color-chip {
+    padding: 1rem;
+  }
+
+  .chip-swatch {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* Game View */
+  .game-modes {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .mode-btn {
+    flex: 1;
+    padding: 0.6rem;
+    font-size: 0.55rem;
+  }
+
+  .game-header {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .game-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .target-square-frame {
+    height: 240px;
+    max-width: 100%;
+  }
+
+  .reveal-name {
+    font-size: 1.4rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .options-grid {
+    gap: 0.8rem;
+  }
+
+  .option-btn {
+    padding: 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .game-over-overlay {
+    padding: 1.5rem;
+  }
+
+  .game-over-overlay h2 {
+    font-size: 2.2rem;
+  }
+
+  .final-score {
+    font-size: 3.5rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .level-grid { grid-template-columns: repeat(2, 1fr); }
-  .brand-name { font-size: 1.6rem; }
-  .fashion-square, .target-square-frame { max-width: 220px; }
+  .tier-selector-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .square-label {
+    font-size: 1.8rem;
+  }
+  
+  .brand-name {
+    letter-spacing: 0.2em !important;
+  }
 }
 
 .animate-in {
