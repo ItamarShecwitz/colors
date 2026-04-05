@@ -176,6 +176,8 @@ function App() {
                               fill={`hsl(${i * 30}, 70%, 60%)`}
                               opacity="0"
                               className="wheel-segment"
+                              style={{ cursor: 'pointer', pointerEvents: 'auto' }}
+                              onClick={() => setInputColor(chroma.hsl(i * 30, 0.7, 0.6).hex())}
                             />
                           ))}
                         </g>
@@ -270,6 +272,7 @@ function App() {
                             <div className="outfit-swatches">
                               <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
                               <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+120').hex() }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '-120').hex() }} />
                             </div>
                             <span className="outfit-label">Triadic</span>
                           </div>

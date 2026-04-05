@@ -767,7 +767,7 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .swatch-main { flex: 2; height: 100%; transition: background-color 0.4s ease; }
-.swatch-accent { flex: 1.2; height: 100%; transition: background-color 0.4s ease; }
+.swatch-accent { flex: 1; height: 100%; transition: background-color 0.4s ease; }
 
 .outfit-label {
   font-size: 0.6rem;
