@@ -9,8 +9,30 @@ function App() {
   const [inputColor, setInputColor] = useState('#646cff')
   const [history, setHistory] = useState<string[]>([])
   const [harmonyMode, setHarmonyMode] = useState<'complementary' | 'analogous' | 'triadic' | 'neutral'>('complementary')
+  const [isPickerOpen, setIsPickerOpen] = useState(false)
 
   const [selectedLevel, setSelectedLevel] = useState<number>(1)
+
+  // HSB State for Picker
+  const [hsb, setHsb] = useState({ h: 235, s: 61, b: 100 })
+
+  useEffect(() => {
+    if (chroma.valid(inputColor)) {
+      const c = chroma(inputColor).hsv()
+      setHsb({ 
+        h: isNaN(c[0]) ? 0 : c[0], 
+        s: Math.round(c[1] * 100), 
+        b: Math.round(c[2] * 100) 
+      })
+    }
+  }, [inputColor, isPickerOpen])
+
+  const handleHsbChange = (key: 'h' | 's' | 'b', value: number) => {
+    const newHsb = { ...hsb, [key]: value }
+    setHsb(newHsb)
+    const newHex = chroma.hsv(newHsb.h, newHsb.s / 100, newHsb.b / 100).hex()
+    setInputColor(newHex)
+  }
 
   const colorData = useMemo(() => {
     try {
@@ -113,61 +135,98 @@ function App() {
             <div className="dictionary-view animate-in">
               <section className="main-display">
                 <div className="fashion-display">
-                  <div className="color-wheel-wrapper">
-                    <div 
-                      className="color-wheel"
-                      onMouseMove={(e) => {
-                        if (e.buttons !== 1) return;
-                        const rect = e.currentTarget.getBoundingClientRect();
-                        const x = e.clientX - rect.left - rect.width / 2;
-                        const y = e.clientY - rect.top - rect.height / 2;
-                        const angle = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
-                        const dist = Math.min(1, Math.sqrt(x*x + y*y) / (rect.width / 2));
-                        const newColor = chroma.hsl(angle, dist, 0.5).hex();
-                        setInputColor(newColor);
-                      }}
-                      onClick={(e) => {
-                        const rect = e.currentTarget.getBoundingClientRect();
-                        const x = e.clientX - rect.left - rect.width / 2;
-                        const y = e.clientY - rect.top - rect.height / 2;
-                        const angle = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
-                        const dist = Math.min(1, Math.sqrt(x*x + y*y) / (rect.width / 2));
-                        const newColor = chroma.hsl(angle, dist, 0.5).hex();
-                        setInputColor(newColor);
-                      }}
-                      style={{
-                        background: 'conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
-                      }}
-                    >
-                      <div className="wheel-overlay" />
-                      <div className="wheel-center" style={{ backgroundColor: colorData?.hex || '#242424' }}>
-                        <div className="center-label" style={{ color: colorData?.contrast || '#ffffff' }}>
-                          {colorData?.name}
+                  <div 
+                    className="fashion-square" 
+                    style={{ backgroundColor: colorData?.hex || '#242424' }}
+                    onClick={() => setIsPickerOpen(true)}
+                  >
+                    <div className="square-label" style={{ color: colorData?.contrast || '#ffffff' }}>
+                      {colorData?.name}
+                    </div>
+                    <div className="square-hint" style={{ color: colorData?.contrast || '#ffffff' }}>Click to adjust</div>
+                  </div>
+                </div>
+
+                {isPickerOpen && (
+                  <div className="picker-overlay" onClick={() => setIsPickerOpen(false)}>
+                    <div className="picker-modal" onClick={e => e.stopPropagation()}>
+                      <div className="picker-header">
+                        <h3>Adjust Color</h3>
+                        <button className="close-btn" onClick={() => setIsPickerOpen(false)}>&times;</button>
+                      </div>
+                      
+                      <div className="picker-body">
+                        <div className="preview-swatch" style={{ backgroundColor: inputColor }}>
+                          <span style={{ color: chroma.contrast(inputColor, 'white') > 4.5 ? '#fff' : '#000' }}>
+                            {inputColor.toUpperCase()}
+                          </span>
+                        </div>
+
+                        <div className="sliders">
+                          <div className="slider-group">
+                            <label>Hue: {Math.round(hsb.h)}&deg;</label>
+                            <input 
+                              type="range" min="0" max="360" 
+                              value={hsb.h} 
+                              onChange={(e) => handleHsbChange('h', Number(e.target.value))}
+                              style={{ 
+                                appearance: 'none',
+                                height: '12px',
+                                borderRadius: '6px',
+                                background: 'linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)' 
+                              }}
+                            />
+                          </div>
+                          
+                          <div className="slider-group">
+                            <label>Saturation: {hsb.s}%</label>
+                            <input 
+                              type="range" min="0" max="100" 
+                              value={hsb.s} 
+                              onChange={(e) => handleHsbChange('s', Number(e.target.value))}
+                              style={{ 
+                                appearance: 'none',
+                                height: '12px',
+                                borderRadius: '6px',
+                                background: `linear-gradient(to right, #fff, ${chroma.hsv(hsb.h, 1, hsb.b/100).hex()})` 
+                              }}
+                            />
+                          </div>
+
+                          <div className="slider-group">
+                            <label>Brightness: {hsb.b}%</label>
+                            <input 
+                              type="range" min="0" max="100" 
+                              value={hsb.b} 
+                              onChange={(e) => handleHsbChange('b', Number(e.target.value))}
+                              style={{ 
+                                appearance: 'none',
+                                height: '12px',
+                                borderRadius: '6px',
+                                background: `linear-gradient(to right, #000, ${chroma.hsv(hsb.h, hsb.s/100, 1).hex()})` 
+                              }}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="hex-manual">
+                          <label>Hex Code</label>
+                          <input 
+                            type="text" 
+                            className="picker-hex-input"
+                            value={inputColor} 
+                            onChange={(e) => setInputColor(e.target.value)}
+                            placeholder="#000000"
+                          />
                         </div>
                       </div>
                       
-                      {/* Interaction Marker */}
-                      {(() => {
-                        if (!colorData) return null;
-                        const h = chroma(colorData.hex).get('hsl.h') || 0;
-                        const s = chroma(colorData.hex).get('hsl.s');
-                        const angle = (h * Math.PI) / 180;
-                        const radius = s * 45; // 45% of wheel
-                        return (
-                          <div 
-                            className="wheel-marker"
-                            style={{
-                              left: `${50 + radius * Math.cos(angle)}%`,
-                              top: `${50 + radius * Math.sin(angle)}%`,
-                              backgroundColor: colorData.hex,
-                              borderColor: colorData.contrast
-                            }}
-                          />
-                        );
-                      })()}
+                      <div className="picker-footer">
+                        <button className="done-btn" onClick={() => setIsPickerOpen(false)}>Apply</button>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
 
                 <div className="controls">
                   <div className="input-group">
