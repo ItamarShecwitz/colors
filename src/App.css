@@ -936,28 +936,33 @@ input[type="color"]::-webkit-color-swatch {
 
   /* Lexicon / Dictionary View */
   .main-display {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 2rem;
+    margin-bottom: 3rem;
   }
 
-  .fashion-square {
-    height: 280px;
-    max-width: 100%;
+  .color-wheel-wrapper {
+    width: min(320px, 90vw);
+    height: min(320px, 90vw);
   }
 
-  .square-label {
-    font-size: 2rem;
+  .wheel-center {
+    width: 65%;
+    height: 65%;
+    padding: 1.2rem;
+  }
+
+  .center-label {
+    font-size: 1.5rem;
   }
 
   .input-group {
-    flex-direction: column;
-    gap: 1rem;
+    margin-bottom: 1.5rem;
   }
 
-  .input-group input[type="text"] {
-    font-size: 1.4rem;
-    text-align: center;
-    width: 100%;
+  .hex-input {
+    font-size: 1.1rem;
+    width: 120px;
   }
 
   .metadata {
