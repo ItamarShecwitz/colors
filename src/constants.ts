@@ -43,16 +43,16 @@ export const COLOR_LEVELS = [
         "name": "White"
       },
       {
-        "hex": "#C0C0C0",
-        "name": "Silver"
+        "hex": "#00FFFF",
+        "name": "Cyan"
       },
       {
         "hex": "#000000",
         "name": "Black"
       },
       {
-        "hex": "#800000",
-        "name": "Maroon"
+        "hex": "#C0FF00",
+        "name": "Lime"
       }
     ]
   },
@@ -78,12 +78,12 @@ export const COLOR_LEVELS = [
         "name": "Ivory"
       },
       {
-        "hex": "#00FFFF",
-        "name": "Cyan"
+        "hex": "#C0C0C0",
+        "name": "Silver"
       },
       {
-        "hex": "#C0FF00",
-        "name": "Lime"
+        "hex": "#800000",
+        "name": "Maroon"
       },
       {
         "hex": "#008080",
