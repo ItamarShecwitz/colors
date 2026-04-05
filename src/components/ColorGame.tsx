@@ -32,19 +32,17 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const [lastClickedOption, setLastClickedOption] = useState<string | null>(null);
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const [isRandomizerEnabled, setIsRandomizerEnabled] = useState(false);
+  const [usedColorNames, setUsedColorNames] = useState<string[]>([]);
   
   const currentGoodJob = useMemo(() => {
     return GOOD_JOB_PHRASES[Math.floor(Math.random() * GOOD_JOB_PHRASES.length)];
-  }, [correctOption?.hex]); // Change phrase when target color changes
+  }, [correctOption?.hex]);
 
   // Timer Mode State
-  const [timeLeft, setTimeLeft] = useState(20);
-  const [isGameOver, setIsGameOver] = useState(false);
-  const timerRef = useRef<number | null>(null);
-  const gameSectionRef = useRef<HTMLDivElement>(null);
+  const TIMER_TOTAL_QUESTIONS = 12;
 
   const generateQuestion = useCallback(() => {
-    if (mode === 'timer' && score.total >= 10) {
+    if (mode === 'timer' && score.total >= TIMER_TOTAL_QUESTIONS) {
       setIsGameOver(true);
       return;
     }
@@ -56,14 +54,37 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
     if (!availableColors || availableColors.length < 4) return;
     
-    const candidates: typeof availableColors = [];
-    const pool = [...availableColors];
-    while (candidates.length < 4 && pool.length > 0) {
-      const idx = Math.floor(Math.random() * pool.length);
-      candidates.push(pool.splice(idx, 1)[0]);
+    // Filter out used colors for non-repeating questions
+    let pool = [...availableColors];
+    if (mode === 'timer') {
+      pool = pool.filter(c => !usedColorNames.includes(c.name));
+      // If we ran out of colors (shouldn't happen with 12 questions/12 colors, but safe check)
+      if (pool.length === 0) {
+        setIsGameOver(true);
+        return;
+      }
     }
 
-    const seed = candidates[Math.floor(Math.random() * candidates.length)];
+    const candidates: typeof availableColors = [];
+    const selectionPool = [...pool];
+    
+    // Pick the seed first from the non-used pool
+    const seedIdx = Math.floor(Math.random() * selectionPool.length);
+    const seed = selectionPool.splice(seedIdx, 1)[0];
+    candidates.push(seed);
+
+    // Get distractors from the original level pool (to ensure difficulty)
+    const distractorPool = availableColors.filter(c => c.name !== seed.name);
+    while (candidates.length < 4 && distractorPool.length > 0) {
+      const idx = Math.floor(Math.random() * distractorPool.length);
+      const picked = distractorPool.splice(idx, 1)[0];
+      if (!candidates.find(c => c.name === picked.name)) {
+        candidates.push(picked);
+      }
+    }
+
+    // Shuffle candidates
+    candidates.sort(() => Math.random() - 0.5);
 
     let target: string;
     if (isRandomizerEnabled) {
@@ -83,7 +104,12 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     setFeedback(null);
     setLastClickedOption(null);
     setTimeLeft(20);
-  }, [difficulty, mode, score.total, isRandomizerEnabled]);
+
+    // Add to used colors
+    if (mode === 'timer') {
+      setUsedColorNames(prev => [...prev, seed.name]);
+    }
+  }, [difficulty, mode, score.total, isRandomizerEnabled, usedColorNames]);
 
   useEffect(() => {
     generateQuestion();
@@ -115,7 +141,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     setFeedback(isCorrect ? 'correct' : 'wrong');
     setScore(s => ({ ...s, correct: isCorrect ? s.correct + 1 : s.correct, total: s.total + 1 }));
 
-    if (mode === 'timer' && score.total + 1 >= 10) {
+    if (mode === 'timer' && score.total + 1 >= TIMER_TOTAL_QUESTIONS) {
       setTimeout(() => setIsGameOver(true), 1500);
     } else {
       setTimeout(generateQuestion, 1500);
@@ -124,10 +150,13 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
   const resetGame = () => {
     setScore({ correct: 0, total: 0 });
+    setUsedColorNames([]);
     setIsGameOver(false);
     setFeedback(null);
     setLastClickedOption(null);
-    generateQuestion();
+    // Note: generateQuestion will be called by the useEffect [difficulty, mode] 
+    // but if we are manually resetting same diff/mode, we call it.
+    setTimeout(generateQuestion, 0);
   };
 
   const scrollToGame = () => {
@@ -234,8 +263,8 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
       {isGameOver && (
         <div className="game-over-overlay animate-in">
           <h2>Session Complete</h2>
-          <div className="final-score">{score.correct} / 10</div>
-          <p>{score.correct >= 8 ? 'Master of the Spectrum' : 'Continue your studies'}</p>
+          <div className="final-score">{score.correct} / {mode === 'timer' ? TIMER_TOTAL_QUESTIONS : score.total}</div>
+          <p>{score.correct >= (mode === 'timer' ? 10 : Math.ceil(score.total * 0.8)) ? 'Master of the Spectrum' : 'Continue your studies'}</p>
           <button className="reset-btn" onClick={resetGame}>Try Again</button>
         </div>
       )}
