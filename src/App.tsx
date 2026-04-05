@@ -81,12 +81,20 @@ function App() {
           </button>
         </nav>
 
-        <header>
-          <h1>Color Lexicon</h1>
-          <p>
-            {activeTab === 'dictionary' ? 'A curated visual vocabulary' : 
-             activeTab === 'learn' ? 'Master the spectrum' : 
-             'Test your visual intuition'}
+        <header className="brand-header">
+          <div className="logo-container">
+            <svg viewBox="0 0 100 100" className="brand-logo">
+              <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.2"/>
+              <path d="M50 20 L50 80" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M30 40 Q50 10 70 40" fill="none" stroke="#E52B50" strokeWidth="3" strokeLinecap="round"/>
+              <circle cx="70" cy="40" r="4" fill="#E52B50"/>
+            </svg>
+            <h1 className="brand-name">ITAMARS</h1>
+          </div>
+          <p className="brand-tagline">
+            {activeTab === 'dictionary' ? 'The Curated Visual Vocabulary' : 
+             activeTab === 'learn' ? 'Mastering the Perceptual Spectrum' : 
+             'Testing Visual Intuition'}
           </p>
         </header>
 

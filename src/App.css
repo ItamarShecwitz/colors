@@ -84,25 +84,41 @@ body {
   width: 100%;
 }
 
-header {
+.brand-header {
   margin-bottom: 8rem;
+  text-align: left;
 }
 
-header h1 {
-  font-family: var(--font-serif);
-  font-size: 6rem;
-  font-weight: 300;
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.brand-logo {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: var(--font-sans);
+  font-size: 4rem;
+  font-weight: 200;
   margin: 0;
-  line-height: 0.8;
-  letter-spacing: -0.02em;
+  letter-spacing: 1.2em;
+  margin-right: -1.2em; /* Offset for last letter tracking */
+  color: var(--text-main);
+  line-height: 1;
 }
 
-header p {
+.brand-tagline {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.8em;
   color: var(--text-dim);
-  margin-top: 2.5rem;
+  margin-top: 3rem;
+  font-weight: 300;
 }
 
 /* Dictionary View */
