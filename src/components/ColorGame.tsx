@@ -18,7 +18,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
   const [lastClickedOption, setLastClickedOption] = useState<string | null>(null);
   const [score, setScore] = useState({ correct: 0, total: 0 });
-  const [isJitterEnabled, setIsJitterEnabled] = useState(false);
+  const [isRandomizerEnabled, setIsRandomizerEnabled] = useState(false);
   
   // Timer Mode State
   const [timeLeft, setTimeLeft] = useState(20);
@@ -47,9 +47,9 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     }
 
     const seed = candidates[Math.floor(Math.random() * candidates.length)];
-    
+
     let target: string;
-    if (isJitterEnabled) {
+    if (isRandomizerEnabled) {
       target = chroma(seed.hex)
         .set('hsl.h', (chroma(seed.hex).get('hsl.h') + (Math.random() * 40 - 20) + 360) % 360)
         .set('hsl.s', Math.max(0.1, Math.min(0.9, chroma(seed.hex).get('hsl.s') + (Math.random() * 0.4 - 0.2))))
@@ -66,11 +66,11 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     setFeedback(null);
     setLastClickedOption(null);
     setTimeLeft(20);
-  }, [difficulty, mode, score.total, isJitterEnabled]);
+  }, [difficulty, mode, score.total, isRandomizerEnabled]);
 
   useEffect(() => {
     generateQuestion();
-  }, [difficulty, mode, isJitterEnabled]);
+  }, [difficulty, mode, isRandomizerEnabled]);
 
   useEffect(() => {
     if (mode === 'timer' && !feedback && !isGameOver) {
@@ -123,21 +123,23 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
   return (
     <div className="game-container animate-in">
+      <div className="game-top-utility-bar">
+        <button 
+          className={`randomizer-toggle-btn ${isRandomizerEnabled ? 'active' : ''}`}
+          onClick={() => {
+            setIsRandomizerEnabled(!isRandomizerEnabled);
+            resetGame();
+          }}
+        >
+          {isRandomizerEnabled ? 'Color Randomizer: On' : 'Color Randomizer: Off'}
+        </button>
+      </div>
+
       <div className="game-controls-top-row">
         <div className="game-modes">
           <button className={`mode-btn ${mode === 'practice' ? 'active' : ''}`} onClick={() => { setMode('practice'); resetGame(); }}>Practice</button>
           <button className={`mode-btn ${mode === 'timer' ? 'active' : ''}`} onClick={() => { setMode('timer'); resetGame(); }}>Timer</button>
         </div>
-
-        <button 
-          className={`jitter-toggle-btn ${!isJitterEnabled ? 'active' : ''}`}
-          onClick={() => {
-            setIsJitterEnabled(!isJitterEnabled);
-            resetGame();
-          }}
-        >
-          {isJitterEnabled ? 'Jitter: On' : 'Jitter: Off'}
-        </button>
       </div>
 
       <div className="game-header">

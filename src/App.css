@@ -509,10 +509,12 @@ html, body {
 }
 
 .game-main {
-  display: grid;
-  grid-template-columns: 400px 1fr;
-  gap: 5rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 3rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .target-square-frame {
@@ -550,7 +552,14 @@ html, body {
   margin-bottom: 2rem;
 }
 
-.jitter-toggle-btn {
+.game-top-utility-bar {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.randomizer-toggle-btn {
   background: transparent;
   border: 1px dashed var(--glass-border);
   padding: 0.5rem 1rem;
@@ -563,13 +572,13 @@ html, body {
   transition: all 0.3s ease;
 }
 
-.jitter-toggle-btn:hover {
+.randomizer-toggle-btn:hover {
   border-style: solid;
   border-color: var(--text-main);
   color: var(--text-main);
 }
 
-.jitter-toggle-btn.active {
+.randomizer-toggle-btn.active {
   background: rgba(0, 0, 0, 0.05);
   border-style: solid;
   border-color: var(--text-main);
@@ -1198,7 +1207,7 @@ input[type="color"]::-webkit-color-swatch {
     flex: 1;
   }
 
-  .jitter-toggle-btn {
+  .randomizer-toggle-btn {
     flex: 1;
     padding: 0.5rem;
     font-size: 0.7rem;
@@ -1260,6 +1269,7 @@ input[type="color"]::-webkit-color-swatch {
     margin: 0 auto 1.5rem auto;
     padding: 0;
     box-shadow: none;
+    aspect-ratio: 1;
   }
 
   .target-square {
