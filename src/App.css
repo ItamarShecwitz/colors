@@ -508,25 +508,51 @@ input[type="text"] {
   font-family: var(--font-serif);
   font-size: 1.6rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: 300;
   color: var(--text-main);
+  position: relative;
+  overflow: hidden;
 }
 
 .option-btn:hover:not(:disabled) {
-  background: #000;
-  color: #fff;
+  background: #f8f8f8;
+  border-color: #333;
 }
 
 .option-btn.correct {
-  background: #000;
-  color: #fff;
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+  animation: pulse-correct 0.4s ease-out;
+  z-index: 2;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
-.option-btn.correct-hint {
-  border-color: #000;
-  color: #000;
-  background: rgba(0, 0, 0, 0.05);
+.option-btn.wrong {
+  background: #fff !important;
+  color: #ef4444 !important;
+  border-color: #ef4444 !important;
+  animation: shake-wrong 0.4s ease-in-out;
+  opacity: 0.8;
+}
+
+.option-btn.faded {
+  opacity: 0.2;
+  filter: grayscale(1);
+  pointer-events: none;
+}
+
+@keyframes pulse-correct {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake-wrong {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
 }
 
 .feedback-overlay {

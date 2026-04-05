@@ -16,6 +16,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const [options, setOptions] = useState<{ name: string; hex: string }[]>([]);
   const [correctOption, setCorrectOption] = useState<{ name: string; hex: string } | null>(null);
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
+  const [lastClickedOption, setLastClickedOption] = useState<string | null>(null);
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const [isJitterEnabled, setIsJitterEnabled] = useState(true);
   
@@ -62,6 +63,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     setCorrectOption(closest || candidates[0]);
     setOptions(candidates);
     setFeedback(null);
+    setLastClickedOption(null);
     setTimeLeft(20);
   }, [difficulty, mode, score.total, isJitterEnabled]);
 
@@ -91,6 +93,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     if (timerRef.current) clearInterval(timerRef.current);
 
     const isCorrect = option.name === correctOption?.name;
+    setLastClickedOption(option.name);
     setFeedback(isCorrect ? 'correct' : 'wrong');
     setScore(s => ({ ...s, correct: isCorrect ? s.correct + 1 : s.correct, total: s.total + 1 }));
 
@@ -105,6 +108,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     setScore({ correct: 0, total: 0 });
     setIsGameOver(false);
     setFeedback(null);
+    setLastClickedOption(null);
     generateQuestion();
   };
 
@@ -172,16 +176,25 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
         </div>
         
         <div className="options-grid">
-          {options.map((opt, i) => (
-            <button 
-              key={i} 
-              className={`option-btn ${feedback && opt.name === correctOption?.name ? 'correct' : ''} ${feedback === 'wrong' && opt.name !== correctOption?.name ? 'wrong-fade' : ''}`}
-              onClick={() => handleOptionClick(opt)}
-              disabled={!!feedback || isGameOver}
-            >
-              {opt.name}
-            </button>
-          ))}
+          {options.map((opt, i) => {
+            let statusClass = '';
+            if (feedback) {
+              if (opt.name === correctOption?.name) statusClass = 'correct';
+              else if (opt.name === lastClickedOption) statusClass = 'wrong';
+              else statusClass = 'faded';
+            }
+            
+            return (
+              <button 
+                key={i} 
+                className={`option-btn ${statusClass}`}
+                onClick={() => handleOptionClick(opt)}
+                disabled={!!feedback || isGameOver}
+              >
+                {opt.name}
+              </button>
+            );
+          })}
         </div>
       </div>
 
