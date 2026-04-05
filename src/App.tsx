@@ -164,6 +164,20 @@ function App() {
                     <div className="color-wheel-container">
                       <svg viewBox="0 0 100 100" className="wheel-svg">
                         <circle cx="50" cy="50" r="45" fill="none" stroke="#eee" strokeWidth="0.5" />
+                        
+                        {/* Interactive Full Color Wheel Segments (Visible on Hover via CSS) */}
+                        <g className="wheel-segments">
+                          {Array.from({ length: 12 }).map((_, i) => (
+                            <path
+                              key={i}
+                              d={`M 50 50 L ${50 + 45 * Math.cos(i * 30 * Math.PI / 180)} ${50 + 45 * Math.sin(i * 30 * Math.PI / 180)} A 45 45 0 0 1 ${50 + 45 * Math.cos((i + 1) * 30 * Math.PI / 180)} ${50 + 45 * Math.sin((i + 1) * 30 * Math.PI / 180)} Z`}
+                              fill={`hsl(${i * 30}, 70%, 60%)`}
+                              opacity="0"
+                              className="wheel-segment"
+                            />
+                          ))}
+                        </g>
+
                         {/* Current Hue Indicator */}
                         <circle 
                           cx={50 + 40 * Math.cos(chroma(colorData.hex).get('hsl.h') * Math.PI / 180)} 
@@ -172,6 +186,7 @@ function App() {
                           fill={colorData.hex} 
                           stroke="#fff" 
                           strokeWidth="2"
+                          className="indicator-main"
                         />
                         {/* Complementary Hue Indicator */}
                         <circle 
@@ -180,6 +195,7 @@ function App() {
                           r="3" 
                           fill={colorData.complementary} 
                           opacity="0.6"
+                          className="indicator-comp"
                         />
                       </svg>
                     </div>
@@ -188,7 +204,7 @@ function App() {
                       <div className="harmony-group">
                         <h4>Essential Pairings</h4>
                         <div className="outfit-previews">
-                          <div className="outfit-card" onClick={() => setInputColor(colorData.complementary)}>
+                          <div className="outfit-card">
                             <div className="outfit-swatches">
                               <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
                               <div className="swatch-accent" style={{ backgroundColor: colorData.complementary }} />
@@ -196,7 +212,7 @@ function App() {
                             <span className="outfit-label">Complementary</span>
                           </div>
                           
-                          <div className="outfit-card" onClick={() => setInputColor(chroma(colorData.hex).set('hsl.h', '+30').hex())}>
+                          <div className="outfit-card">
                             <div className="outfit-swatches">
                               <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
                               <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+30').hex() }} />
@@ -210,7 +226,7 @@ function App() {
                         <h4>Wardrobe Classics</h4>
                         <div className="outfit-previews">
                           {['#F5F5DC', '#36454F', '#FFFFFF'].map((neutral, i) => (
-                            <div key={i} className="outfit-card" onClick={() => setInputColor(neutral)}>
+                            <div key={i} className="outfit-card">
                               <div className="outfit-swatches">
                                 <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
                                 <div className="swatch-accent" style={{ backgroundColor: neutral }} />

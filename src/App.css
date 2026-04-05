@@ -443,6 +443,31 @@ input[type="color"]::-webkit-color-swatch {
   width: 100%;
   height: 100%;
   transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.wheel-segment {
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.color-wheel-container:hover .wheel-segment {
+  opacity: 0.15;
+}
+
+.indicator-main, .indicator-comp {
+  z-index: 10;
+  transition: all 0.4s ease;
+}
+
+.color-wheel-container:hover .indicator-main {
+  r: 6;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.8));
+}
+
+.color-wheel-container:hover .indicator-comp {
+  r: 5;
+  opacity: 1;
 }
 
 .harmony-display-grid {
