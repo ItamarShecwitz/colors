@@ -10,29 +10,7 @@ function App() {
   const [history, setHistory] = useState<string[]>([])
   const [harmonyMode, setHarmonyMode] = useState<'complementary' | 'analogous' | 'triadic' | 'neutral'>('complementary')
 
-  const [selectedTiers, setSelectedTiers] = useState<Set<number>>(new Set([1]))
-
-  const toggleTier = (tier: number) => {
-    setSelectedTiers(prev => {
-      const next = new Set(prev)
-      if (next.has(tier)) {
-        if (next.size > 1) {
-          next.delete(tier)
-        }
-      } else {
-        next.add(tier)
-      }
-      return next
-    })
-  }
-
-  const selectAllTiers = () => {
-    if (selectedTiers.size === COLOR_LEVELS.length) {
-      setSelectedTiers(new Set([1]))
-    } else {
-      setSelectedTiers(new Set(COLOR_LEVELS.map(l => l.id)))
-    }
-  }
+  const [selectedTier, setSelectedTier] = useState<number>(1)
 
   const colorData = useMemo(() => {
     try {
@@ -349,17 +327,14 @@ function App() {
             <div className="learn-view animate-in">
               <section className="tier-filter-section">
                 <div className="filter-header">
-                  <h3 className="filter-title">Select Tiers to Explore</h3>
-                  <button className="select-all-btn" onClick={selectAllTiers}>
-                    {selectedTiers.size === COLOR_LEVELS.length ? 'Clear All but Tier 1' : 'Select All Tiers'}
-                  </button>
+                  <h3 className="filter-title">Explore by Tier</h3>
                 </div>
                 <div className="tier-selector-grid">
                   {COLOR_LEVELS.map(level => (
                     <button 
                       key={level.id} 
-                      className={`tier-btn ${selectedTiers.has(level.id) ? 'active' : ''}`}
-                      onClick={() => toggleTier(level.id)}
+                      className={`tier-btn ${selectedTier === level.id ? 'active' : ''}`}
+                      onClick={() => setSelectedTier(level.id)}
                     >
                       {level.id}
                     </button>
@@ -367,11 +342,11 @@ function App() {
                 </div>
               </section>
 
-              {COLOR_LEVELS.filter(l => selectedTiers.has(l.id)).map(level => (
-                <section key={level.id} className="level-block">
+              {COLOR_LEVELS.filter(l => l.id === selectedTier).map(level => (
+                <section key={level.id} className="level-block animate-in">
                   <div className="level-info">
                     <h2>{level.name}</h2>
-                    <p>Level {level.id} &mdash; {level.description}</p>
+                    <p>Tier {level.id} &mdash; {level.description}</p>
                   </div>
                   <div className="level-grid">
                     {level.colors.map(color => {
