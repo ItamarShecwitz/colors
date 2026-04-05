@@ -1032,21 +1032,24 @@ input[type="color"]::-webkit-color-swatch {
   .stat-box label { font-size: 0.4rem; }
   .stat-box span { font-size: 0.8rem; }
 
+  .game-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
   .target-square-frame {
-    width: 100px; /* Even smaller */
-    margin: 0.5rem auto;
+    width: 100px;
+    margin: 0.2rem auto 0.8rem auto;
     padding: 0.4rem;
   }
 
-  .reveal-name {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
-  }
-
   .options-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2x2 grid to save half the vertical space */
-    gap: 0.4rem;
-    margin-top: 0.4rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 0;
   }
 
   .option-btn {
