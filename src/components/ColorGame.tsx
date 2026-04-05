@@ -45,8 +45,10 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const timerRef = useRef<number | null>(null);
   const gameSectionRef = useRef<HTMLDivElement>(null);
 
-  const generateQuestion = useCallback(() => {
-    if (mode === 'timer' && score.total >= TIMER_TOTAL_QUESTIONS) {
+  const generateQuestion = useCallback((currentScoreTotal?: number) => {
+    const effectiveTotal = currentScoreTotal !== undefined ? currentScoreTotal : score.total;
+    
+    if (mode === 'timer' && effectiveTotal >= TIMER_TOTAL_QUESTIONS) {
       setIsGameOver(true);
       return;
     }
@@ -117,7 +119,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
   useEffect(() => {
     usedColorNamesRef.current = [];
-    generateQuestion();
+    generateQuestion(0);
   }, [difficulty, mode, isRandomizerEnabled]);
 
   useEffect(() => {
@@ -149,7 +151,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     if (mode === 'timer' && score.total + 1 >= TIMER_TOTAL_QUESTIONS) {
       setTimeout(() => setIsGameOver(true), 1500);
     } else {
-      setTimeout(generateQuestion, 1500);
+      setTimeout(() => generateQuestion(), 1500);
     }
   };
 
@@ -159,7 +161,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     setIsGameOver(false);
     setFeedback(null);
     setLastClickedOption(null);
-    generateQuestion();
+    generateQuestion(0);
   };
 
   const scrollToGame = () => {
