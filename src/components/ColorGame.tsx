@@ -17,6 +17,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const [correctOption, setCorrectOption] = useState<{ name: string; hex: string } | null>(null);
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
   const [score, setScore] = useState({ correct: 0, total: 0 });
+  const [isJitterEnabled, setIsJitterEnabled] = useState(true);
   
   // Timer Mode State
   const [timeLeft, setTimeLeft] = useState(20);
@@ -44,11 +45,17 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     }
 
     const seed = candidates[Math.floor(Math.random() * candidates.length)];
-    const target = chroma(seed.hex)
-      .set('hsl.h', (chroma(seed.hex).get('hsl.h') + (Math.random() * 40 - 20) + 360) % 360)
-      .set('hsl.s', Math.max(0.1, Math.min(0.9, chroma(seed.hex).get('hsl.s') + (Math.random() * 0.4 - 0.2))))
-      .set('hsl.l', Math.max(0.1, Math.min(0.9, chroma(seed.hex).get('hsl.l') + (Math.random() * 0.3 - 0.15))))
-      .hex();
+    
+    let target: string;
+    if (isJitterEnabled) {
+      target = chroma(seed.hex)
+        .set('hsl.h', (chroma(seed.hex).get('hsl.h') + (Math.random() * 40 - 20) + 360) % 360)
+        .set('hsl.s', Math.max(0.1, Math.min(0.9, chroma(seed.hex).get('hsl.s') + (Math.random() * 0.4 - 0.2))))
+        .set('hsl.l', Math.max(0.1, Math.min(0.9, chroma(seed.hex).get('hsl.l') + (Math.random() * 0.3 - 0.15))))
+        .hex();
+    } else {
+      target = seed.hex;
+    }
 
     setTargetColor(target);
     const closest = getClosestColor(target, candidates);
@@ -56,11 +63,11 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     setOptions(candidates);
     setFeedback(null);
     setTimeLeft(20);
-  }, [difficulty, mode, score.total]);
+  }, [difficulty, mode, score.total, isJitterEnabled]);
 
   useEffect(() => {
     generateQuestion();
-  }, [difficulty, mode]);
+  }, [difficulty, mode, isJitterEnabled]);
 
   useEffect(() => {
     if (mode === 'timer' && !feedback && !isGameOver) {
@@ -106,6 +113,18 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
       <div className="game-modes">
         <button className={`mode-btn ${mode === 'practice' ? 'active' : ''}`} onClick={() => { setMode('practice'); resetGame(); }}>Practice</button>
         <button className={`mode-btn ${mode === 'timer' ? 'active' : ''}`} onClick={() => { setMode('timer'); resetGame(); }}>Timer Run (10 Qs)</button>
+      </div>
+
+      <div className="game-controls-row">
+        <button 
+          className={`jitter-toggle-btn ${!isJitterEnabled ? 'active' : ''}`}
+          onClick={() => {
+            setIsJitterEnabled(!isJitterEnabled);
+            resetGame();
+          }}
+        >
+          {isJitterEnabled ? 'Mode: Perceptual Jitter (Hard)' : 'Mode: Exact Shades (Classic)'}
+        </button>
       </div>
 
       <div className="game-header">

@@ -344,10 +344,36 @@ input[type="text"] {
   color: var(--text-dim);
 }
 
-.mode-btn.active {
-  background: var(--text-main);
-  color: #fff;
+.game-controls-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.jitter-toggle-btn {
+  background: transparent;
+  border: 1px dashed var(--glass-border);
+  padding: 0.5rem 1rem;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.jitter-toggle-btn:hover {
+  border-style: solid;
   border-color: var(--text-main);
+  color: var(--text-main);
+}
+
+.jitter-toggle-btn.active {
+  background: rgba(0, 0, 0, 0.05);
+  border-style: solid;
+  border-color: var(--text-main);
+  color: var(--text-main);
 }
 
 .game-stats {
