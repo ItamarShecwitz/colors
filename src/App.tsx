@@ -112,13 +112,59 @@ function App() {
           {activeTab === 'dictionary' ? (
             <div className="dictionary-view animate-in">
               <section className="main-display">
-                <div className="fashion-square">
-                  <div 
-                    className="square-inner" 
-                    style={{ backgroundColor: colorData?.hex || '#242424' }}
-                  >
-                    <div className="square-label" style={{ color: colorData?.contrast || '#ffffff' }}>
-                      {colorData?.name}
+                <div className="fashion-display">
+                  <div className="color-wheel-wrapper">
+                    <div 
+                      className="color-wheel"
+                      onMouseMove={(e) => {
+                        if (e.buttons !== 1) return;
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        const angle = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+                        const dist = Math.min(1, Math.sqrt(x*x + y*y) / (rect.width / 2));
+                        const newColor = chroma.hsl(angle, dist, 0.5).hex();
+                        setInputColor(newColor);
+                      }}
+                      onClick={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        const angle = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+                        const dist = Math.min(1, Math.sqrt(x*x + y*y) / (rect.width / 2));
+                        const newColor = chroma.hsl(angle, dist, 0.5).hex();
+                        setInputColor(newColor);
+                      }}
+                      style={{
+                        background: 'conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)',
+                      }}
+                    >
+                      <div className="wheel-overlay" />
+                      <div className="wheel-center" style={{ backgroundColor: colorData?.hex || '#242424' }}>
+                        <div className="center-label" style={{ color: colorData?.contrast || '#ffffff' }}>
+                          {colorData?.name}
+                        </div>
+                      </div>
+                      
+                      {/* Interaction Marker */}
+                      {(() => {
+                        if (!colorData) return null;
+                        const h = chroma(colorData.hex).get('hsl.h') || 0;
+                        const s = chroma(colorData.hex).get('hsl.s');
+                        const angle = (h * Math.PI) / 180;
+                        const radius = s * 45; // 45% of wheel
+                        return (
+                          <div 
+                            className="wheel-marker"
+                            style={{
+                              left: `${50 + radius * Math.cos(angle)}%`,
+                              top: `${50 + radius * Math.sin(angle)}%`,
+                              backgroundColor: colorData.hex,
+                              borderColor: colorData.contrast
+                            }}
+                          />
+                        );
+                      })()}
                     </div>
                   </div>
                 </div>
@@ -126,13 +172,8 @@ function App() {
                 <div className="controls">
                   <div className="input-group">
                     <input 
-                      type="color" 
-                      value={colorData?.hex || '#000000'} 
-                      onChange={handleInputChange} 
-                      aria-label="Color picker"
-                    />
-                    <input 
                       type="text" 
+                      className="hex-input"
                       value={inputColor} 
                       onChange={handleInputChange} 
                       placeholder="#000000"
