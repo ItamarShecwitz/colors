@@ -1113,6 +1113,27 @@ export const getColorsByLevel = (level: number) =>
 export const getAllColorsUpToLevel = (maxLevel: number) => 
   ALL_COLORS.filter(color => color.level <= maxLevel);
 
+export const getDistances = (hex: string, dataset: { name: string; hex: string }[]) => {
+  const target = (chroma as any)(hex).oklch();
+  const W_L = 2.0; 
+  const W_C = 1.0; 
+  const W_H = 4.0; 
+  
+  return dataset.map(color => {
+    const compare = (chroma as any)(color.hex).oklch();
+    const dL = target[0] - compare[0];
+    const dC = target[1] - compare[1];
+    let dH = 0;
+    if (!isNaN(target[2]) && !isNaN(compare[2])) {
+      dH = Math.abs(target[2] - compare[2]);
+      if (dH > 180) dH = 360 - dH;
+    }
+    const dHNormalized = dH / 360;
+    const distance = Math.sqrt(Math.pow(dL * W_L, 2) + Math.pow(dC * W_C, 2) + Math.pow(dHNormalized * W_H, 2));
+    return { ...color, distance };
+  });
+};
+
 export const getClosestColor = (hex: string, dataset: { name: string; hex: string }[]) => {
   if (!dataset.length) return null;
   const target = (chroma as any)(hex).oklch();

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import chroma from 'chroma-js';
-import { getColorsByLevel, getClosestColor, getAllColorsUpToLevel } from '../constants';
+import { getColorsByLevel, getClosestColor, getAllColorsUpToLevel, getDistances } from '../constants';
 
 interface ColorGameProps {
   initialDifficulty?: number;
@@ -79,18 +79,18 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     const seed = selectionPool.splice(seedIdx, 1)[0];
     candidates.push(seed);
 
-    // Get distractors from the original level pool (to ensure difficulty)
+    // Get 3 most similar distractors from the valid bank
     const distractorPool = availableColors.filter(c => c.name !== seed.name);
-    while (candidates.length < 4 && distractorPool.length > 0) {
-      const idx = Math.floor(Math.random() * distractorPool.length);
-      const picked = distractorPool.splice(idx, 1)[0];
-      if (!candidates.find(c => c.name === picked.name)) {
-        candidates.push(picked);
-      }
-    }
+    const distances = getDistances(seed.hex, distractorPool);
+    distances.sort((a, b) => a.distance - b.distance);
+    
+    // Take top 3 closest
+    const bestDistractors = distances.slice(0, 3);
+    candidates.push(...bestDistractors);
 
     // Shuffle candidates
     candidates.sort(() => Math.random() - 0.5);
+
 
     let target: string;
     if (isRandomizerEnabled) {
