@@ -523,12 +523,124 @@ input[type="range"] {
 }
 
 @media (max-width: 1000px) {
-  .content-card { padding: 4rem; border-radius: 3rem; }
-  .tabs { position: relative; top: 0; right: 0; margin-bottom: 5rem; justify-content: center; }
-  header h1 { font-size: 4rem; }
-  .main-display, .game-main { grid-template-columns: 1fr; gap: 4rem; }
-  .fashion-square, .target-square { width: 100%; aspect-ratio: 1; height: auto; border-width: 1rem; }
-  .primary-name h2 { font-size: 5rem; }
-  .relationships { grid-template-columns: 1fr; gap: 4rem; }
-  .level-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .app-container {
+    padding: 2rem 1rem;
+  }
+
+  .content-card {
+    padding: 3rem 2rem;
+    border-radius: 2rem;
+  }
+
+  .tabs {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 4rem;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .logo-container {
+    gap: 1.5rem;
+  }
+
+  .brand-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .brand-name {
+    font-size: 2.5rem;
+    letter-spacing: 0.8em;
+    margin-right: -0.8em;
+  }
+
+  .brand-tagline {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    margin-top: 2rem;
+  }
+
+  .main-display, .game-main {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .fashion-square, .target-square {
+    width: 100%;
+    aspect-ratio: 1;
+    height: auto;
+    border-width: 1rem;
+  }
+
+  .square-label {
+    font-size: 2.5rem;
+    padding: 1.5rem;
+  }
+
+  input[type="text"] {
+    font-size: 2.5rem;
+  }
+
+  .relationships {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .level-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .chip-name {
+    font-size: 1.4rem;
+  }
+
+  .chip-swatch {
+    border-width: 0.5rem;
+  }
+
+  .option-btn {
+    padding: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .difficulty-slider-container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-card {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .brand-name {
+    font-size: 1.8rem;
+    letter-spacing: 0.5em;
+    margin-right: -0.5em;
+  }
+
+  .tabs {
+    gap: 1rem;
+  }
+
+  .tabs button {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+  }
+
+  .level-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .history-items {
+    gap: 1.5rem;
+  }
+
+  .history-dot {
+    width: 18px;
+    height: 18px;
+  }
 }
