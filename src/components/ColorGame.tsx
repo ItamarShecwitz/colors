@@ -17,7 +17,10 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
   const generateQuestion = useCallback(() => {
     const availableColors = getColorsByLevel(difficulty);
-    if (!availableColors || availableColors.length < 4) return;
+    if (!availableColors || availableColors.length < 4) {
+      console.warn("Not enough colors for difficulty", difficulty);
+      return;
+    }
     
     // Pick 4 candidate colors from the current tier to act as our "range"
     const candidates: typeof availableColors = [];
@@ -34,18 +37,17 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     
     // Generate a color "near" the seed by jittering HSL values
     const target = chroma(seed.hex)
-      .set('hsl.h', (chroma(seed.hex).get('hsl.h') + (Math.random() * 30 - 15) + 360) % 360)
-      .set('hsl.s', Math.max(0, Math.min(1, chroma(seed.hex).get('hsl.s') + (Math.random() * 0.3 - 0.15))))
-      .set('hsl.l', Math.max(0, Math.min(1, chroma(seed.hex).get('hsl.l') + (Math.random() * 0.2 - 0.1))))
+      .set('hsl.h', (chroma(seed.hex).get('hsl.h') + (Math.random() * 40 - 20) + 360) % 360)
+      .set('hsl.s', Math.max(0.1, Math.min(0.9, chroma(seed.hex).get('hsl.s') + (Math.random() * 0.4 - 0.2))))
+      .set('hsl.l', Math.max(0.1, Math.min(0.9, chroma(seed.hex).get('hsl.l') + (Math.random() * 0.3 - 0.15))))
       .hex();
 
     setTargetColor(target);
 
     // Now, determine which of our 4 candidates is actually closest to this new jittered color
     const closest = getClosestColor(target, candidates);
-    if (!closest) return;
-
-    setCorrectOption(closest);
+    
+    setCorrectOption(closest || candidates[0]);
     setOptions(candidates);
     setFeedback(null);
   }, [difficulty]);

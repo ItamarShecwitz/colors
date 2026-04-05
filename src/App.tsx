@@ -85,37 +85,18 @@ function App() {
           <div className="logo-container">
             <svg viewBox="0 0 100 100" className="brand-logo">
               <defs>
-                <linearGradient id="prismSide" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="rgba(255,255,255,0.15)" />
-                  <stop offset="100%" stopColor="rgba(255,255,255,0.02)" />
-                </linearGradient>
-                <linearGradient id="spectrumLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#E52B50" />
-                  <stop offset="33%" stopColor="#FFD700" />
-                  <stop offset="66%" stopColor="#00FF00" />
-                  <stop offset="100%" stopColor="#0000FF" />
+                  <stop offset="100%" stopColor="#FF8C00" />
                 </linearGradient>
               </defs>
-              {/* Refined 3D Prism Structure */}
-              <path d="M50 15 L85 75 L15 75 Z" fill="url(#prismSide)" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" />
-              <path d="M50 15 L65 30 L65 90 L15 75 Z" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" />
-              
-              {/* Precision Light Beam Path */}
-              <path d="M0 60 L35 55" stroke="rgba(255,255,255,0.5)" strokeWidth="1" strokeDasharray="3 2" />
-              
-              {/* Refraction inside the glass */}
-              <path d="M35 55 L55 52" stroke="rgba(255,255,255,0.3)" strokeWidth="0.8" />
-              
-              {/* Exiting Spectrum Fan */}
-              <path d="M55 52 L100 35" stroke="#E52B50" strokeWidth="1.5" opacity="0.7" />
-              <path d="M55 52 L100 48" stroke="#FFD700" strokeWidth="1.5" opacity="0.7" />
-              <path d="M55 52 L100 62" stroke="#00FF00" strokeWidth="1.5" opacity="0.7" />
-              <path d="M55 52 L100 75" stroke="#0000FF" strokeWidth="1.5" opacity="0.7" />
-              
-              {/* Prism Edges Glow */}
-              <path d="M50 15 L15 75" stroke="#fff" strokeWidth="0.5" opacity="0.2" />
+              {/* Four Iconic Architectural Lines representing a Prism Refraction */}
+              <path d="M20 75 L50 20" stroke="currentColor" strokeWidth="4" strokeLinecap="round" opacity="0.1" />
+              <path d="M50 20 L80 75" stroke="currentColor" strokeWidth="4" strokeLinecap="round" opacity="0.1" />
+              <path d="M10 50 L50 20" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 6" opacity="0.6" />
+              <path d="M50 20 L90 60" stroke="url(#logoGrad)" strokeWidth="6" strokeLinecap="round" />
             </svg>
-            <h1 className="brand-name">ITAMARS</h1>
+            <h1 className="brand-name" style={{ textTransform: 'lowercase', letterSpacing: '0.5em' }}>itamars colors</h1>
           </div>
           <p className="brand-tagline">
             {activeTab === 'dictionary' ? 'The Curated Visual Vocabulary' : 
