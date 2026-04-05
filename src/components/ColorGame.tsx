@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import chroma from 'chroma-js';
 import { getColorsByLevel, getClosestColor, getAllColorsUpToLevel } from '../constants';
 
@@ -39,7 +39,11 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   }, [targetColor]);
 
   // Timer Mode State
+  const [timeLeft, setTimeLeft] = useState(20);
+  const [isGameOver, setIsGameOver] = useState(false);
   const TIMER_TOTAL_QUESTIONS = 12;
+  const timerRef = useRef<number | null>(null);
+  const gameSectionRef = useRef<HTMLDivElement>(null);
 
   const generateQuestion = useCallback(() => {
     if (mode === 'timer' && score.total >= TIMER_TOTAL_QUESTIONS) {
