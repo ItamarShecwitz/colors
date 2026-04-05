@@ -1,0 +1,228 @@
+.app-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+}
+
+.content-card {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: color 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+header p {
+  opacity: 0.7;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1.25rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  background: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+}
+
+.primary-name {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.serif {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-size: 4rem;
+  margin: 0;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+  opacity: 0.8;
+  font-size: 1.1rem;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.detail-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.detail-item span {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin-bottom: 0.25rem;
+}
+
+.detail-item code {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.shades-container h3, .complementary h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
+.shades {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.shade-box {
+  flex: 1;
+  height: 48px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shade-box:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.complementary-box {
+  height: 60px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: transform 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.complementary-box:hover {
+  transform: translateY(-4px);
+}
+
+.history h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.history-list {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.history-item {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.history-item:hover {
+  transform: scale(1.2);
+}
+
+.animate-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .content-card {
+    padding: 1.5rem;
+    width: 95%;
+  }
+  .serif {
+    font-size: 2.5rem;
+  }
+  .details {
+    grid-template-columns: 1fr;
+  }
+  header h1 {
+    font-size: 2rem;
+  }
+}
