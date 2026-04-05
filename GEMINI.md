@@ -1,6 +1,6 @@
-# ITAMARS Color Lexicon & Learning System
+# itamars colors
 
-**Project Identity:** A high-precision, fashion-branded color lexicon and learning game designed for professional designers and color enthusiasts.
+**Project Identity:** itamars colors — A high-precision, fashion-branded color lexicon and learning game designed for professional designers and color enthusiasts.
 
 ## 🎯 Core Goal
 To bridge the gap between human perception and digital color naming through a 20-tier difficulty system, leveraging modern perceptual color science (OKLCH) and linguistic frequency (Berlin-Kay).

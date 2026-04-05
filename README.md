@@ -1,4 +1,4 @@
-# Color Lexicon
+# itamars colors
 
 A modern, standalone color dictionary built with Vite, React, and TypeScript.
 
