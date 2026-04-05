@@ -24,6 +24,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const [timeLeft, setTimeLeft] = useState(20);
   const [isGameOver, setIsGameOver] = useState(false);
   const timerRef = useRef<number | null>(null);
+  const gameSectionRef = useRef<HTMLDivElement>(null);
 
   const generateQuestion = useCallback(() => {
     if (mode === 'timer' && score.total >= 10) {
@@ -112,14 +113,22 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     generateQuestion();
   };
 
+  const scrollToGame = () => {
+    setTimeout(() => {
+      if (gameSectionRef.current) {
+        gameSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   return (
     <div className="game-container animate-in">
-      <div className="game-modes">
-        <button className={`mode-btn ${mode === 'practice' ? 'active' : ''}`} onClick={() => { setMode('practice'); resetGame(); }}>Practice</button>
-        <button className={`mode-btn ${mode === 'timer' ? 'active' : ''}`} onClick={() => { setMode('timer'); resetGame(); }}>Timer Run (10 Qs)</button>
-      </div>
+      <div className="game-controls-top-row">
+        <div className="game-modes">
+          <button className={`mode-btn ${mode === 'practice' ? 'active' : ''}`} onClick={() => { setMode('practice'); resetGame(); }}>Practice</button>
+          <button className={`mode-btn ${mode === 'timer' ? 'active' : ''}`} onClick={() => { setMode('timer'); resetGame(); }}>Timer</button>
+        </div>
 
-      <div className="game-controls-row">
         <button 
           className={`jitter-toggle-btn ${!isJitterEnabled ? 'active' : ''}`}
           onClick={() => {
@@ -127,28 +136,35 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
             resetGame();
           }}
         >
-          {isJitterEnabled ? 'Mode: Perceptual Jitter (Hard)' : 'Mode: Exact Shades (Classic)'}
+          {isJitterEnabled ? 'Jitter: On' : 'Jitter: Off'}
         </button>
       </div>
 
       <div className="game-header">
         <div className="difficulty-slider-container">
-          <span className="difficulty-label">Difficulty Level {difficulty}</span>
+          <span className="difficulty-label">Select Difficulty Level</span>
           <div className="level-selector-grid">
             {Array.from({ length: 20 }, (_, i) => i + 1).map(lvl => (
               <button 
                 key={lvl} 
                 className={`level-btn ${difficulty === lvl ? 'active' : ''}`}
-                onClick={() => { setDifficulty(lvl); resetGame(); }}
+                onClick={() => { 
+                  setDifficulty(lvl); 
+                  resetGame();
+                  scrollToGame();
+                }}
               >
                 {lvl}
               </button>
             ))}
           </div>
         </div>
-        <div className="game-stats">
+      </div>
+
+      <div className="game-main" ref={gameSectionRef}>
+        <div className="game-stats-row">
           <div className="stat-box">
-            <label>Score</label>
+            <label>Level {difficulty}</label>
             <span>{score.correct} / {score.total}</span>
           </div>
           {mode === 'timer' && (
@@ -158,9 +174,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
             </div>
           )}
         </div>
-      </div>
 
-      <div className="game-main">
         <div className="target-square-frame">
           <div 
             className="target-square" 
