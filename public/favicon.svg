@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
-    <linearGradient id="prismGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E52B50" />
-      <stop offset="100%" stop-color="#FF8C00" />
+    <linearGradient id="prismSide" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E52B50" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0000FF" stop-opacity="0.8" />
     </linearGradient>
   </defs>
-  <path d="M50 15 L85 75 L15 75 Z" fill="none" stroke="url(#prismGrad)" stroke-width="8" stroke-linejoin="round"/>
-  <path d="M50 15 L25 85" stroke="#E52B50" stroke-width="2" opacity="0.5"/>
-  <path d="M50 15 L50 85" stroke="#00FF00" stroke-width="2" opacity="0.5"/>
-  <path d="M50 15 L75 85" stroke="#0000FF" stroke-width="2" opacity="0.5"/>
+  <path d="M50 15 L85 75 L15 75 Z" fill="url(#prismSide)" stroke="#fff" stroke-width="2" />
+  <path d="M50 15 L65 30 L65 90 L15 75 Z" fill="#fff" fill-opacity="0.1" stroke="#fff" stroke-opacity="0.2" stroke-width="1" />
+  <path d="M55 52 L100 35" stroke="#E52B50" stroke-width="4" opacity="0.9" />
+  <path d="M55 52 L100 75" stroke="#0000FF" stroke-width="4" opacity="0.9" />
 </svg>
