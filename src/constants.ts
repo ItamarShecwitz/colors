@@ -1,3 +1,5 @@
+import chroma from 'chroma-js';
+
 export const COLOR_LEVELS = [
   {
     "id": 1,
@@ -2307,3 +2309,32 @@ export const ALL_COLORS = COLOR_LEVELS.flatMap(level =>
 
 export const getColorsByLevel = (maxLevel: number) => 
   ALL_COLORS.filter(color => color.level <= maxLevel);
+
+/**
+ * Finds the closest color name in a dataset using OKLab Euclidean distance.
+ * OKLab is significantly more accurate for perceptual naming than standard CIELAB.
+ */
+export const getClosestColor = (hex: string, dataset: { name: string; hex: string }[]) => {
+  if (!dataset.length) return null;
+  
+  const target = (chroma as any)(hex).oklab();
+  let closest = dataset[0];
+  let minDistance = Number.MAX_VALUE;
+
+  for (const color of dataset) {
+    const compare = (chroma as any)(color.hex).oklab();
+    const distance = Math.sqrt(
+      Math.pow(target[0] - compare[0], 2) +
+      Math.pow(target[1] - compare[1], 2) +
+      Math.pow(target[2] - compare[2], 2)
+    );
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      closest = color;
+    }
+  }
+
+  return closest;
+};
+

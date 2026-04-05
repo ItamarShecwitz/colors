@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import chroma from 'chroma-js';
-import { getColorsByLevel } from '../constants';
+import { getColorsByLevel, getClosestColor } from '../constants';
 
 interface ColorGameProps {
   initialDifficulty?: number;
@@ -18,50 +18,33 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const generateQuestion = useCallback(() => {
     const availableColors = getColorsByLevel(difficulty);
     
-    // Generate a completely random color
-    const randomHex = chroma.random().hex();
-    setTargetColor(randomHex);
-
-    // Find the closest color name from our dataset
-    let closest = availableColors[0];
-    let minDistance = chroma.distance(randomHex, availableColors[0].hex);
-
-    availableColors.forEach(color => {
-      const dist = chroma.distance(randomHex, color.hex);
-      if (dist < minDistance) {
-        minDistance = dist;
-        closest = color;
-      }
-    });
-
-    setCorrectOption(closest);
-
-    // Pick 3 distractors
-    const distractors: { name: string; hex: string }[] = [];
-    const pool = availableColors.filter(c => c.name !== closest.name);
-    
-    // Distractors should be somewhat similar to make it challenging
-    const sortedPool = [...pool].sort((a, b) => 
-      chroma.distance(randomHex, a.hex) - chroma.distance(randomHex, b.hex)
-    );
-
-    // Take some close ones and some random ones
-    const topPool = sortedPool.slice(0, 10);
-    const randomPool = sortedPool.slice(10);
-
-    while (distractors.length < 3 && (topPool.length > 0 || randomPool.length > 0)) {
-      if (Math.random() > 0.4 && topPool.length > 0) {
-        const idx = Math.floor(Math.random() * topPool.length);
-        distractors.push(topPool.splice(idx, 1)[0]);
-      } else if (randomPool.length > 0) {
-        const idx = Math.floor(Math.random() * randomPool.length);
-        distractors.push(randomPool.splice(idx, 1)[0]);
-      }
+    // Pick 4 candidate colors from the current tier to act as our "range"
+    const candidates: typeof availableColors = [];
+    const pool = [...availableColors];
+    while (candidates.length < 4 && pool.length > 0) {
+      const idx = Math.floor(Math.random() * pool.length);
+      candidates.push(pool.splice(idx, 1)[0]);
     }
 
-    // Shuffle options
-    const allOptions = [closest, ...distractors].sort(() => Math.random() - 0.5);
-    setOptions(allOptions);
+    // Pick one of these candidates as the "seed" for our target color
+    const seed = candidates[Math.floor(Math.random() * candidates.length)];
+    
+    // Generate a color "near" the seed by jittering HSL values
+    // This creates a "natural" variation that still belongs to that color's family
+    const target = chroma(seed.hex)
+      .set('hsl.h', (chroma(seed.hex).get('hsl.h') + (Math.random() * 20 - 10) + 360) % 360)
+      .set('hsl.s', Math.max(0, Math.min(1, chroma(seed.hex).get('hsl.s') + (Math.random() * 0.2 - 0.1))))
+      .set('hsl.l', Math.max(0, Math.min(1, chroma(seed.hex).get('hsl.l') + (Math.random() * 0.2 - 0.1))))
+      .hex();
+
+    setTargetColor(target);
+
+    // Now, determine which of our 4 candidates is actually closest to this new jittered color
+    // This ensures the "recognize the closest shade" rule is strictly followed via OKLab
+    const closest = getClosestColor(target, candidates);
+
+    setCorrectOption(closest);
+    setOptions(candidates);
     setFeedback(null);
   }, [difficulty]);
 

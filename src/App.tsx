@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import chroma from 'chroma-js'
-import { COLOR_LEVELS, ALL_COLORS } from './constants'
+import { COLOR_LEVELS, ALL_COLORS, getClosestColor } from './constants'
 import { ColorGame } from './components/ColorGame'
 import './App.css'
 
@@ -16,17 +16,9 @@ function App() {
       const o = chroma(inputColor)
       const hex = o.hex()
       
-      // Find the closest name from our Coolors dataset
-      let closestMatch = ALL_COLORS[0]
-      let minDistance = chroma.distance(hex, ALL_COLORS[0].hex)
-      
-      ALL_COLORS.forEach(c => {
-        const dist = chroma.distance(hex, c.hex)
-        if (dist < minDistance) {
-          minDistance = dist
-          closestMatch = c
-        }
-      })
+      // Find the closest name from our dataset using high-precision OKLab
+      const closestMatch = getClosestColor(hex, ALL_COLORS)
+      if (!closestMatch) return null;
       
       return {
         hex: hex,
