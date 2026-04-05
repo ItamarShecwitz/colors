@@ -18,7 +18,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null);
   const [lastClickedOption, setLastClickedOption] = useState<string | null>(null);
   const [score, setScore] = useState({ correct: 0, total: 0 });
-  const [isJitterEnabled, setIsJitterEnabled] = useState(true);
+  const [isJitterEnabled, setIsJitterEnabled] = useState(false);
   
   // Timer Mode State
   const [timeLeft, setTimeLeft] = useState(20);
