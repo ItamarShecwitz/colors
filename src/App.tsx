@@ -13,22 +13,22 @@ function App() {
     try {
       if (!chroma.valid(inputColor)) return null
       
-      const c = chroma(inputColor)
+      const o = chroma(inputColor)
       const namerFn = typeof namer === 'function' ? namer : (namer as any).default
-      const namesResult = (typeof namerFn === 'function' ? namerFn(c.hex()) : {}) as any
+      const namesResult = (typeof namerFn === 'function' ? namerFn(o.hex()) : {}) as any
       
       const ntcNames = namesResult.ntc || []
       const basicNames = namesResult.basic || []
       
       return {
-        hex: c.hex(),
-        rgb: c.css(),
-        hsl: c.css('hsl'),
+        hex: o.hex(),
+        rgb: o.css(),
+        hsl: o.css('hsl'),
         name: ntcNames[0]?.name || 'Unknown',
         basicName: basicNames[0]?.name || 'Unknown',
-        contrast: chroma.contrast(c, 'white') > 4.5 ? '#ffffff' : '#000000',
-        shades: chroma.scale([c.darken(2), c, c.brighten(2)]).colors(7),
-        complementary: c.set('hsl.h', (c.get('hsl.h') + 180) % 360).hex()
+        contrast: chroma.contrast(o, 'white') > 4.5 ? '#ffffff' : '#000000',
+        shades: chroma.scale([o.darken(2), o, o.brighten(2)]).colors(7),
+        complementary: o.set('hsl.h', (o.get('hsl.h') + 180) % 360).hex()
       }
     } catch (e) {
       return null
@@ -48,6 +48,7 @@ function App() {
   const selectColor = (hex: string) => {
     setInputColor(hex)
     setActiveTab('dictionary')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   useEffect(() => {
@@ -77,79 +78,87 @@ function App() {
 
         <header>
           <h1>Color Lexicon</h1>
-          <p>{activeTab === 'dictionary' ? 'A dictionary for the spectrum' : 'Master the names of the spectrum'}</p>
+          <p>{activeTab === 'dictionary' ? 'A curated spectrum' : 'The visual vocabulary'}</p>
         </header>
 
         <main>
           {activeTab === 'dictionary' ? (
             <div className="dictionary-view animate-in">
-              <div className="input-group">
-                <input 
-                  type="text" 
-                  value={inputColor} 
-                  onChange={handleInputChange} 
-                  placeholder="#000000"
-                  aria-label="Color input"
-                />
-                <input 
-                  type="color" 
-                  value={colorData?.hex || '#000000'} 
-                  onChange={handleInputChange} 
-                  aria-label="Color picker"
-                />
-              </div>
+              <section className="input-section">
+                <div className="color-picker-wrapper">
+                  <input 
+                    type="color" 
+                    value={colorData?.hex || '#000000'} 
+                    onChange={handleInputChange} 
+                    aria-label="Color picker"
+                  />
+                </div>
+                <div className="hex-input-wrapper">
+                  <input 
+                    type="text" 
+                    value={inputColor} 
+                    onChange={handleInputChange} 
+                    placeholder="#000000"
+                    aria-label="Color input"
+                  />
+                </div>
+              </section>
 
               {colorData ? (
-                <div className="color-info">
-                  <section className="primary-name">
-                    <h2 className="serif">{colorData.name}</h2>
-                    <p className="subtitle">Primarily known as <strong>{colorData.basicName}</strong></p>
-                  </section>
+                <div className="color-info-layout">
+                  <div className="color-info">
+                    <section className="primary-name">
+                      <h2>{colorData.name}</h2>
+                      <p className="subtitle">Primarily <strong>{colorData.basicName}</strong></p>
+                    </section>
 
-                  <section className="details">
-                    <div className="detail-item">
-                      <span>HEX</span>
-                      <code>{colorData.hex.toUpperCase()}</code>
-                    </div>
-                    <div className="detail-item">
-                      <span>RGB</span>
-                      <code>{colorData.rgb}</code>
-                    </div>
-                    <div className="detail-item">
-                      <span>HSL</span>
-                      <code>{colorData.hsl}</code>
-                    </div>
-                  </section>
+                    <section className="details">
+                      <div className="detail-item">
+                        <span>HEX</span>
+                        <code>{colorData.hex.toUpperCase()}</code>
+                      </div>
+                      <div className="detail-item">
+                        <span>RGB</span>
+                        <code>{colorData.rgb}</code>
+                      </div>
+                      <div className="detail-item">
+                        <span>HSL</span>
+                        <code>{colorData.hsl}</code>
+                      </div>
+                    </section>
+                  </div>
 
-                  <section className="shades-container">
-                    <h3>Scale</h3>
-                    <div className="shades">
-                      {colorData.shades.map((s, i) => (
-                        <div 
-                          key={i} 
-                          className="shade-box" 
-                          style={{ backgroundColor: s }} 
-                          onClick={() => setInputColor(s)}
-                          title={s}
-                        />
-                      ))}
-                    </div>
-                  </section>
+                  <div className="visuals-section">
+                    <section className="shades-container">
+                      <h3>Tonal Scale</h3>
+                      <div className="shades">
+                        {colorData.shades.map((s, i) => (
+                          <div 
+                            key={i} 
+                            className="shade-box" 
+                            style={{ backgroundColor: s }} 
+                            onClick={() => setInputColor(s)}
+                            title={s}
+                          />
+                        ))}
+                      </div>
+                    </section>
 
-                  <section className="complementary">
-                    <h3>Complementary</h3>
-                    <div 
-                      className="complementary-box" 
-                      style={{ backgroundColor: colorData.complementary }}
-                      onClick={() => setInputColor(colorData.complementary)}
-                    >
-                      <span>{colorData.complementary.toUpperCase()}</span>
-                    </div>
-                  </section>
+                    <section className="complementary">
+                      <h3>Complement</h3>
+                      <div 
+                        className="complementary-box" 
+                        style={{ backgroundColor: colorData.complementary }}
+                        onClick={() => setInputColor(colorData.complementary)}
+                      >
+                        <span>{colorData.complementary.toUpperCase()}</span>
+                      </div>
+                    </section>
+                  </div>
                 </div>
               ) : (
                 <div className="error-state">
-                  <p>Enter a valid color to begin your exploration.</p>
+                  <p>Enter a valid color to begin.</p>
                 </div>
               )}
             </div>
@@ -158,8 +167,8 @@ function App() {
               {COLOR_LEVELS.map(level => (
                 <section key={level.id} className="level-group">
                   <div className="level-header">
-                    <h2>Level {level.id}: {level.name}</h2>
-                    <p>{level.description}</p>
+                    <h2>{level.name}</h2>
+                    <p>Level {level.id} &mdash; {level.description}</p>
                   </div>
                   <div className="learning-grid">
                     {level.colors.map(color => (
@@ -167,7 +176,6 @@ function App() {
                         key={color.hex} 
                         className="learning-card"
                         onClick={() => selectColor(color.hex)}
-                        style={{ borderLeftColor: color.hex }}
                       >
                         <div className="swatch" style={{ backgroundColor: color.hex }} />
                         <div className="info">
