@@ -4,23 +4,78 @@ export const COLOR_LEVELS = [
   {
     "id": 1,
     "name": "Tier 1",
-    "description": "Curated shades for level 1",
+    "description": "Curated selection for Tier 1",
     "colors": [
       {
-        "hex": "#FF0000",
-        "name": "Red"
+        "hex": "#800080",
+        "name": "Purple"
       },
       {
         "hex": "#808080",
         "name": "Gray"
       },
       {
+        "hex": "#993300",
+        "name": "Brown"
+      },
+      {
         "hex": "#FFC0CB",
         "name": "Pink"
       },
       {
+        "hex": "#FF0000",
+        "name": "Red"
+      },
+      {
+        "hex": "#FFFF00",
+        "name": "Yellow"
+      },
+      {
+        "hex": "#00FF00",
+        "name": "Green"
+      },
+      {
+        "hex": "#0000FF",
+        "name": "Blue"
+      },
+      {
+        "hex": "#FFFFFF",
+        "name": "White"
+      },
+      {
+        "hex": "#C0C0C0",
+        "name": "Silver"
+      },
+      {
+        "hex": "#000000",
+        "name": "Black"
+      },
+      {
+        "hex": "#800000",
+        "name": "Maroon"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Tier 2",
+    "description": "Curated selection for Tier 2",
+    "colors": [
+      {
+        "hex": "#808000",
+        "name": "Olive"
+      },
+      {
         "hex": "#FFD700",
         "name": "Gold"
+      },
+      {
+        "hex": "#F5F5DC",
+        "name": "Beige"
+      },
+      {
+        "hex": "#FFFFF0",
+        "name": "Ivory"
       },
       {
         "hex": "#00FFFF",
@@ -35,98 +90,59 @@ export const COLOR_LEVELS = [
         "name": "Teal"
       },
       {
-        "hex": "#0000FF",
-        "name": "Blue"
-      },
-      {
-        "hex": "#808000",
-        "name": "Olive"
-      },
-      {
-        "hex": "#993300",
-        "name": "Brown"
-      },
-      {
-        "hex": "#FFBF00",
-        "name": "Amber"
-      },
-      {
-        "hex": "#FF7F50",
-        "name": "Coral"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Tier 2",
-    "description": "Curated shades for level 2",
-    "colors": [
-      {
-        "hex": "#F5F5DC",
-        "name": "Beige"
-      },
-      {
-        "hex": "#C3B091",
-        "name": "Khaki"
-      },
-      {
-        "hex": "#FFFFF0",
-        "name": "Ivory"
-      },
-      {
-        "hex": "#00FF00",
-        "name": "Green"
-      },
-      {
-        "hex": "#007FFF",
-        "name": "Azure"
-      },
-      {
-        "hex": "#FFFFFF",
-        "name": "White"
-      },
-      {
-        "hex": "#000000",
-        "name": "Black"
-      },
-      {
-        "hex": "#800000",
-        "name": "Maroon"
-      },
-      {
-        "hex": "#800080",
-        "name": "Purple"
-      },
-      {
-        "hex": "#FFFF00",
-        "name": "Yellow"
-      },
-      {
         "hex": "#4B0082",
         "name": "Indigo"
       },
       {
         "hex": "#8000FF",
         "name": "Violet"
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "name": "Tier 3",
-    "description": "Curated shades for level 3",
-    "colors": [
-      {
-        "hex": "#C0C0C0",
-        "name": "Silver"
       },
       {
         "hex": "#DC143C",
         "name": "Crimson"
       },
       {
+        "hex": "#FF2400",
+        "name": "Scarlet"
+      },
+      {
+        "hex": "#FFBF00",
+        "name": "Amber"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tier 3",
+    "description": "Curated selection for Tier 3",
+    "colors": [
+      {
+        "hex": "#FF7F50",
+        "name": "Coral"
+      },
+      {
+        "hex": "#FFE5B4",
+        "name": "Peach"
+      },
+      {
+        "hex": "#C3B091",
+        "name": "Khaki"
+      },
+      {
+        "hex": "#3EB489",
+        "name": "Mint"
+      },
+      {
         "hex": "#40E0D0",
         "name": "Turquoise"
+      },
+      {
+        "hex": "#007FFF",
+        "name": "Azure"
+      },
+      {
+        "hex": "#36454F",
+        "name": "Charcoal"
       },
       {
         "hex": "#343434",
@@ -147,7 +163,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#683068",
         "name": "Finn"
-      },
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Tier 4",
+    "description": "Curated selection for Tier 4",
+    "colors": [
       {
         "hex": "#E60026",
         "name": "Rojo"
@@ -163,14 +186,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#722F37",
         "name": "Wine"
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "name": "Tier 4",
-    "description": "Curated shades for level 4",
-    "colors": [
+      },
       {
         "hex": "#79443B",
         "name": "Bole"
@@ -202,14 +218,17 @@ export const COLOR_LEVELS = [
       {
         "hex": "#00FF40",
         "name": "Erin"
-      },
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Tier 5",
+    "description": "Curated selection for Tier 5",
+    "colors": [
       {
         "hex": "#00A86B",
         "name": "Jade"
-      },
-      {
-        "hex": "#3EB489",
-        "name": "Mint"
       },
       {
         "hex": "#BCB88A",
@@ -218,14 +237,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#0FFFFF",
         "name": "Aqua"
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "name": "Tier 5",
-    "description": "Curated shades for level 5",
-    "colors": [
+      },
       {
         "hex": "#39A78D",
         "name": "Zomp"
@@ -261,7 +273,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#635147",
         "name": "Umber"
-      },
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Tier 6",
+    "description": "Curated selection for Tier 6",
+    "colors": [
       {
         "hex": "#645452",
         "name": "Wenge"
@@ -273,14 +292,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#FF004F",
         "name": "Folly"
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Tier 6",
-    "description": "Curated shades for level 6",
-    "colors": [
+      },
       {
         "hex": "#DC343B",
         "name": "Poppy"
@@ -288,10 +300,6 @@ export const COLOR_LEVELS = [
       {
         "hex": "#E25822",
         "name": "Flame"
-      },
-      {
-        "hex": "#FFE5B4",
-        "name": "Peach"
       },
       {
         "hex": "#CD5700",
@@ -320,7 +328,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#FFFDD0",
         "name": "Cream"
-      },
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Tier 7",
+    "description": "Curated selection for Tier 7",
+    "colors": [
       {
         "hex": "#FBEC5D",
         "name": "Maize"
@@ -328,14 +343,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#E4D96F",
         "name": "Straw"
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "name": "Tier 7",
-    "description": "Curated shades for level 7",
-    "colors": [
+      },
       {
         "hex": "#00BFFF",
         "name": "Capri"
@@ -375,7 +383,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#555D50",
         "name": "Ebony"
-      },
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Tier 8",
+    "description": "Curated selection for Tier 8",
+    "colors": [
       {
         "hex": "#733635",
         "name": "Garnet"
@@ -383,14 +398,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#DE3163",
         "name": "Cerise"
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "name": "Tier 8",
-    "description": "Curated shades for level 8",
-    "colors": [
+      },
       {
         "hex": "#7F1734",
         "name": "Claret"
@@ -430,7 +438,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#DDD06A",
         "name": "Citron"
-      },
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Tier 9",
+    "description": "Curated selection for Tier 9",
+    "colors": [
       {
         "hex": "#6F4E37",
         "name": "Coffee"
@@ -438,14 +453,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#B87333",
         "name": "Copper"
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "name": "Tier 9",
-    "description": "Curated shades for level 9",
-    "colors": [
+      },
       {
         "hex": "#81613E",
         "name": "Coyote"
@@ -485,7 +493,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#8B004B",
         "name": "Murrey"
-      },
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Tier 10",
+    "description": "Curated selection for Tier 10",
+    "colors": [
       {
         "hex": "#DA70D6",
         "name": "Orchid"
@@ -493,14 +508,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#E9FFDB",
         "name": "Nyanza"
-      }
-    ]
-  },
-  {
-    "id": 10,
-    "name": "Tier 10",
-    "description": "Curated shades for level 10",
-    "colors": [
+      },
       {
         "hex": "#568203",
         "name": "Avocado"
@@ -512,10 +520,6 @@ export const COLOR_LEVELS = [
       {
         "hex": "#AB4E52",
         "name": "Redwood"
-      },
-      {
-        "hex": "#FF2400",
-        "name": "Scarlet"
       },
       {
         "hex": "#FBCEB1",
@@ -544,18 +548,18 @@ export const COLOR_LEVELS = [
       {
         "hex": "#6B4423",
         "name": "Kobicha"
-      },
-      {
-        "hex": "#CB410B",
-        "name": "Sinopia"
       }
     ]
   },
   {
     "id": 11,
     "name": "Tier 11",
-    "description": "Curated shades for level 11",
+    "description": "Curated selection for Tier 11",
     "colors": [
+      {
+        "hex": "#CB410B",
+        "name": "Sinopia"
+      },
       {
         "hex": "#E4D00A",
         "name": "Citrine"
@@ -599,18 +603,18 @@ export const COLOR_LEVELS = [
       {
         "hex": "#9AB973",
         "name": "Olivine"
-      },
-      {
-        "hex": "#B2FFFF",
-        "name": "Celeste"
       }
     ]
   },
   {
     "id": 12,
     "name": "Tier 12",
-    "description": "Curated shades for level 12",
+    "description": "Curated selection for Tier 12",
     "colors": [
+      {
+        "hex": "#B2FFFF",
+        "name": "Celeste"
+      },
       {
         "hex": "#FF00FF",
         "name": "Fuchsia"
@@ -654,18 +658,18 @@ export const COLOR_LEVELS = [
       {
         "hex": "#C04000",
         "name": "Mahogany"
-      },
-      {
-        "hex": "#65000B",
-        "name": "Rosewood"
       }
     ]
   },
   {
     "id": 13,
     "name": "Tier 13",
-    "description": "Curated shades for level 13",
+    "description": "Curated selection for Tier 13",
     "colors": [
+      {
+        "hex": "#65000B",
+        "name": "Rosewood"
+      },
       {
         "hex": "#F1B42F",
         "name": "Xanthous"
@@ -709,18 +713,18 @@ export const COLOR_LEVELS = [
       {
         "hex": "#B53389",
         "name": "Fandango"
-      },
-      {
-        "hex": "#8D029B",
-        "name": "Mauveine"
       }
     ]
   },
   {
     "id": 14,
     "name": "Tier 14",
-    "description": "Curated shades for level 14",
+    "description": "Curated selection for Tier 14",
     "colors": [
+      {
+        "hex": "#8D029B",
+        "name": "Mauveine"
+      },
       {
         "hex": "#C54B8C",
         "name": "Mulberry"
@@ -764,21 +768,17 @@ export const COLOR_LEVELS = [
       {
         "hex": "#2A3439",
         "name": "Gunmetal"
-      },
-      {
-        "hex": "#4D5D53",
-        "name": "Feldgrau"
       }
     ]
   },
   {
     "id": 15,
     "name": "Tier 15",
-    "description": "Curated shades for level 15",
+    "description": "Curated selection for Tier 15",
     "colors": [
       {
-        "hex": "#36454F",
-        "name": "Charcoal"
+        "hex": "#4D5D53",
+        "name": "Feldgrau"
       },
       {
         "hex": "#1A1110",
@@ -829,7 +829,7 @@ export const COLOR_LEVELS = [
   {
     "id": 16,
     "name": "Tier 16",
-    "description": "Curated shades for level 16",
+    "description": "Curated selection for Tier 16",
     "colors": [
       {
         "hex": "#93C572",
@@ -884,7 +884,7 @@ export const COLOR_LEVELS = [
   {
     "id": 17,
     "name": "Tier 17",
-    "description": "Curated shades for level 17",
+    "description": "Curated selection for Tier 17",
     "colors": [
       {
         "hex": "#00FFBF",
@@ -939,7 +939,7 @@ export const COLOR_LEVELS = [
   {
     "id": 18,
     "name": "Tier 18",
-    "description": "Curated shades for level 18",
+    "description": "Curated selection for Tier 18",
     "colors": [
       {
         "hex": "#990000",
@@ -994,7 +994,7 @@ export const COLOR_LEVELS = [
   {
     "id": 19,
     "name": "Tier 19",
-    "description": "Curated shades for level 19",
+    "description": "Curated selection for Tier 19",
     "colors": [
       {
         "hex": "#660000",
@@ -1049,7 +1049,7 @@ export const COLOR_LEVELS = [
   {
     "id": 20,
     "name": "Tier 20",
-    "description": "Curated shades for level 20",
+    "description": "Curated selection for Tier 20",
     "colors": [
       {
         "hex": "#2072AF",

@@ -70,17 +70,21 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     <div className="game-container animate-in">
       <div className="game-header">
         <div className="difficulty-slider-container">
-          <span className="difficulty-label">Difficulty Tier {difficulty} / 20</span>
-          <input 
-            type="range" 
-            min="1" 
-            max="20" 
-            value={difficulty} 
-            onChange={(e) => {
-              setDifficulty(parseInt(e.target.value));
-              setScore({ correct: 0, total: 0 });
-            }}
-          />
+          <span className="difficulty-label">Select Difficulty Tier</span>
+          <div className="tier-selector-grid">
+            {Array.from({ length: 20 }, (_, i) => i + 1).map(lvl => (
+              <button 
+                key={lvl} 
+                className={`tier-btn ${difficulty === lvl ? 'active' : ''}`}
+                onClick={() => {
+                  setDifficulty(lvl);
+                  setScore({ correct: 0, total: 0 });
+                }}
+              >
+                {lvl}
+              </button>
+            ))}
+          </div>
         </div>
         <div className="score-display">
           <span>{score.correct} / {score.total}</span>
