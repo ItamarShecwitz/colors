@@ -147,87 +147,6 @@ function App() {
                   </div>
                 </div>
 
-                {isPickerOpen && (
-                  <div className="picker-overlay" onClick={() => setIsPickerOpen(false)}>
-                    <div className="picker-modal" onClick={e => e.stopPropagation()}>
-                      <div className="picker-header">
-                        <h3>Adjust Color</h3>
-                        <button className="close-btn" onClick={() => setIsPickerOpen(false)}>&times;</button>
-                      </div>
-                      
-                      <div className="picker-body">
-                        <div className="preview-swatch" style={{ backgroundColor: inputColor }}>
-                          <span style={{ color: chroma.contrast(inputColor, 'white') > 4.5 ? '#fff' : '#000' }}>
-                            {inputColor.toUpperCase()}
-                          </span>
-                        </div>
-
-                        <div className="sliders">
-                          <div className="slider-group">
-                            <label>Hue: {Math.round(hsb.h)}&deg;</label>
-                            <input 
-                              type="range" min="0" max="360" 
-                              value={hsb.h} 
-                              onChange={(e) => handleHsbChange('h', Number(e.target.value))}
-                              style={{ 
-                                appearance: 'none',
-                                height: '12px',
-                                borderRadius: '6px',
-                                background: 'linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)' 
-                              }}
-                            />
-                          </div>
-                          
-                          <div className="slider-group">
-                            <label>Saturation: {hsb.s}%</label>
-                            <input 
-                              type="range" min="0" max="100" 
-                              value={hsb.s} 
-                              onChange={(e) => handleHsbChange('s', Number(e.target.value))}
-                              style={{ 
-                                appearance: 'none',
-                                height: '12px',
-                                borderRadius: '6px',
-                                background: `linear-gradient(to right, #fff, ${chroma.hsv(hsb.h, 1, hsb.b/100).hex()})` 
-                              }}
-                            />
-                          </div>
-
-                          <div className="slider-group">
-                            <label>Brightness: {hsb.b}%</label>
-                            <input 
-                              type="range" min="0" max="100" 
-                              value={hsb.b} 
-                              onChange={(e) => handleHsbChange('b', Number(e.target.value))}
-                              style={{ 
-                                appearance: 'none',
-                                height: '12px',
-                                borderRadius: '6px',
-                                background: `linear-gradient(to right, #000, ${chroma.hsv(hsb.h, hsb.s/100, 1).hex()})` 
-                              }}
-                            />
-                          </div>
-                        </div>
-
-                        <div className="hex-manual">
-                          <label>Hex Code</label>
-                          <input 
-                            type="text" 
-                            className="picker-hex-input"
-                            value={inputColor} 
-                            onChange={(e) => setInputColor(e.target.value)}
-                            placeholder="#000000"
-                          />
-                        </div>
-                      </div>
-                      
-                      <div className="picker-footer">
-                        <button className="done-btn" onClick={() => setIsPickerOpen(false)}>Apply</button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
                 <div className="controls">
                   <div className="input-group">
                     <input 
@@ -529,6 +448,87 @@ function App() {
           {/* Footer removed as history moved to main view */}
         </footer>
       </div>
+
+      {isPickerOpen && (
+        <div className="picker-overlay" onClick={() => setIsPickerOpen(false)}>
+          <div className="picker-modal" onClick={e => e.stopPropagation()}>
+            <div className="picker-header">
+              <h3>Adjust Color</h3>
+              <button className="close-btn" onClick={() => setIsPickerOpen(false)}>&times;</button>
+            </div>
+            
+            <div className="picker-body">
+              <div className="preview-swatch" style={{ backgroundColor: inputColor }}>
+                <span style={{ color: chroma.contrast(inputColor, 'white') > 4.5 ? '#fff' : '#000' }}>
+                  {inputColor.toUpperCase()}
+                </span>
+              </div>
+
+              <div className="sliders">
+                <div className="slider-group">
+                  <label>Hue: {Math.round(hsb.h)}&deg;</label>
+                  <input 
+                    type="range" min="0" max="360" 
+                    value={hsb.h} 
+                    onChange={(e) => handleHsbChange('h', Number(e.target.value))}
+                    style={{ 
+                      appearance: 'none',
+                      height: '12px',
+                      borderRadius: '6px',
+                      background: 'linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)' 
+                    }}
+                  />
+                </div>
+                
+                <div className="slider-group">
+                  <label>Saturation: {hsb.s}%</label>
+                  <input 
+                    type="range" min="0" max="100" 
+                    value={hsb.s} 
+                    onChange={(e) => handleHsbChange('s', Number(e.target.value))}
+                    style={{ 
+                      appearance: 'none',
+                      height: '12px',
+                      borderRadius: '6px',
+                      background: `linear-gradient(to right, #fff, ${chroma.hsv(hsb.h, 1, hsb.b/100).hex()})` 
+                    }}
+                  />
+                </div>
+
+                <div className="slider-group">
+                  <label>Brightness: {hsb.b}%</label>
+                  <input 
+                    type="range" min="0" max="100" 
+                    value={hsb.b} 
+                    onChange={(e) => handleHsbChange('b', Number(e.target.value))}
+                    style={{ 
+                      appearance: 'none',
+                      height: '12px',
+                      borderRadius: '6px',
+                      background: `linear-gradient(to right, #000, ${chroma.hsv(hsb.h, hsb.s/100, 1).hex()})` 
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="hex-manual">
+                <label>Hex Code</label>
+                <input 
+                  type="text" 
+                  className="picker-hex-input"
+                  value={inputColor} 
+                  onChange={(e) => setInputColor(e.target.value)}
+                  placeholder="#000000"
+                />
+              </div>
+            </div>
+            
+            <div className="picker-footer">
+              <button className="done-btn" onClick={() => setIsPickerOpen(false)}>Apply</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
