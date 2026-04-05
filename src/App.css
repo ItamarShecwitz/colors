@@ -307,72 +307,90 @@ input[type="text"] {
   color: #fff;
 }
 
+/* Wardrobe Harmonies */
+.harmonies {
+  margin-top: 6rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  padding-top: 4rem;
+}
+
+.harmonies h3 {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: var(--text-dim);
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.harmonies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+
+.harmony-type {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.harmony-type label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.harmony-swatches {
+  display: flex;
+  gap: 1rem;
+}
+
+.harmony-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.harmony-swatch:hover {
+  transform: scale(1.2);
+}
+
 /* Responsive Fixes */
 @media (max-width: 900px) {
-  .content-card {
-    padding: 3rem 2rem;
-    border-radius: 2rem;
-  }
-
-  .tabs {
-    position: relative;
-    top: 0;
-    right: 0;
-    margin-bottom: 4rem;
-    justify-content: center;
-  }
-
-  .brand-name {
-    font-size: 1.8rem;
-    letter-spacing: 0.5em;
-    margin-right: -0.5em;
-  }
-
-  .main-display, .game-main {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-
-  .fashion-square, .target-square-frame {
-    max-width: 350px;
-    margin: 0 auto;
-  }
-
-  .level-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .chip-name {
-    font-size: 1.1rem;
-  }
-
-  .option-btn {
-    padding: 1.4rem;
-    font-size: 1.3rem;
-  }
+  .app-container { padding: 2rem 1rem; }
+  .content-card { padding: 3rem 1.5rem; border-radius: 2rem; }
+  .tabs { position: relative; top: 0; right: 0; margin-bottom: 4rem; justify-content: center; gap: 1.5rem; }
+  .brand-header { margin-bottom: 4rem; text-align: center; }
+  .logo-container { justify-content: center; }
+  
+  .main-display, .game-main { grid-template-columns: 1fr; gap: 3rem; margin-bottom: 4rem; }
+  .fashion-square, .target-square-frame { max-width: 280px; margin: 0 auto; }
+  .square-label { font-size: 2.2rem; }
+  
+  .input-group { flex-direction: column; gap: 1.5rem; }
+  input[type="text"] { font-size: 2.5rem; text-align: center; }
+  
+  .relationships { grid-template-columns: 1fr; gap: 3rem; }
+  .harmonies-grid { grid-template-columns: 1fr; gap: 3rem; }
+  
+  .level-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .chip-name { font-size: 1rem; }
+  
+  .option-btn { padding: 1.4rem; font-size: 1.3rem; }
 }
 
 @media (max-width: 480px) {
-  .content-card {
-    padding: 2.5rem 1.2rem;
-  }
-
-  .level-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .fashion-square, .target-square-frame {
-    max-width: 100%;
-  }
-
-  .square-label {
-    font-size: 2rem;
-  }
-
-  input[type="text"] {
-    font-size: 2.2rem;
-  }
+  .level-grid { grid-template-columns: repeat(2, 1fr); }
+  .brand-name { font-size: 1.6rem; }
+  .fashion-square, .target-square-frame { max-width: 220px; }
 }
 
 .animate-in {

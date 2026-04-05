@@ -102,8 +102,8 @@ export const COLOR_LEVELS = [
         "name": "Crimson"
       },
       {
-        "hex": "#FF2400",
-        "name": "Scarlet"
+        "hex": "#FA8072",
+        "name": "Salmon"
       },
       {
         "hex": "#FFBF00",
@@ -129,6 +129,10 @@ export const COLOR_LEVELS = [
         "name": "Khaki"
       },
       {
+        "hex": "#D2B48C",
+        "name": "Tan"
+      },
+      {
         "hex": "#3EB489",
         "name": "Mint"
       },
@@ -151,10 +155,6 @@ export const COLOR_LEVELS = [
       {
         "hex": "#DAC8AE",
         "name": "Dun"
-      },
-      {
-        "hex": "#D2B48C",
-        "name": "Tan"
       },
       {
         "hex": "#353839",
@@ -412,10 +412,6 @@ export const COLOR_LEVELS = [
         "name": "Madder"
       },
       {
-        "hex": "#FA8072",
-        "name": "Salmon"
-      },
-      {
         "hex": "#FF6347",
         "name": "Tomato"
       },
@@ -438,6 +434,10 @@ export const COLOR_LEVELS = [
       {
         "hex": "#DDD06A",
         "name": "Citron"
+      },
+      {
+        "hex": "#6F4E37",
+        "name": "Coffee"
       }
     ]
   },
@@ -446,10 +446,6 @@ export const COLOR_LEVELS = [
     "name": "Tier 9",
     "description": "Curated selection for Tier 9",
     "colors": [
-      {
-        "hex": "#6F4E37",
-        "name": "Coffee"
-      },
       {
         "hex": "#B87333",
         "name": "Copper"
@@ -493,6 +489,10 @@ export const COLOR_LEVELS = [
       {
         "hex": "#8B004B",
         "name": "Murrey"
+      },
+      {
+        "hex": "#DA70D6",
+        "name": "Orchid"
       }
     ]
   },
@@ -501,10 +501,6 @@ export const COLOR_LEVELS = [
     "name": "Tier 10",
     "description": "Curated selection for Tier 10",
     "colors": [
-      {
-        "hex": "#DA70D6",
-        "name": "Orchid"
-      },
       {
         "hex": "#E9FFDB",
         "name": "Nyanza"
@@ -520,6 +516,10 @@ export const COLOR_LEVELS = [
       {
         "hex": "#AB4E52",
         "name": "Redwood"
+      },
+      {
+        "hex": "#FF2400",
+        "name": "Scarlet"
       },
       {
         "hex": "#FBCEB1",

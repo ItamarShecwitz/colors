@@ -84,17 +84,18 @@ function App() {
         <header className="brand-header">
           <div className="logo-container">
             <svg viewBox="0 0 100 100" className="brand-logo">
+              <path d="M50 15 L85 75 L15 75 Z" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.1"/>
+              <path d="M50 15 L85 75 L15 75 Z" fill="none" stroke="url(#prismGrad)" strokeWidth="2" strokeLinejoin="round"/>
+              <path d="M10 45 L50 15" stroke="rgba(255,255,255,0.8)" strokeWidth="1" strokeDasharray="2 2"/>
+              <path d="M50 15 L90 40" stroke="#E52B50" strokeWidth="1.5" opacity="0.6"/>
+              <path d="M50 15 L90 55" stroke="#00FF00" strokeWidth="1.5" opacity="0.6"/>
+              <path d="M50 15 L90 70" stroke="#0000FF" strokeWidth="1.5" opacity="0.6"/>
               <defs>
                 <linearGradient id="prismGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#E52B50" />
                   <stop offset="100%" stopColor="#FF8C00" />
                 </linearGradient>
               </defs>
-              <path d="M50 15 L85 75 L15 75 Z" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.2"/>
-              <path d="M50 15 L85 75 L15 75 Z" fill="none" stroke="url(#prismGrad)" strokeWidth="3" strokeLinejoin="round"/>
-              <path d="M50 15 L25 85" stroke="#E52B50" strokeWidth="0.5" opacity="0.5"/>
-              <path d="M50 15 L50 85" stroke="#00FF00" strokeWidth="0.5" opacity="0.5"/>
-              <path d="M50 15 L75 85" stroke="#0000FF" strokeWidth="0.5" opacity="0.5"/>
             </svg>
             <h1 className="brand-name">ITAMARS</h1>
           </div>
@@ -157,38 +158,71 @@ function App() {
               </section>
 
               {colorData && (
-                <section className="relationships animate-in">
-                  <div className="shades-section">
-                    <h3>Scale</h3>
-                    <div className="shades-list">
-                      {colorData.shades.map((s, i) => (
-                        <div 
-                          key={i} 
-                          className="shade-item" 
-                          style={{ backgroundColor: s }} 
-                          onClick={() => setInputColor(s)}
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="complement-section">
-                    <h3>Opposite</h3>
-                    <div 
-                      className="complement-box" 
-                      onClick={() => setInputColor(colorData.complementary)}
-                    >
-                      <div 
-                        className="complement-inner"
-                        style={{ backgroundColor: colorData.complementary }}
-                      >
-                        <span style={{ color: chroma.contrast(colorData.complementary, 'white') > 4.5 ? '#fff' : '#000' }}>
-                          {colorData.complementary.toUpperCase()}
-                        </span>
+                <>
+                  <section className="relationships animate-in">
+                    <div className="shades-section">
+                      <h3>Tonal Scale</h3>
+                      <div className="shades-list">
+                        {colorData.shades.map((s, i) => (
+                          <div 
+                            key={i} 
+                            className="shade-item" 
+                            style={{ backgroundColor: s }} 
+                            onClick={() => setInputColor(s)}
+                            title={s}
+                          />
+                        ))}
                       </div>
                     </div>
-                  </div>
-                </section>
+
+                    <div className="complement-section">
+                      <h3>Complementary</h3>
+                      <div 
+                        className="complement-box" 
+                        onClick={() => setInputColor(colorData.complementary)}
+                      >
+                        <div 
+                          className="complement-inner"
+                          style={{ backgroundColor: colorData.complementary }}
+                        >
+                          <span style={{ color: chroma.contrast(colorData.complementary, 'white') > 4.5 ? '#fff' : '#000' }}>
+                            {colorData.complementary.toUpperCase()}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section className="harmonies animate-in">
+                    <h3>Wardrobe Harmonies</h3>
+                    <div className="harmonies-grid">
+                      <div className="harmony-type">
+                        <label>Analogous (Natural)</label>
+                        <div className="harmony-swatches">
+                          {[chroma(colorData.hex).set('hsl.h', '-30').hex(), chroma(colorData.hex).set('hsl.h', '+30').hex()].map(c => (
+                            <div key={c} className="harmony-swatch" style={{ backgroundColor: c }} onClick={() => setInputColor(c)} />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="harmony-type">
+                        <label>Triadic (Bold)</label>
+                        <div className="harmony-swatches">
+                          {[chroma(colorData.hex).set('hsl.h', '-120').hex(), chroma(colorData.hex).set('hsl.h', '+120').hex()].map(c => (
+                            <div key={c} className="harmony-swatch" style={{ backgroundColor: c }} onClick={() => setInputColor(c)} />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="harmony-type">
+                        <label>Neutral Pairings</label>
+                        <div className="harmony-swatches">
+                          {['#F5F5DC', '#36454F', '#808080'].map(c => (
+                            <div key={c} className="harmony-swatch" style={{ backgroundColor: c }} onClick={() => setInputColor(c)} />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </>
               )}
             </div>
           ) : activeTab === 'learn' ? (
