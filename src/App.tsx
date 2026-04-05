@@ -84,10 +84,17 @@ function App() {
         <header className="brand-header">
           <div className="logo-container">
             <svg viewBox="0 0 100 100" className="brand-logo">
-              <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.2"/>
-              <path d="M50 20 L50 80" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M30 40 Q50 10 70 40" fill="none" stroke="#E52B50" strokeWidth="3" strokeLinecap="round"/>
-              <circle cx="70" cy="40" r="4" fill="#E52B50"/>
+              <defs>
+                <linearGradient id="prismGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#E52B50" />
+                  <stop offset="100%" stopColor="#FF8C00" />
+                </linearGradient>
+              </defs>
+              <path d="M50 15 L85 75 L15 75 Z" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.2"/>
+              <path d="M50 15 L85 75 L15 75 Z" fill="none" stroke="url(#prismGrad)" strokeWidth="3" strokeLinejoin="round"/>
+              <path d="M50 15 L25 85" stroke="#E52B50" strokeWidth="0.5" opacity="0.5"/>
+              <path d="M50 15 L50 85" stroke="#00FF00" strokeWidth="0.5" opacity="0.5"/>
+              <path d="M50 15 L75 85" stroke="#0000FF" strokeWidth="0.5" opacity="0.5"/>
             </svg>
             <h1 className="brand-name">ITAMARS</h1>
           </div>
