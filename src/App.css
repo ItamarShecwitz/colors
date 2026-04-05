@@ -631,8 +631,9 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .color-wheel-container {
-  width: 320px;
-  height: 320px;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1;
   background: #fff;
   border-radius: 50%;
   padding: 2rem;
@@ -645,6 +646,7 @@ input[type="color"]::-webkit-color-swatch {
 .wheel-svg {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1;
   transform: rotate(-90deg);
   overflow: visible;
 }
@@ -932,6 +934,7 @@ input[type="color"]::-webkit-color-swatch {
   .game-modes {
     flex-direction: row;
     gap: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   .mode-btn {
@@ -942,7 +945,8 @@ input[type="color"]::-webkit-color-swatch {
 
   .game-header {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   .game-stats {
@@ -951,22 +955,27 @@ input[type="color"]::-webkit-color-swatch {
   }
 
   .target-square-frame {
-    height: 240px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    aspect-ratio: 1;
+    margin: 0 auto;
   }
 
   .reveal-name {
-    font-size: 1.4rem;
-    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    padding: 0.8rem 1.2rem;
   }
 
   .options-grid {
-    gap: 0.8rem;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    width: 100%;
   }
 
   .option-btn {
-    padding: 1.2rem;
-    font-size: 0.9rem;
+    padding: 1rem;
+    font-size: 0.85rem;
   }
 
   .game-over-overlay {

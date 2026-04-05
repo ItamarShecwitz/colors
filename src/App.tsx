@@ -176,8 +176,7 @@ function App() {
                               fill={`hsl(${i * 30}, 70%, 60%)`}
                               opacity="0"
                               className="wheel-segment"
-                              style={{ cursor: 'pointer', pointerEvents: 'auto' }}
-                              onClick={() => setInputColor(chroma.hsl(i * 30, 0.7, 0.6).hex())}
+                              style={{ pointerEvents: 'auto' }}
                             />
                           ))}
                         </g>
@@ -191,6 +190,8 @@ function App() {
                           stroke="#fff" 
                           strokeWidth="2"
                           className="indicator-main"
+                          style={{ cursor: 'pointer' }}
+                          onClick={() => setInputColor(colorData.hex)}
                         />
 
                         {/* Dynamic Harmony Indicators */}
@@ -203,34 +204,60 @@ function App() {
                             stroke="#fff"
                             strokeWidth="1"
                             className="indicator-comp"
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => setInputColor(colorData.complementary)}
                           />
                         )}
 
-                        {harmonyMode === 'analogous' && [30, -30].map(offset => (
-                          <circle 
-                            key={offset}
-                            cx={50 + 40 * Math.cos((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
-                            cy={50 + 40 * Math.sin((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
-                            r="3" 
-                            fill={chroma(colorData.hex).set('hsl.h', `+${offset}`).hex()} 
-                            stroke="#fff"
-                            strokeWidth="1"
-                            className="indicator-dynamic"
-                          />
-                        ))}
+                        {harmonyMode === 'analogous' && [30, -30].map(offset => {
+                          const c = chroma(colorData.hex).set('hsl.h', `+${offset}`).hex();
+                          return (
+                            <circle 
+                              key={offset}
+                              cx={50 + 40 * Math.cos((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
+                              cy={50 + 40 * Math.sin((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
+                              r="3" 
+                              fill={c} 
+                              stroke="#fff"
+                              strokeWidth="1"
+                              className="indicator-dynamic"
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => setInputColor(c)}
+                            />
+                          );
+                        })}
 
-                        {harmonyMode === 'triadic' && [120, -120].map(offset => (
+                        {harmonyMode === 'triadic' && [120, -120].map(offset => {
+                          const c = chroma(colorData.hex).set('hsl.h', `+${offset}`).hex();
+                          return (
+                            <circle 
+                              key={offset}
+                              cx={50 + 40 * Math.cos((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
+                              cy={50 + 40 * Math.sin((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
+                              r="3" 
+                              fill={c} 
+                              stroke="#fff"
+                              strokeWidth="1"
+                              className="indicator-dynamic"
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => setInputColor(c)}
+                            />
+                          );
+                        })}
+
+                        {harmonyMode === 'neutral' && (
                           <circle 
-                            key={offset}
-                            cx={50 + 40 * Math.cos((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
-                            cy={50 + 40 * Math.sin((chroma(colorData.hex).get('hsl.h') + offset) * Math.PI / 180)} 
+                            cx="50" 
+                            cy="50" 
                             r="3" 
-                            fill={chroma(colorData.hex).set('hsl.h', `+${offset}`).hex()} 
+                            fill="#F5F5DC" 
                             stroke="#fff"
                             strokeWidth="1"
                             className="indicator-dynamic"
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => setInputColor('#F5F5DC')}
                           />
-                        ))}
+                        )}
                       </svg>
                     </div>
 
@@ -256,6 +283,7 @@ function App() {
                             <div className="outfit-swatches">
                               <div className="swatch-main" style={{ backgroundColor: colorData.hex }} />
                               <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '+30').hex() }} />
+                              <div className="swatch-accent" style={{ backgroundColor: chroma(colorData.hex).set('hsl.h', '-30').hex() }} />
                             </div>
                             <span className="outfit-label">Analogous</span>
                           </div>
