@@ -1,102 +1,8 @@
 export const COLOR_LEVELS = [
   {
     "id": 1,
-    "name": "The Basics",
-    "description": "Fundamental colors.",
-    "colors": [
-      {
-        "hex": "#800080",
-        "name": "Purple"
-      },
-      {
-        "hex": "#808080",
-        "name": "Gray"
-      },
-      {
-        "hex": "#993300",
-        "name": "Brown"
-      },
-      {
-        "hex": "#FFC0CB",
-        "name": "Pink"
-      },
-      {
-        "hex": "#FF0000",
-        "name": "Red"
-      },
-      {
-        "hex": "#964B00",
-        "name": "Brown"
-      },
-      {
-        "hex": "#FFFF00",
-        "name": "Yellow"
-      },
-      {
-        "hex": "#00FF00",
-        "name": "Green"
-      },
-      {
-        "hex": "#0000FF",
-        "name": "Blue"
-      },
-      {
-        "hex": "#FFFFFF",
-        "name": "White"
-      },
-      {
-        "hex": "#000000",
-        "name": "Black"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Intermediate",
-    "description": "Secondary shades.",
-    "colors": [
-      {
-        "hex": "#800000",
-        "name": "Maroon"
-      },
-      {
-        "hex": "#808000",
-        "name": "Olive"
-      },
-      {
-        "hex": "#FFD700",
-        "name": "Gold"
-      },
-      {
-        "hex": "#00FFFF",
-        "name": "Cyan"
-      },
-      {
-        "hex": "#C0FF00",
-        "name": "Lime"
-      },
-      {
-        "hex": "#008080",
-        "name": "Teal"
-      },
-      {
-        "hex": "#4B0082",
-        "name": "Indigo"
-      },
-      {
-        "hex": "#8000FF",
-        "name": "Violet"
-      },
-      {
-        "hex": "#C0C0C0",
-        "name": "Silver"
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "name": "Advanced",
-    "description": "Specific tones.",
+    "name": "Tier 1",
+    "description": "Refining your color palette.",
     "colors": [
       {
         "hex": "#111111",
@@ -205,18 +111,41 @@ export const COLOR_LEVELS = [
       {
         "hex": "#708090",
         "name": "Slate Gray"
-      },
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Tier 2",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#733635",
         "name": "Garnet"
+      },
+      {
+        "hex": "#800000",
+        "name": "Maroon"
       },
       {
         "hex": "#800020",
         "name": "Burgundy"
       },
       {
+        "hex": "#800080",
+        "name": "Purple"
+      },
+      {
         "hex": "#801818",
         "name": "Falu Red"
+      },
+      {
+        "hex": "#808000",
+        "name": "Olive"
+      },
+      {
+        "hex": "#808080",
+        "name": "Gray"
       },
       {
         "hex": "#841617",
@@ -249,6 +178,10 @@ export const COLOR_LEVELS = [
       {
         "hex": "#990000",
         "name": "Penn Red"
+      },
+      {
+        "hex": "#993300",
+        "name": "Brown"
       },
       {
         "hex": "#996515",
@@ -293,7 +226,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#E23D28",
         "name": "Chili Red"
-      },
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tier 3",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#58111A",
         "name": "Chocolate Cosmos"
@@ -387,13 +327,28 @@ export const COLOR_LEVELS = [
         "name": "Persian Red"
       },
       {
+        "hex": "#FFC0CB",
+        "name": "Pink"
+      },
+      {
         "hex": "#DC343B",
         "name": "Poppy"
       },
       {
+        "hex": "#FF0000",
+        "name": "Red"
+      },
+      {
         "hex": "#A52A2A",
         "name": "Red Brown"
-      },
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Tier 4",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#ED1B24",
         "name": "Red (cmyk)"
@@ -497,21 +452,25 @@ export const COLOR_LEVELS = [
       {
         "hex": "#FFBF00",
         "name": "Amber"
+      },
+      {
+        "hex": "#FBCEB1",
+        "name": "Apricot"
       }
     ]
   },
   {
-    "id": 4,
-    "name": "Professional",
-    "description": "Nuanced designations.",
+    "id": 5,
+    "name": "Tier 5",
+    "description": "Refining your color palette.",
     "colors": [
-      {
-        "hex": "#FBCEB1",
-        "name": "Apricot"
-      },
       {
         "hex": "#FF9966",
         "name": "Atomic Tangerine"
+      },
+      {
+        "hex": "#964B00",
+        "name": "Brown"
       },
       {
         "hex": "#BF5700",
@@ -552,6 +511,10 @@ export const COLOR_LEVELS = [
       {
         "hex": "#FE5A1D",
         "name": "Giants Orange"
+      },
+      {
+        "hex": "#FFD700",
+        "name": "Gold"
       },
       {
         "hex": "#F04A00",
@@ -608,7 +571,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#FF8F00",
         "name": "Princeton Orange"
-      },
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Tier 6",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#FF7518",
         "name": "Pumpkin"
@@ -716,7 +686,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#7B3F00",
         "name": "Chocolate"
-      },
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Tier 7",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#DDD06A",
         "name": "Citron"
@@ -824,7 +801,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#483C32",
         "name": "Taupe"
-      },
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Tier 8",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#44362F",
         "name": "Van Dyke"
@@ -932,7 +916,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#E3F988",
         "name": "Mindaro"
-      },
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Tier 9",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#FFDB58",
         "name": "Mustard"
@@ -986,6 +977,10 @@ export const COLOR_LEVELS = [
         "name": "Vanilla"
       },
       {
+        "hex": "#FFFF00",
+        "name": "Yellow"
+      },
+      {
         "hex": "#8DB600",
         "name": "Apple Green"
       },
@@ -1026,13 +1021,24 @@ export const COLOR_LEVELS = [
         "name": "Chartreuse"
       },
       {
+        "hex": "#00FFFF",
+        "name": "Cyan"
+      },
+      {
         "hex": "#013220",
         "name": "Dark Green"
       },
       {
         "hex": "#4A5D23",
         "name": "Dark Moss Green"
-      },
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Tier 10",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#03C03C",
         "name": "Dark Pastel Green"
@@ -1056,6 +1062,10 @@ export const COLOR_LEVELS = [
       {
         "hex": "#228B22",
         "name": "Forest Green"
+      },
+      {
+        "hex": "#00FF00",
+        "name": "Green"
       },
       {
         "hex": "#ADFF2F",
@@ -1098,6 +1108,10 @@ export const COLOR_LEVELS = [
         "name": "Light Green"
       },
       {
+        "hex": "#C0FF00",
+        "name": "Lime"
+      },
+      {
         "hex": "#32CD32",
         "name": "Lime Green"
       },
@@ -1132,7 +1146,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#9AB973",
         "name": "Olivine"
-      },
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Tier 11",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#00401A",
         "name": "Pakistan Green"
@@ -1194,6 +1215,10 @@ export const COLOR_LEVELS = [
         "name": "Tea Green"
       },
       {
+        "hex": "#008080",
+        "name": "Teal"
+      },
+      {
         "hex": "#40E0D0",
         "name": "Turquoise"
       },
@@ -1236,7 +1261,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#006D6F",
         "name": "Caribbean Current"
-      },
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Tier 12",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#B2FFFF",
         "name": "Celeste"
@@ -1304,14 +1336,7 @@ export const COLOR_LEVELS = [
       {
         "hex": "#00CCFF",
         "name": "Vivid Sky Blue"
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "name": "Master",
-    "description": "The complete palette.",
-    "colors": [
+      },
       {
         "hex": "#39A78D",
         "name": "Zomp"
@@ -1351,6 +1376,17 @@ export const COLOR_LEVELS = [
       {
         "hex": "#318CE7",
         "name": "Bleu De France"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Tier 13",
+    "description": "Refining your color palette.",
+    "colors": [
+      {
+        "hex": "#0000FF",
+        "name": "Blue"
       },
       {
         "hex": "#6699CC",
@@ -1452,6 +1488,17 @@ export const COLOR_LEVELS = [
         "hex": "#0072BB",
         "name": "French Blue"
       },
+      {
+        "hex": "#4B0082",
+        "name": "Indigo"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Tier 14",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#00416A",
         "name": "Indigo Dye"
@@ -1559,7 +1606,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#003153",
         "name": "Prussian Blue"
-      },
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Tier 15",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#002387",
         "name": "Resolution Blue"
@@ -1667,7 +1721,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#8A2BE2",
         "name": "Blue Violet"
-      },
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Tier 16",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#9400D3",
         "name": "Dark Violet"
@@ -1775,7 +1836,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#DF00FF",
         "name": "Phlox"
-      },
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Tier 17",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#DBB2D1",
         "name": "Pink Lavender"
@@ -1833,6 +1901,10 @@ export const COLOR_LEVELS = [
         "name": "Veronica"
       },
       {
+        "hex": "#8000FF",
+        "name": "Violet"
+      },
+      {
         "hex": "#C9A0DC",
         "name": "Wisteria"
       },
@@ -1879,7 +1951,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#FE4EDA",
         "name": "Purple Pizzazz"
-      },
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Tier 18",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#8E3A59",
         "name": "Quinacridone Magenta"
@@ -1987,7 +2066,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#FFDAE9",
         "name": "Mimi Pink"
-      },
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Tier 19",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#F2BDCD",
         "name": "Orchid Pink"
@@ -2095,7 +2181,14 @@ export const COLOR_LEVELS = [
       {
         "hex": "#FDF5E6",
         "name": "Old Lace"
-      },
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Tier 20",
+    "description": "Refining your color palette.",
+    "colors": [
       {
         "hex": "#F1E9D2",
         "name": "Parchment"
@@ -2117,12 +2210,20 @@ export const COLOR_LEVELS = [
         "name": "Snow"
       },
       {
+        "hex": "#FFFFFF",
+        "name": "White"
+      },
+      {
         "hex": "#F5F5F5",
         "name": "White Smoke"
       },
       {
         "hex": "#DBD7D2",
         "name": "Timberwolf"
+      },
+      {
+        "hex": "#C0C0C0",
+        "name": "Silver"
       },
       {
         "hex": "#BEBFC5",
@@ -2159,6 +2260,10 @@ export const COLOR_LEVELS = [
       {
         "hex": "#2F4F4F",
         "name": "Dark Slate Gray"
+      },
+      {
+        "hex": "#000000",
+        "name": "Black"
       },
       {
         "hex": "#4B3621",

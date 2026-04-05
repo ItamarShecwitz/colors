@@ -40,10 +40,23 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     const distractors: { name: string; hex: string }[] = [];
     const pool = availableColors.filter(c => c.name !== closest.name);
     
-    while (distractors.length < 3 && pool.length > 0) {
-      const idx = Math.floor(Math.random() * pool.length);
-      const picked = pool.splice(idx, 1)[0];
-      distractors.push(picked);
+    // Distractors should be somewhat similar to make it challenging
+    const sortedPool = [...pool].sort((a, b) => 
+      chroma.distance(randomHex, a.hex) - chroma.distance(randomHex, b.hex)
+    );
+
+    // Take some close ones and some random ones
+    const topPool = sortedPool.slice(0, 10);
+    const randomPool = sortedPool.slice(10);
+
+    while (distractors.length < 3 && (topPool.length > 0 || randomPool.length > 0)) {
+      if (Math.random() > 0.4 && topPool.length > 0) {
+        const idx = Math.floor(Math.random() * topPool.length);
+        distractors.push(topPool.splice(idx, 1)[0]);
+      } else if (randomPool.length > 0) {
+        const idx = Math.floor(Math.random() * randomPool.length);
+        distractors.push(randomPool.splice(idx, 1)[0]);
+      }
     }
 
     // Shuffle options
@@ -62,30 +75,29 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     if (option.name === correctOption?.name) {
       setFeedback('correct');
       setScore(s => ({ ...s, correct: s.correct + 1, total: s.total + 1 }));
-      setTimeout(generateQuestion, 1500);
+      setTimeout(generateQuestion, 1200);
     } else {
       setFeedback('wrong');
       setScore(s => ({ ...s, total: s.total + 1 }));
-      setTimeout(generateQuestion, 2000);
+      setTimeout(generateQuestion, 1800);
     }
   };
 
   return (
     <div className="game-container animate-in">
       <div className="game-header">
-        <div className="difficulty-selector">
-          {[1, 2, 3, 4, 5].map(lvl => (
-            <button 
-              key={lvl} 
-              className={difficulty === lvl ? 'active' : ''}
-              onClick={() => {
-                setDifficulty(lvl);
-                setScore({ correct: 0, total: 0 });
-              }}
-            >
-              Lvl {lvl}
-            </button>
-          ))}
+        <div className="difficulty-slider-container">
+          <span className="difficulty-label">Difficulty Tier {difficulty} / 20</span>
+          <input 
+            type="range" 
+            min="1" 
+            max="20" 
+            value={difficulty} 
+            onChange={(e) => {
+              setDifficulty(parseInt(e.target.value));
+              setScore({ correct: 0, total: 0 });
+            }}
+          />
         </div>
         <div className="score-display">
           <span>{score.correct} / {score.total}</span>
@@ -97,7 +109,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
           className="target-square" 
           style={{ backgroundColor: targetColor }}
           onClick={() => onSelectColor(targetColor)}
-          title="Click to view in Dictionary"
+          title="Examine in Dictionary"
         />
         
         <div className="options-grid">
@@ -116,7 +128,7 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
       {feedback && (
         <div className={`feedback-overlay ${feedback}`}>
-          {feedback === 'correct' ? 'Perfect' : `Actually ${correctOption?.name}`}
+          {feedback === 'correct' ? 'Visionary' : `Indeed it was ${correctOption?.name}`}
         </div>
       )}
     </div>
