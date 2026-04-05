@@ -36,7 +36,7 @@ body {
   backdrop-filter: blur(40px);
   border: 1px solid var(--glass-border);
   border-radius: 2.5rem;
-  padding: 4rem;
+  padding: 2.5rem;
   position: relative;
   box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.04);
 }
@@ -44,10 +44,10 @@ body {
 /* Tabs */
 .tabs {
   position: absolute;
-  top: 4rem;
-  right: 4rem;
+  top: 2.5rem;
+  right: 2.5rem;
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .tabs button {
@@ -70,22 +70,22 @@ body {
 }
 
 .brand-header {
-  margin-bottom: 6rem;
+  margin-bottom: 3.5rem;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.2rem;
 }
 
 .brand-logo {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .brand-name {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 200;
   letter-spacing: 0.8em;
   margin-right: -0.8em;
@@ -104,8 +104,8 @@ body {
 .main-display {
   display: grid;
   grid-template-columns: 400px 1fr;
-  gap: 5rem;
-  margin-bottom: 6rem;
+  gap: 4rem;
+  margin-bottom: 3.5rem;
 }
 
 .fashion-square {
@@ -135,8 +135,8 @@ body {
 .input-group {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 4rem;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 input[type="text"] {
@@ -172,8 +172,8 @@ input[type="text"] {
 }
 
 .tier-filter-section {
-  margin-bottom: 6rem;
-  padding-bottom: 4rem;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
@@ -181,7 +181,7 @@ input[type="text"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .filter-title {
@@ -211,17 +211,17 @@ input[type="text"] {
 
 /* Learning View */
 .level-block {
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
 }
 
 .level-info {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .level-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .color-chip {
@@ -243,9 +243,9 @@ input[type="text"] {
   width: 100%;
   aspect-ratio: 1;
   background: #fff;
-  padding: 0.6rem;
+  padding: 0.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .chip-inner {
@@ -535,9 +535,9 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .history {
-  margin-top: 8rem;
+  margin-top: 4rem;
   border-top: 1px solid rgba(0, 0, 0, 0.03);
-  padding-top: 4rem;
+  padding-top: 2rem;
 }
 
 .history h3 {
@@ -545,7 +545,7 @@ input[type="color"]::-webkit-color-swatch {
   text-transform: uppercase;
   letter-spacing: 0.4em;
   color: var(--text-dim);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .history-items {
@@ -570,9 +570,9 @@ input[type="color"]::-webkit-color-swatch {
 
 /* Unified Harmony Section */
 .harmonies {
-  margin-top: 10rem;
+  margin-top: 5rem;
   border-top: 1px solid rgba(0, 0, 0, 0.03);
-  padding-top: 6rem;
+  padding-top: 3rem;
 }
 
 .harmonies-title {
@@ -580,14 +580,14 @@ input[type="color"]::-webkit-color-swatch {
   text-transform: uppercase;
   letter-spacing: 0.4em;
   color: var(--text-dim);
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   text-align: center;
 }
 
 .harmony-layout {
   display: grid;
   grid-template-columns: 320px 1fr;
-  gap: 6rem;
+  gap: 4rem;
   align-items: start;
 }
 
@@ -641,13 +641,13 @@ input[type="color"]::-webkit-color-swatch {
 .harmony-display-grid {
   display: flex;
   flex-direction: column;
-  gap: 6rem;
+  gap: 4rem;
 }
 
 .harmony-group {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 .harmony-group h4 {
@@ -656,6 +656,37 @@ input[type="color"]::-webkit-color-swatch {
   letter-spacing: 0.3em;
   color: var(--text-dim);
   margin: 0;
+}
+
+.shades-list {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.shade-item {
+  flex: 1;
+  height: 32px;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.shade-item:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.chip-shades {
+  display: flex;
+  gap: 2px;
+  margin-top: 0.5rem;
+  height: 4px;
+  opacity: 0.6;
+}
+
+.chip-shade {
+  flex: 1;
+  height: 100%;
 }
 
 .outfit-previews {

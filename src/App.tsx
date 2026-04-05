@@ -374,21 +374,29 @@ function App() {
                     <p>Level {level.id} &mdash; {level.description}</p>
                   </div>
                   <div className="level-grid">
-                    {level.colors.map(color => (
-                      <button 
-                        key={color.hex} 
-                        className="color-chip"
-                        onClick={() => selectColor(color.hex)}
-                      >
-                        <div className="chip-swatch">
-                          <div className="chip-inner" style={{ backgroundColor: color.hex }} />
-                        </div>
-                        <div className="chip-meta">
-                          <span className="chip-name">{color.name}</span>
-                          <span className="chip-hex">{color.hex}</span>
-                        </div>
-                      </button>
-                    ))}
+                    {level.colors.map(color => {
+                      const shades = chroma.scale([chroma(color.hex).darken(1.5), color.hex, chroma(color.hex).brighten(1.5)]).colors(5);
+                      return (
+                        <button 
+                          key={color.hex} 
+                          className="color-chip"
+                          onClick={() => selectColor(color.hex)}
+                        >
+                          <div className="chip-swatch">
+                            <div className="chip-inner" style={{ backgroundColor: color.hex }} />
+                          </div>
+                          <div className="chip-meta">
+                            <span className="chip-name">{color.name}</span>
+                            <span className="chip-hex">{color.hex}</span>
+                            <div className="chip-shades">
+                              {shades.map((s, i) => (
+                                <div key={i} className="chip-shade" style={{ backgroundColor: s }} />
+                              ))}
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
                 </section>
               ))}
