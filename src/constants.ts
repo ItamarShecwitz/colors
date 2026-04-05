@@ -2311,22 +2311,41 @@ export const getColorsByLevel = (maxLevel: number) =>
   ALL_COLORS.filter(color => color.level <= maxLevel);
 
 /**
- * Finds the closest color name in a dataset using OKLab Euclidean distance.
- * OKLab is significantly more accurate for perceptual naming than standard CIELAB.
+ * Finds the absolute closest color name using Weighted OKLCH distance.
+ * This is the gold standard for color naming because:
+ * 1. OKLab/OKLCH is the most perceptually uniform space (2025 standard).
+ * 2. It weights Hue and Lightness higher than Chroma, matching human naming patterns.
+ * 3. It correctly handles the circular nature of color hue.
  */
 export const getClosestColor = (hex: string, dataset: { name: string; hex: string }[]) => {
   if (!dataset.length) return null;
   
-  const target = (chroma as any)(hex).oklab();
+  const target = (chroma as any)(hex).oklch();
   let closest = dataset[0];
   let minDistance = Number.MAX_VALUE;
 
+  // Weights for perceptual naming importance
+  // Based on human cognitive prioritization: Hue > Lightness > Chroma
+  const W_L = 2.0; 
+  const W_C = 1.0; 
+  const W_H = 4.0; 
+
   for (const color of dataset) {
-    const compare = (chroma as any)(color.hex).oklab();
+    const compare = (chroma as any)(color.hex).oklch();
+    
+    const dL = target[0] - compare[0];
+    const dC = target[1] - compare[1];
+    
+    // Circular Hue distance (handles 360 to 0 wrap-around)
+    let dH = Math.abs(target[2] - compare[2]);
+    if (dH > 180) dH = 360 - dH;
+    // Normalize dH to 0-1 range (similar to L and C) before weighting
+    const dHNormalized = dH / 360;
+
     const distance = Math.sqrt(
-      Math.pow(target[0] - compare[0], 2) +
-      Math.pow(target[1] - compare[1], 2) +
-      Math.pow(target[2] - compare[2], 2)
+      Math.pow(dL * W_L, 2) +
+      Math.pow(dC * W_C, 2) +
+      Math.pow(dHNormalized * W_H, 2)
     );
 
     if (distance < minDistance) {
