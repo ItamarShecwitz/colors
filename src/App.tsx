@@ -24,14 +24,18 @@ function App() {
       if (!chroma.valid(inputColor)) return null
       
       const c = chroma(inputColor)
-      const names = namer(c.hex()) as unknown as ColorNames
+      const namerFn = typeof namer === 'function' ? namer : (namer as any).default
+      const namesResult = (typeof namerFn === 'function' ? namerFn(c.hex()) : {}) as any
+      
+      const ntcNames = namesResult.ntc || []
+      const basicNames = namesResult.basic || []
       
       return {
         hex: c.hex(),
         rgb: c.css(),
         hsl: c.css('hsl'),
-        name: names.ntc[0].name,
-        basicName: names.basic[0].name,
+        name: ntcNames[0]?.name || 'Unknown',
+        basicName: basicNames[0]?.name || 'Unknown',
         contrast: chroma.contrast(c, 'white') > 4.5 ? '#ffffff' : '#000000',
         shades: chroma.scale([c.darken(2), c, c.brighten(2)]).colors(7),
         complementary: c.set('hsl.h', (c.get('hsl.h') + 180) % 360).hex()
