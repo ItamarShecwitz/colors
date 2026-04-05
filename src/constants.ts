@@ -1107,7 +1107,10 @@ export const ALL_COLORS = COLOR_LEVELS.flatMap(level =>
   level.colors.map(color => ({ ...color, level: level.id }))
 );
 
-export const getColorsByLevel = (maxLevel: number) => 
+export const getColorsByLevel = (level: number) => 
+  ALL_COLORS.filter(color => color.level === level);
+
+export const getAllColorsUpToLevel = (maxLevel: number) => 
   ALL_COLORS.filter(color => color.level <= maxLevel);
 
 export const getClosestColor = (hex: string, dataset: { name: string; hex: string }[]) => {

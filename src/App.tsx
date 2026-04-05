@@ -10,6 +10,30 @@ function App() {
   const [history, setHistory] = useState<string[]>([])
   const [harmonyMode, setHarmonyMode] = useState<'complementary' | 'analogous' | 'triadic' | 'neutral'>('complementary')
 
+  const [selectedTiers, setSelectedTiers] = useState<Set<number>>(new Set([1]))
+
+  const toggleTier = (tier: number) => {
+    setSelectedTiers(prev => {
+      const next = new Set(prev)
+      if (next.has(tier)) {
+        if (next.size > 1) {
+          next.delete(tier)
+        }
+      } else {
+        next.add(tier)
+      }
+      return next
+    })
+  }
+
+  const selectAllTiers = () => {
+    if (selectedTiers.size === COLOR_LEVELS.length) {
+      setSelectedTiers(new Set([1]))
+    } else {
+      setSelectedTiers(new Set(COLOR_LEVELS.map(l => l.id)))
+    }
+  }
+
   const colorData = useMemo(() => {
     try {
       if (!chroma.valid(inputColor)) return null
@@ -323,7 +347,27 @@ function App() {
             </div>
           ) : activeTab === 'learn' ? (
             <div className="learn-view animate-in">
-              {COLOR_LEVELS.map(level => (
+              <section className="tier-filter-section">
+                <div className="filter-header">
+                  <h3 className="filter-title">Select Tiers to Explore</h3>
+                  <button className="select-all-btn" onClick={selectAllTiers}>
+                    {selectedTiers.size === COLOR_LEVELS.length ? 'Clear All but Tier 1' : 'Select All Tiers'}
+                  </button>
+                </div>
+                <div className="tier-selector-grid">
+                  {COLOR_LEVELS.map(level => (
+                    <button 
+                      key={level.id} 
+                      className={`tier-btn ${selectedTiers.has(level.id) ? 'active' : ''}`}
+                      onClick={() => toggleTier(level.id)}
+                    >
+                      {level.id}
+                    </button>
+                  ))}
+                </div>
+              </section>
+
+              {COLOR_LEVELS.filter(l => selectedTiers.has(l.id)).map(level => (
                 <section key={level.id} className="level-block">
                   <div className="level-info">
                     <h2>{level.name}</h2>
