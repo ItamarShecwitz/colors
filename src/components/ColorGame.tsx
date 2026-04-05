@@ -32,11 +32,11 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
   const [lastClickedOption, setLastClickedOption] = useState<string | null>(null);
   const [score, setScore] = useState({ correct: 0, total: 0 });
   const [isRandomizerEnabled, setIsRandomizerEnabled] = useState(false);
-  const [usedColorNames, setUsedColorNames] = useState<string[]>([]);
+  const usedColorNamesRef = useRef<string[]>([]);
   
   const currentGoodJob = useMemo(() => {
     return GOOD_JOB_PHRASES[Math.floor(Math.random() * GOOD_JOB_PHRASES.length)];
-  }, [correctOption?.hex]);
+  }, [targetColor]);
 
   // Timer Mode State
   const TIMER_TOTAL_QUESTIONS = 12;
@@ -57,8 +57,8 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
     // Filter out used colors for non-repeating questions
     let pool = [...availableColors];
     if (mode === 'timer') {
-      pool = pool.filter(c => !usedColorNames.includes(c.name));
-      // If we ran out of colors (shouldn't happen with 12 questions/12 colors, but safe check)
+      pool = pool.filter(c => !usedColorNamesRef.current.includes(c.name));
+      // If we ran out of colors
       if (pool.length === 0) {
         setIsGameOver(true);
         return;
@@ -107,11 +107,12 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
     // Add to used colors
     if (mode === 'timer') {
-      setUsedColorNames(prev => [...prev, seed.name]);
+      usedColorNamesRef.current.push(seed.name);
     }
-  }, [difficulty, mode, score.total, isRandomizerEnabled, usedColorNames]);
+  }, [difficulty, mode, score.total, isRandomizerEnabled]);
 
   useEffect(() => {
+    usedColorNamesRef.current = [];
     generateQuestion();
   }, [difficulty, mode, isRandomizerEnabled]);
 
@@ -150,13 +151,11 @@ export function ColorGame({ initialDifficulty = 1, onSelectColor }: ColorGamePro
 
   const resetGame = () => {
     setScore({ correct: 0, total: 0 });
-    setUsedColorNames([]);
+    usedColorNamesRef.current = [];
     setIsGameOver(false);
     setFeedback(null);
     setLastClickedOption(null);
-    // Note: generateQuestion will be called by the useEffect [difficulty, mode] 
-    // but if we are manually resetting same diff/mode, we call it.
-    setTimeout(generateQuestion, 0);
+    generateQuestion();
   };
 
   const scrollToGame = () => {
