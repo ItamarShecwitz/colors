@@ -70,7 +70,12 @@ function App() {
   }, [inputColor])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputColor(e.target.value)
+    let value = e.target.value
+    // If it looks like a hex code but is missing the #, add it
+    if (/^[0-9a-fA-F]{3,8}$/.test(value)) {
+      value = '#' + value
+    }
+    setInputColor(value)
   }
 
   const addToHistory = (color: string) => {
@@ -669,7 +674,11 @@ function App() {
                   type="text" 
                   className="picker-hex-input"
                   value={inputColor} 
-                  onChange={(e) => setInputColor(e.target.value)}
+                  onChange={(e) => {
+                    let val = e.target.value;
+                    if (/^[0-9a-fA-F]{3,8}$/.test(val)) val = '#' + val;
+                    setInputColor(val);
+                  }}
                   placeholder="#000000"
                 />
               </div>
