@@ -264,7 +264,7 @@ html, body {
 }
 
 .hex-manual {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .hex-manual label {
@@ -281,6 +281,31 @@ html, body {
   border-radius: 12px;
   font-family: var(--font-mono);
   font-size: 1.1rem;
+  text-align: center;
+}
+
+.hsb-manual {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.hsb-input-group label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+.hsb-input-group input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
   text-align: center;
 }
 

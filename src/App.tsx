@@ -51,10 +51,14 @@ function App() {
       const closestMatch = getClosestColor(hex, ALL_COLORS)
       if (!closestMatch) return null;
       
+      const hsv = o.hsv()
+      const hsbStr = `HSB(${isNaN(hsv[0]) ? 0 : Math.round(hsv[0])}°, ${Math.round(hsv[1]*100)}%, ${Math.round(hsv[2]*100)}%)`
+      
       return {
         hex: hex,
         rgb: o.css(),
         hsl: o.css('hsl'),
+        hsb: hsbStr,
         name: closestMatch.name,
         contrast: chroma.contrast(o, 'white') > 4.5 ? '#ffffff' : '#000000',
         shades: chroma.scale([o.darken(2), o, o.brighten(2)]).colors(7),
@@ -178,6 +182,10 @@ function App() {
                       <div className="meta-item">
                         <label>HSL</label>
                         <code>{colorData.hsl}</code>
+                      </div>
+                      <div className="meta-item">
+                        <label>HSB</label>
+                        <code>{colorData.hsb}</code>
                       </div>
                     </div>
                   )}
@@ -597,9 +605,9 @@ function App() {
             </div>
             
             <div className="picker-body">
-              <div className="preview-swatch" style={{ backgroundColor: inputColor }}>
+              <div className="preview-swatch" style={{ backgroundColor: chroma.valid(inputColor) ? inputColor : '#242424' }}>
                 <span style={{ 
-                  color: chroma.contrast(inputColor, 'white') > 4.5 ? '#fff' : '#000',
+                  color: (chroma.valid(inputColor) && chroma.contrast(inputColor, 'white') > 4.5) ? '#fff' : '#000',
                   fontFamily: 'var(--font-serif)',
                   fontSize: '1.2rem',
                   textTransform: 'lowercase'
@@ -664,6 +672,33 @@ function App() {
                   onChange={(e) => setInputColor(e.target.value)}
                   placeholder="#000000"
                 />
+              </div>
+
+              <div className="hsb-manual">
+                <div className="hsb-input-group">
+                  <label>Hue</label>
+                  <input 
+                    type="number" min="0" max="360" 
+                    value={Math.round(hsb.h)} 
+                    onChange={(e) => handleHsbChange('h', Number(e.target.value))}
+                  />
+                </div>
+                <div className="hsb-input-group">
+                  <label>Sat %</label>
+                  <input 
+                    type="number" min="0" max="100" 
+                    value={Math.round(hsb.s)} 
+                    onChange={(e) => handleHsbChange('s', Number(e.target.value))}
+                  />
+                </div>
+                <div className="hsb-input-group">
+                  <label>Bri %</label>
+                  <input 
+                    type="number" min="0" max="100" 
+                    value={Math.round(hsb.b)} 
+                    onChange={(e) => handleHsbChange('b', Number(e.target.value))}
+                  />
+                </div>
               </div>
             </div>
             
